@@ -1,4 +1,3 @@
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -7,7 +6,7 @@ import javafx.stage.Stage;
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
 public class HomeController {
-    public void login(ActionEvent actionEvent) throws Exception{
+    public void login() throws Exception{
         Stage myStage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource(
                 "/fxml/login.fxml"));
@@ -16,7 +15,7 @@ public class HomeController {
         myStage.setResizable(false);
         myStage.show();
     }
-    public void register(ActionEvent actionEvent) throws Exception{
+    public void register() throws Exception{
         Stage myStage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource(
                 "/fxml/register.fxml"));
