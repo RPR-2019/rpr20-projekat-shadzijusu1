@@ -11,10 +11,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+
 import java.io.IOException;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
@@ -27,17 +27,19 @@ public class RegLogController {
     public ChoiceBox<POZICIJA> pozicijaBox;
     public ObservableList<POZICIJA> pozicije = FXCollections.observableArrayList();
     public CRMDao model;
+
     @FXML
     public void initialize() {
         model = CRMDao.getInstance();
 
-        if(pozicijaBox != null) {
+        if (pozicijaBox != null) {
             pozicije.add(POZICIJA.Vlasnik);
             pozicije.add(POZICIJA.Fotograf);
             pozicije.add(POZICIJA.Klijent);
             pozicijaBox.setItems(pozicije);
         }
     }
+
     public void registrujSe(ActionEvent actionEvent) throws IOException {
         String ime = imeFld.getText();
         String prezime = prezimeFld.getText();
@@ -47,9 +49,9 @@ public class RegLogController {
 
         Korisnik k = new Korisnik(ime, prezime, email, pass, pozicija);
         model.dodajKorisnika(ime, prezime, email, pass, pozicija);
-        if(pozicija == POZICIJA.Fotograf) {
-            FXMLLoader loader = new FXMLLoader( getClass().getResource(
-                    "/fxml/fotografFrontPage.fxml" ));
+        if (pozicija == POZICIJA.Fotograf) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(
+                    "/fxml/fotografFrontPage.fxml"));
             FotografController ctrl = new FotografController(k);
             loader.setController(ctrl);
             Parent root = loader.load();
@@ -57,10 +59,9 @@ public class RegLogController {
             myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
             myStage.setResizable(false);
             myStage.show();
-        }
-        else if(pozicija == POZICIJA.Klijent) {
-            FXMLLoader loader = new FXMLLoader( getClass().getResource(
-                    "/fxml/klijentFrontPage.fxml" ));
+        } else if (pozicija == POZICIJA.Klijent) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(
+                    "/fxml/klijentFrontPage.fxml"));
             KlijentController ctrl = new KlijentController(k);
             loader.setController(ctrl);
             Parent root = loader.load();
@@ -68,10 +69,9 @@ public class RegLogController {
             myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
             myStage.setResizable(false);
             myStage.show();
-        }
-        else {
-            FXMLLoader loader = new FXMLLoader( getClass().getResource(
-                    "/fxml/vlasnikFrontPage.fxml" ));
+        } else {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(
+                    "/fxml/vlasnikFrontPage.fxml"));
             VlasnikController ctrl = new VlasnikController(k);
             loader.setController(ctrl);
             Parent root = loader.load();
@@ -81,9 +81,41 @@ public class RegLogController {
             myStage.show();
         }
     }
-    public void logujSe() {
-        //open window za tog korisnika
-        System.out.println("Stari korisnik");
 
+    public void logujSe(ActionEvent actionEvent) throws IOException {
+        Korisnik k = model.getKorisnik(emailFld.getText(), passFld.getText());
+        if (k != null) {
+            if (k.getPozicija() == POZICIJA.Vlasnik) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource(
+                        "/fxml/vlasnikFrontPage.fxml"));
+                VlasnikController ctrl = new VlasnikController(k);
+                loader.setController(ctrl);
+                Parent root = loader.load();
+                Stage myStage = new Stage();
+                myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+                myStage.setResizable(false);
+                myStage.show();
+            } else if (k.getPozicija() == POZICIJA.Fotograf) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource(
+                        "/fxml/fotografFrontPage.fxml"));
+                FotografController ctrl = new FotografController(k);
+                loader.setController(ctrl);
+                Parent root = loader.load();
+                Stage myStage = new Stage();
+                myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+                myStage.setResizable(false);
+                myStage.show();
+            } else {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource(
+                        "/fxml/klijentFrontPage.fxml"));
+                KlijentController ctrl = new KlijentController(k);
+                loader.setController(ctrl);
+                Parent root = loader.load();
+                Stage myStage = new Stage();
+                myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+                myStage.setResizable(false);
+                myStage.show();
+            }
+        }
     }
 }
