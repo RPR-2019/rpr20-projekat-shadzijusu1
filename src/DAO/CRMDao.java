@@ -65,15 +65,15 @@ public class CRMDao {
             dajKorisnika.setString(2, pass);
 
             ResultSet result = dajKorisnika.executeQuery();
-            if(result.next() == false) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Greška");
-                alert.setHeaderText("Neispravan email ili password.");
-                alert.setContentText("Pokušajte ponovo!");
-
-                alert.showAndWait();
-                return k;
-            }
+//            if(result.next() == false) {
+//                Alert alert = new Alert(Alert.AlertType.ERROR);
+//                alert.setTitle("Greška");
+//                alert.setHeaderText("Neispravan email ili password.");
+//                alert.setContentText("Pokušajte ponovo!");
+//
+//                alert.showAndWait();
+//                return k;
+//            }
             while (result.next()) {
                 String ime = result.getString(1);
                 String prezime = result.getString(2);

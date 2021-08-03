@@ -84,7 +84,6 @@ public class RegLogController {
 
     public void logujSe(ActionEvent actionEvent) throws IOException {
         Korisnik k = model.getKorisnik(emailFld.getText(), passFld.getText());
-        if (k != null) {
             if (k.getPozicija() == POZICIJA.Vlasnik) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource(
                         "/fxml/vlasnikFrontPage.fxml"));
@@ -116,6 +115,5 @@ public class RegLogController {
                 myStage.setResizable(false);
                 myStage.show();
             }
-        }
     }
 }

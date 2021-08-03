@@ -13,6 +13,7 @@ public class Main extends Application {
         primaryStage.setTitle("RPR pictures");
         primaryStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         primaryStage.show();
+        primaryStage.toFront();
     }
     public static void main(String[] args) {
         launch(args);
