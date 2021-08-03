@@ -1,3 +1,7 @@
+package Controller;
+
+import Model.Korisnik;
+import Model.POZICIJA;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

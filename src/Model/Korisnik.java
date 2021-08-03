@@ -1,3 +1,5 @@
+package Model;
+
 public class Korisnik {
     private String ime;
     private String prezime;
