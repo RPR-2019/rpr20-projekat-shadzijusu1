@@ -2,14 +2,12 @@ package Controller;
 
 import DAO.CRMDao;
 import Model.Korisnik;
-import Model.Projekat;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -54,7 +52,7 @@ public class VlasnikController {
     public void editProfile(ActionEvent actionEvent) throws IOException {
         Stage myStage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource(
-                "/fxml/editProfile.fxml"));
+                "/fxml/edit_profile.fxml"));
         EditProfileController ctrl = new EditProfileController(vlasnik);
         loader.setController(ctrl);
         Parent root = loader.load();

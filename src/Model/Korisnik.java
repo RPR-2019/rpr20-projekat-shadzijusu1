@@ -3,12 +3,32 @@ package Model;
 import DAO.CRMDao;
 
 public class Korisnik {
+    private int id;
     private String ime;
     private String prezime;
     private String email;
     private String password;
     private POZICIJA pozicija;
     private String slika;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Korisnik(int id, String ime, String prezime, String email, String password, POZICIJA pozicija, String slika) {
+        this.id = id;
+        this.ime = ime;
+        this.prezime = prezime;
+        this.email = email;
+        this.password = password;
+        this.pozicija = pozicija;
+        this.slika = slika;
+    }
+
     public Korisnik(String ime, String prezime, String email, String password, POZICIJA pozicija) {
         this.ime = ime;
         this.prezime = prezime;

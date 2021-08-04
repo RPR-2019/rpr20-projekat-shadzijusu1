@@ -3,22 +3,19 @@ package Controller;
 import DAO.CRMDao;
 import Model.Korisnik;
 import Model.Projekat;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
-import javax.swing.*;
 import java.io.IOException;
-import java.util.ResourceBundle;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
@@ -33,6 +30,7 @@ public class FotografController {
     public Korisnik fotograf;
     public CRMDao model;
     public ImageView profileImg;
+    public ListView<String> projektiView;
 
 
     public FotografController(Korisnik fotograf) {
@@ -55,7 +53,30 @@ public class FotografController {
          image = new Image(fotograf.getSlika());
 
         profileImg.setImage(image);
+        ObservableList<String> projekti = model.dajProjekte(fotograf.getId());
+        projektiView.setItems(projekti);
+
+        projektiView.getSelectionModel().selectedItemProperty().addListener((obs, oldProjekat, newProjekat) -> {
+            try {
+                openProjectDetails(newProjekat);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
+
+    private void openProjectDetails(String newProjekat) throws IOException {
+        Stage myStage = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(
+                "/fxml/project_detail.fxml"));
+        ProjectDataController ctrl = new ProjectDataController(newProjekat);
+        loader.setController(ctrl);
+        Parent root = loader.load();
+        myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        myStage.setResizable(false);
+        myStage.show();
+    }
+
     public void odjaviSe(ActionEvent actionEvent) {
         System.exit(0);
     }
@@ -63,7 +84,7 @@ public class FotografController {
     public void editProfile(ActionEvent actionEvent) throws IOException {
         Stage myStage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource(
-                "/fxml/editProfile.fxml"));
+                "/fxml/edit_profile.fxml"));
         EditProfileController ctrl = new EditProfileController(fotograf);
         loader.setController(ctrl);
         Parent root = loader.load();

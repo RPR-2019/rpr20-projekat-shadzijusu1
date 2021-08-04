@@ -51,7 +51,7 @@ public class RegLogController {
         model.dodajKorisnika(ime, prezime, email, pass, pozicija);
         if (pozicija == POZICIJA.Fotograf) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(
-                    "/fxml/fotografFrontPage.fxml"));
+                    "/fxml/fotograf_front_page.fxml"));
             FotografController ctrl = new FotografController(k);
             loader.setController(ctrl);
             Parent root = loader.load();
@@ -61,7 +61,7 @@ public class RegLogController {
             myStage.show();
         } else if (pozicija == POZICIJA.Klijent) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(
-                    "/fxml/klijentFrontPage.fxml"));
+                    "/fxml/klijent_front_page.fxml"));
             KlijentController ctrl = new KlijentController(k);
             loader.setController(ctrl);
             Parent root = loader.load();
@@ -71,7 +71,7 @@ public class RegLogController {
             myStage.show();
         } else {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(
-                    "/fxml/vlasnikFrontPage.fxml"));
+                    "/fxml/vlasnik_front_page.fxml"));
             VlasnikController ctrl = new VlasnikController(k);
             loader.setController(ctrl);
             Parent root = loader.load();
@@ -86,7 +86,7 @@ public class RegLogController {
         Korisnik k = model.getKorisnik(emailFld.getText(), passFld.getText());
         if (k.getPozicija() == POZICIJA.Vlasnik) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource(
-                        "/fxml/vlasnikFrontPage.fxml"));
+                        "/fxml/vlasnik_front_page.fxml"));
                 VlasnikController ctrl = new VlasnikController(k);
                 loader.setController(ctrl);
                 Parent root = loader.load();
@@ -96,7 +96,7 @@ public class RegLogController {
                 myStage.show();
             } else if (k.getPozicija() == POZICIJA.Fotograf) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource(
-                        "/fxml/fotografFrontPage.fxml"));
+                        "/fxml/fotograf_front_page.fxml"));
                 FotografController ctrl = new FotografController(k);
                 loader.setController(ctrl);
                 Parent root = loader.load();
@@ -106,7 +106,7 @@ public class RegLogController {
                 myStage.show();
             } else {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource(
-                        "/fxml/klijentFrontPage.fxml"));
+                        "/fxml/klijent_front_page.fxml"));
                 KlijentController ctrl = new KlijentController(k);
                 loader.setController(ctrl);
                 Parent root = loader.load();
