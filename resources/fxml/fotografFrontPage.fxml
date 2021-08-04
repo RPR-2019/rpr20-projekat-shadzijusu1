@@ -59,7 +59,7 @@
       </MenuBar>
       <ImageView fx:id="profileImg" fitHeight="140.0" fitWidth="150.0" GridPane.rowIndex="2">
          <image>
-            <Image url="@/img/blank-profile-picture-973460_640.png" />
+            <Image url="@/img/blank-profile-picture.png" />
          </image>
          <GridPane.margin>
             <Insets left="10.0" top="40.0" />

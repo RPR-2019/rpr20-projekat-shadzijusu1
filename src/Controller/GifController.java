@@ -22,7 +22,18 @@ public class GifController {
     private String choosenBtnUrl;
     private Korisnik trenutni;
     private boolean choosenBtn = false;
-    private Button button;
+    private ImageView imageView;
+
+    public void setImageView(ImageView imageView) {
+        this.imageView = imageView;
+    }
+
+    public GifController() {
+    }
+
+    public GifController(Korisnik trenutni) {
+        this.trenutni = trenutni;
+    }
 
     public void clickCancel(ActionEvent actionEvent) {
         Node n = (Node) actionEvent.getSource();
@@ -48,10 +59,10 @@ public class GifController {
 
     public void clickOk(ActionEvent actionEvent) {
         if (choosenBtn) {
-            ImageView iv = new ImageView(new Image(choosenBtnUrl));
-            iv.setFitHeight(128);
-            iv.setFitWidth(128);
-            button.setGraphic(iv);
+            trenutni.setSlika(choosenBtnUrl);
+            Image image = new Image(trenutni.getSlika());
+            imageView.setImage(image);
+
             Node n = (Node) actionEvent.getSource();
             Stage stage = (Stage) n.getScene().getWindow();
             stage.close();
@@ -95,10 +106,5 @@ public class GifController {
                 }
             }).start();
         });
-    }
-
-
-    public void setButton(Button imgKorisnik) {
-        button = imgKorisnik;
     }
 }

@@ -15,6 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.control.MenuItem?>
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="501.0" prefWidth="674.0" style="-fx-background-color: white;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/15.0.1">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -36,9 +37,6 @@
          </font>
       </Label>
       <ImageView fx:id="profileImg" fitHeight="140.0" fitWidth="150.0" GridPane.rowIndex="1">
-         <image>
-             <Image url="/img/blank-profile-picture-973460_640.png" />
-         </image>
          <GridPane.margin>
             <Insets left="10.0" top="55.0" />
          </GridPane.margin>
@@ -99,12 +97,21 @@
             </ListView>
          </children>
       </VBox>
-      <MenuBar GridPane.columnSpan="2">
-        <menus>
-          <Menu mnemonicParsing="false" text="Uredi" />
-          <Menu mnemonicParsing="false" text="Pošta" />
-          <Menu mnemonicParsing="false" text="Odjava" />
-        </menus>
-      </MenuBar>
+       <MenuBar GridPane.columnSpan="2" GridPane.rowIndex="1">
+           <menus>
+               <Menu mnemonicParsing="false" text="Profil">
+                   <items>
+                       <MenuItem mnemonicParsing="false" onAction="#editProfile" text="Uredi" />
+                   </items></Menu>
+               <Menu fx:id="email" mnemonicParsing="false" text="Pošta">
+                   <items>
+                       <MenuItem mnemonicParsing="false" text="Otvori" />
+                   </items></Menu>
+               <Menu mnemonicParsing="false" text="Dodatno">
+                   <items>
+                       <MenuItem mnemonicParsing="false" onAction="#odjaviSe" text="Odjava" />
+                   </items></Menu>
+           </menus>
+       </MenuBar>
    </children>
 </GridPane>

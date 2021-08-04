@@ -4,8 +4,19 @@ import DAO.CRMDao;
 import Model.Klijent;
 import Model.Korisnik;
 import Model.POZICIJA;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+
+import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
 public class KlijentController {
     public Klijent klijent = new Klijent("","","","", POZICIJA.Klijent);
@@ -16,6 +27,7 @@ public class KlijentController {
     public Label fldPass;
     public Label fldPozicija;
     public Label nameFld;
+    public ImageView profileImg;
     public KlijentController(Korisnik korisnik) {
         this.klijent.setIme(korisnik.getIme());
         this.klijent.setPrezime(korisnik.getPrezime());
@@ -32,6 +44,29 @@ public class KlijentController {
         fldEmail.setText(klijent.getEmail());
         fldPass.setText(klijent.getPassword());
         fldPozicija.setText(klijent.getPozicija().toString());
+        Image image;
+        if(klijent.getSlika().equals("/img/blank-profile-picture.png"))
+            image = new Image(getClass().getResourceAsStream(klijent.getSlika()));
+        else
+            image = new Image(klijent.getSlika());
+
+        profileImg.setImage(image);
+    }
+
+    public void odjaviSe(ActionEvent actionEvent) {
+        System.exit(0);
+    }
+
+    public void editProfile(ActionEvent actionEvent) throws IOException {
+        Stage myStage = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(
+                "/fxml/editProfile.fxml"));
+        EditProfileController ctrl = new EditProfileController(klijent);
+        loader.setController(ctrl);
+        Parent root = loader.load();
+        myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        myStage.setResizable(false);
+        myStage.show();
     }
 
 }

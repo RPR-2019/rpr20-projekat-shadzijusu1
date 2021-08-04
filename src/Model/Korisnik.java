@@ -1,18 +1,30 @@
 package Model;
 
+import DAO.CRMDao;
+
 public class Korisnik {
     private String ime;
     private String prezime;
     private String email;
     private String password;
     private POZICIJA pozicija;
-
+    private String slika;
     public Korisnik(String ime, String prezime, String email, String password, POZICIJA pozicija) {
         this.ime = ime;
         this.prezime = prezime;
         this.email = email;
         this.password = password;
         this.pozicija = pozicija;
+        this.slika = ("/img/blank-profile-picture.png");
+    }
+
+    public Korisnik(String ime, String prezime, String email, String password, POZICIJA pozicija, String slika) {
+        this.ime = ime;
+        this.prezime = prezime;
+        this.email = email;
+        this.password = password;
+        this.pozicija = pozicija;
+        this.slika = (slika);
     }
 
     public String getIme() {
@@ -21,6 +33,7 @@ public class Korisnik {
 
     public void setIme(String ime) {
         this.ime = ime;
+        CRMDao.postaviIme(ime, email);
     }
 
     public String getPrezime() {
@@ -29,6 +42,8 @@ public class Korisnik {
 
     public void setPrezime(String prezime) {
         this.prezime = prezime;
+        CRMDao.postaviPrezime(prezime, email);
+
     }
 
     public String getEmail() {
@@ -37,6 +52,8 @@ public class Korisnik {
 
     public void setEmail(String email) {
         this.email = email;
+        CRMDao.postaviMail(email, ime, prezime, password);
+
     }
 
     public String getPassword() {
@@ -45,6 +62,7 @@ public class Korisnik {
 
     public void setPassword(String password) {
         this.password = password;
+        CRMDao.postaviPass(password, email);
     }
 
     public POZICIJA getPozicija() {
@@ -53,6 +71,15 @@ public class Korisnik {
 
     public void setPozicija(POZICIJA pozicija) {
         this.pozicija = pozicija;
+    }
+
+    public String getSlika() {
+        return slika;
+    }
+
+    public void setSlika(String pic) {
+        this.slika = slika;
+        CRMDao.postaviSliku(pic, email);
     }
 }
 

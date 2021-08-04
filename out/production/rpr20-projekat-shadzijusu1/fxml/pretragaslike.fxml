@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.TilePane?>
 
-<GridPane minHeight="449.0" minWidth="670.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane minHeight="449.0" minWidth="670.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GifController">
     <columnConstraints>
         <ColumnConstraints hgrow="ALWAYS" />
         <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" />

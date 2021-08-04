@@ -8,8 +8,14 @@ import javafx.stage.Stage;
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
 public class HomeController {
+    Stage parentStage;
+
+    public void setParentStage(Stage parentStage) {
+        this.parentStage = parentStage;
+    }
     public void login() throws Exception{
         Stage myStage = new Stage();
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource(
                 "/fxml/login.fxml"));
         Parent root = loader.load();
