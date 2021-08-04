@@ -94,5 +94,13 @@ public class KlijentController {
         myStage.setResizable(false);
         myStage.show();
     }
-
+    public void openMail(ActionEvent actionEvent) throws IOException {
+        Stage myStage = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(
+                "/fxml/send_email.fxml"));
+        Parent root = loader.load();
+        myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        myStage.setResizable(false);
+        myStage.show();
+    }
 }

@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane hgap="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" vgap="10.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/15.0.1">
+<GridPane hgap="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" vgap="10.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/15.0.1" fx:controller="Controller.EmailLoginController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" />
   </columnConstraints>
@@ -27,15 +27,15 @@
             <Image url="@../img/mail.png" />
          </image>
          <GridPane.margin>
-            <Insets bottom="50.0" left="55.0" right="50.0" top="10.0" />
+            <Insets bottom="50.0" left="50.0" right="50.0" top="10.0" />
          </GridPane.margin>
       </ImageView>
-      <TextField fx:id="emailFld" promptText="Email" GridPane.rowIndex="1" />
-      <PasswordField fx:id="passFld" promptText="Password" GridPane.rowIndex="2" />
+      <TextField promptText="Email" GridPane.rowIndex="1" />
+      <PasswordField promptText="Password" GridPane.rowIndex="2" />
       <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.rowIndex="3">
         <buttons>
-          <Button fx:id="okBtn" defaultButton="true" mnemonicParsing="false" onAction="#signIn" text="Ok" />
-            <Button fx:id="cancelBtn" cancelButton="true" mnemonicParsing="false" onAction="#close" text="Nazad" />
+          <Button defaultButton="true" onAction="#signIn" mnemonicParsing="false" text="Ok" />
+            <Button cancelButton="true" onAction="#close" mnemonicParsing="false" text="Nazad" />
         </buttons>
       </ButtonBar>
    </children>

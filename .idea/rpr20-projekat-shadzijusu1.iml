@@ -11,5 +11,7 @@
     <orderEntry type="library" name="lib" level="project" />
     <orderEntry type="library" name="org.xerial:sqlite-jdbc:3.34.0" level="project" />
     <orderEntry type="library" name="at.mukprojects:giphy4j:1.0.1" level="project" />
+    <orderEntry type="library" name="javax.inject:javax.inject:1" level="project" />
+    <orderEntry type="library" name="javax.mail:mail:1.4" level="project" />
   </component>
 </module>
