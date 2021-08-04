@@ -12,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.PopupControl;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -60,15 +61,8 @@ public class RegLogController {
             myStage.setResizable(false);
             myStage.show();
         } else if (pozicija == POZICIJA.Klijent) {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(
-                    "/fxml/klijent_front_page.fxml"));
-            KlijentController ctrl = new KlijentController(k);
-            loader.setController(ctrl);
-            Parent root = loader.load();
-            Stage myStage = new Stage();
-            myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-            myStage.setResizable(false);
-            myStage.show();
+
+            otvoriDodatne(k);
         } else {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(
                     "/fxml/vlasnik_front_page.fxml"));
@@ -105,15 +99,27 @@ public class RegLogController {
                 myStage.setResizable(false);
                 myStage.show();
             } else {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource(
-                        "/fxml/klijent_front_page.fxml"));
-                KlijentController ctrl = new KlijentController(k);
-                loader.setController(ctrl);
-                Parent root = loader.load();
-                Stage myStage = new Stage();
-                myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-                myStage.setResizable(false);
-                myStage.show();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(
+                    "/fxml/klijent_front_page.fxml"));
+            KlijentController ctrl = new KlijentController(k);
+            loader.setController(ctrl);
+            Parent root = loader.load();
+            Stage myStage = new Stage();
+            myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            myStage.setResizable(false);
+            myStage.show();
             }
+    }
+
+    private void otvoriDodatne(Korisnik k) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(
+                "/fxml/klijent_info_register.fxml"));
+        KlijentInfoController ctrl = new KlijentInfoController(k);
+        loader.setController(ctrl);
+        Parent root = loader.load();
+        Stage myStage = new Stage();
+        myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        myStage.setResizable(false);
+        myStage.show();
     }
 }

@@ -1,13 +1,17 @@
 package DAO;
 
+import Model.Klijent;
 import Model.Korisnik;
 import Model.POZICIJA;
 import Model.Projekat;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -17,7 +21,8 @@ public class CRMDao {
     private static CRMDao instance = null;
     private Connection conn;
     private static PreparedStatement dodajKorisnika, dajKorisnika, postaviSliku, postaviIme, postaviPrezime,
-    postaviMail, postaviPass, dajMojeProjekte, dajProjekat, dajKorisnikaFromId;
+    postaviMail, postaviPass, dajMojeProjekte, dajProjekat, dajKorisnikaFromId, dodajKlijenta;
+    private SimpleObjectProperty<Klijent> klijent = new SimpleObjectProperty<>();
 
     private CRMDao() {
         try {
@@ -33,6 +38,7 @@ public class CRMDao {
             dajMojeProjekte = conn.prepareStatement("SELECT naziv FROM Projekat where klijent=? or odgovornaOsoba=?");
             dajProjekat = conn.prepareStatement("SELECT klijent, odgovornaOsoba, gotov from Projekat where naziv=?");
             dajKorisnikaFromId = conn.prepareStatement("SELECT ime, prezime from Korisnik where id=?");
+            dodajKlijenta = conn.prepareStatement("INSERT INTO Klijent VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
         } catch (
                 SQLException e) {
 
@@ -66,10 +72,37 @@ public class CRMDao {
             dodajKorisnika.setString(3, email);
             dodajKorisnika.setString(4, password);
             dodajKorisnika.setString(5, pozicija.toString());
-            dodajKorisnika.setString(6, "/img/blank-profile-picture.png");
+            dodajKorisnika.setString(7, "/img/blank-profile-picture.png");
             Random random = new Random();
-            dodajKorisnika.setInt(6, random.nextInt(2555));
+            int id = random.nextInt(25555);
+            dodajKorisnika.setInt(6, id);
             dodajKorisnika.executeUpdate();
+
+            if(pozicija.toString().equals("Klijent")) {
+              klijent = new SimpleObjectProperty<>(new Klijent(ime, prezime, email, password, pozicija));
+              klijent.get().setSlika("/img/blank-profile-picture.png");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public void addKlijentInfo(LocalDate datumRodjenja, String telefon) {
+        try {
+            dodajKlijenta.setString(1, klijent.get().getIme());
+            dodajKlijenta.setString(2, klijent.get().getPrezime());
+            dodajKlijenta.setString(3, klijent.get().getEmail());
+            dodajKlijenta.setString(4, klijent.get().getPassword());
+            dodajKlijenta.setString(5, klijent.get().getPozicija().toString());
+            dodajKlijenta.setInt(6, klijent.get().getId());
+            dodajKlijenta.setString(7, datumRodjenja.toString());
+            dodajKlijenta.setString(8, "Sarajevo");
+            dodajKlijenta.setString(9, telefon);
+            dodajKlijenta.setString(10, null);
+            dodajKlijenta.setString(11, LocalDateTime.now().toString());
+            dodajKlijenta.setString(12, "Aktivan");
+            dodajKlijenta.setString(13, null);
+            dodajKlijenta.setString(14, klijent.get().getSlika());
+            dodajKlijenta.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }

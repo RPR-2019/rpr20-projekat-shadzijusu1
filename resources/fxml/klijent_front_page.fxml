@@ -107,7 +107,7 @@
                    </items></Menu>
                <Menu fx:id="email" mnemonicParsing="false" text="Pošta" onAction="#openMail">
                    <items>
-                       <MenuItem mnemonicParsing="false" text="Otvori" />
+                       <MenuItem mnemonicParsing="false" text="Pošalji mail" />
                    </items></Menu>
                <Menu mnemonicParsing="false" text="Dodatno">
                    <items>
