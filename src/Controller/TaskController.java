@@ -44,15 +44,6 @@ public class TaskController {
         colNaziv.setCellValueFactory(new PropertyValueFactory<Task, String>("naziv"));
         colOpis.setCellValueFactory(new PropertyValueFactory<Task, String>("opis"));
         colDeadline.setCellValueFactory(new PropertyValueFactory<Task, Date>("deadline"));
-//        colUradjen.setCellValueFactory(c -> new SimpleBooleanProperty(c.getValue().getChekiran()));
-//        colUradjen.setCellFactory(tc -> new CheckBoxTableCell<>());
-//
-//        colUradjen.setOnEditCommit( event -> {
-//            event.getRowValue().getChekiran();
-//            model.finishTask();
-//        });
-//
-//
         colUradjen.setCellFactory(tc -> new CheckBoxTableCell<>());
 
         colUradjen.setCellValueFactory(

@@ -20,7 +20,7 @@ public class CRMDao {
     private Connection conn;
     private static PreparedStatement dodajKorisnika, dajKorisnika, postaviSliku, postaviIme, postaviPrezime,
     postaviMail, postaviPass, dajMojeProjekte, dajProjekat, dajKorisnikaFromId, dodajKlijenta, dajKlijentaZaOdgOsobu,
-    dajTaskoveZa, dajKlijentaPoImenu, dodajTask, cekirajTask;
+    dajTaskoveZa, dajKlijentaPoImenu, dodajTask, cekirajTask, dajKlijente;
     private SimpleObjectProperty<Klijent> klijent = new SimpleObjectProperty<>();
 
     private CRMDao() {
@@ -43,6 +43,7 @@ public class CRMDao {
             dajKlijentaPoImenu = conn.prepareStatement("SELECT id from Klijent where ime=? and prezime=?");
             dodajTask = conn.prepareStatement("INSERT INTO Task VALUES(?,?,?,?,?,?,?)");
             cekirajTask = conn.prepareStatement("UPDATE Task set chekiran=1");
+            dajKlijente = conn.prepareStatement("SELECT ime, prezime, datumRodjenja, odgovornaOsoba, datumKontaktiranja, telefon, status, datumAktivacije from Klijent");
         } catch (
                 SQLException e) {
             System.out.println(e);
@@ -315,5 +316,33 @@ public class CRMDao {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+    }
+    public ArrayList<Klijent> getClients() {
+        ArrayList<Klijent> klijenti = new ArrayList<>();
+        try {
+            ResultSet rs = dajKlijente.executeQuery();
+            while(rs.next()) {
+                Klijent k = new Klijent();
+                k.setIme(rs.getString(1));
+                k.setPrezime(rs.getString(2));
+                SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+                Date date = formatter.parse(rs.getString(3));
+                k.setDatumRodjenja(date);
+                int odgovornaOsobaId = rs.getInt(4);
+                String odgovornaOsoba = userNameFromId(odgovornaOsobaId);
+                k.setOdgovornaOsoba(odgovornaOsoba);
+                 date = formatter.parse(rs.getString(5));
+                k.setDatumKontaktiranja(date);
+                k.setTelefon(rs.getString(6));
+                k.setStatus(rs.getString(7));
+                date = formatter.parse(rs.getString(8));
+                k.setDatumAktivacije(date);
+                klijenti.add(k);
+            }
+            return klijenti;
+        } catch (SQLException | ParseException throwables) {
+            throwables.printStackTrace();
+        }
+        return klijenti;
     }
 }

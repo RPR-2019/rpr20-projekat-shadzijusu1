@@ -14,6 +14,10 @@ public class Klijent extends Korisnik {
         super(ime, prezime, email, password, pozicija);
     }
 
+    public Klijent() {
+        super();
+    }
+
     public Date getDatumRodjenja() {
         return datumRodjenja;
     }

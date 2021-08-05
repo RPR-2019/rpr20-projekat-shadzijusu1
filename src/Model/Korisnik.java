@@ -11,6 +11,10 @@ public class Korisnik {
     private POZICIJA pozicija;
     private String slika;
 
+    public Korisnik() {
+
+    }
+
     public int getId() {
         return id;
     }
