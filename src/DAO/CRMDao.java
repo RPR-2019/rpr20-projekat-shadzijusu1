@@ -1,27 +1,23 @@
 package DAO;
 
-import Model.Klijent;
-import Model.Korisnik;
-import Model.POZICIJA;
-import Model.Projekat;
+import Model.*;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.Alert;
+import javafx.scene.control.SpinnerValueFactory;
 
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import java.util.Random;
 
 public class CRMDao {
     private static CRMDao instance = null;
     private Connection conn;
     private static PreparedStatement dodajKorisnika, dajKorisnika, postaviSliku, postaviIme, postaviPrezime,
-    postaviMail, postaviPass, dajMojeProjekte, dajProjekat, dajKorisnikaFromId, dodajKlijenta;
+    postaviMail, postaviPass, dajMojeProjekte, dajProjekat, dajKorisnikaFromId, dodajKlijenta, dajKlijentaZaOdgOsobu,
+    dajTaskoveZa, dajKlijentaPoImenu;
     private SimpleObjectProperty<Klijent> klijent = new SimpleObjectProperty<>();
 
     private CRMDao() {
@@ -39,6 +35,9 @@ public class CRMDao {
             dajProjekat = conn.prepareStatement("SELECT klijent, odgovornaOsoba, gotov from Projekat where naziv=?");
             dajKorisnikaFromId = conn.prepareStatement("SELECT ime, prezime from Korisnik where id=?");
             dodajKlijenta = conn.prepareStatement("INSERT INTO Klijent VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            dajKlijentaZaOdgOsobu = conn.prepareStatement("SELECT ime, prezime from Klijent where odgovornaOsoba=?");
+            dajTaskoveZa = conn.prepareStatement("SELECT naziv, opis, deadline, chekiran from Task where odgovornaOsoba=? AND klijent=?");
+            dajKlijentaPoImenu = conn.prepareStatement("SELECT id from Klijent where ime=? and prezime=?");
         } catch (
                 SQLException e) {
 
@@ -237,5 +236,52 @@ public class CRMDao {
             throwables.printStackTrace();
         }
         return "";
+    }
+    public ObservableList<String> getKlijentZaOdgOsobu(int id) {
+        ObservableList<String> klijenti = FXCollections.observableArrayList();
+        try {
+            dajKlijentaZaOdgOsobu.setInt(1, id);
+            ResultSet rs = dajKlijentaZaOdgOsobu.executeQuery();
+            while(rs.next()) {
+                String ime = rs.getString(1);
+                String prezime = rs.getString(2);
+                String naziv = ime + " " + prezime;
+                klijenti.add(naziv);
+            }
+            return klijenti;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return klijenti;
+    }
+    public ArrayList<Task> taskovi(int odgovornaOsoba, int klijent) {
+       ArrayList<Task> tasks = new ArrayList<>();
+        try {
+            dajTaskoveZa.setInt(1, odgovornaOsoba);
+            dajTaskoveZa.setInt(2, klijent);
+            ResultSet rs = dajTaskoveZa.executeQuery();
+            while(rs.next()) {
+                Task task = new Task(rs.getString(1), rs.getString(2), rs.getDate(3), rs.getBoolean(4));
+                tasks.add(task);
+            }
+            return tasks;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return tasks;
+    }
+    public int getKlijentId(String naziv) {
+        try {
+            String[] nazivTrimed = naziv.split(" ");
+            String ime = "'"+ nazivTrimed[0] + "'";
+            String prezime = "'" + nazivTrimed[1] + "'";
+            dajKlijentaPoImenu.setString(1, ime);
+            dajKlijentaPoImenu.setString(2, prezime);
+            ResultSet rs = dajKlijentaPoImenu.executeQuery();
+            return rs.getInt(1);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return -1;
     }
 }

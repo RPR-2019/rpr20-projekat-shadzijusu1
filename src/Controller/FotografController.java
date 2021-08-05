@@ -92,4 +92,24 @@ public class FotografController {
         myStage.setResizable(false);
         myStage.show();
     }
+    public void openMail(ActionEvent actionEvent) throws IOException {
+        Stage myStage = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(
+                "/fxml/send_email.fxml"));
+        Parent root = loader.load();
+        myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        myStage.setResizable(false);
+        myStage.show();
+    }
+    public void openTasks(ActionEvent actionEvent) throws IOException {
+        Stage myStage = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(
+                "/fxml/taskovi.fxml"));
+        TaskController ctrl = new TaskController(fotograf);
+        loader.setController(ctrl);
+        Parent root = loader.load();
+        myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        myStage.setResizable(false);
+        myStage.show();
+    }
 }

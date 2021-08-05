@@ -43,9 +43,6 @@
             <Menu mnemonicParsing="false" text="Klijenti" />
             <Menu mnemonicParsing="false" text="Uposlenici" />
             <Menu mnemonicParsing="false" text="Projekti">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
-              </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Odjava" />
          </menus>

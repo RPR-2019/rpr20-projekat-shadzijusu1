@@ -45,11 +45,11 @@
                </items></Menu>
             <Menu fx:id="tasks" mnemonicParsing="false" text="Taskovi">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Pregled" />
+                  <MenuItem mnemonicParsing="false" text="Pregled" onAction="#openTasks"/>
                </items></Menu>
             <Menu fx:id="email" mnemonicParsing="false" text="Pošta">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Otvori" />
+                  <MenuItem mnemonicParsing="false" text="Pošalji mail" onAction="#openMail" />
                </items></Menu>
             <Menu mnemonicParsing="false" text="Dodatno">
                <items>

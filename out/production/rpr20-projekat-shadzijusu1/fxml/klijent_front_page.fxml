@@ -107,12 +107,16 @@
                    </items></Menu>
                <Menu fx:id="email" mnemonicParsing="false" text="Pošta" onAction="#openMail">
                    <items>
-                       <MenuItem mnemonicParsing="false" text="Otvori" />
+                       <MenuItem mnemonicParsing="false" text="Pošalji mail" />
                    </items></Menu>
                <Menu mnemonicParsing="false" text="Dodatno">
                    <items>
+                       <MenuItem mnemonicParsing="false" onAction="#kontakt" text="Kontakt" />
+                   </items>
+                   <items>
                        <MenuItem mnemonicParsing="false" onAction="#odjaviSe" text="Odjava" />
-                   </items></Menu>
+                   </items>
+               </Menu>
            </menus>
          <GridPane.margin>
             <Insets />

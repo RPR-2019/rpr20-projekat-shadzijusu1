@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -40,6 +41,9 @@ public class KlijentController {
         this.klijent.setId(korisnik.getId());
         this.klijent.setSlika(korisnik.getSlika());
     }
+
+
+
     @FXML
     public void initialize() {
         model = CRMDao.getInstance();
@@ -80,7 +84,7 @@ public class KlijentController {
     }
 
     public void odjaviSe(ActionEvent actionEvent) {
-        System.exit(0);
+       System.exit(0);
     }
 
     public void editProfile(ActionEvent actionEvent) throws IOException {
@@ -103,4 +107,14 @@ public class KlijentController {
         myStage.setResizable(false);
         myStage.show();
     }
+    public void kontakt(ActionEvent actionEvent) throws IOException {
+        Stage myStage = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(
+                "/fxml/contact_info.fxml"));
+        Parent root = loader.load();
+        myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        myStage.setResizable(false);
+        myStage.show();
+    }
+
 }

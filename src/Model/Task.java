@@ -7,6 +7,18 @@ public class Task {
     public String naziv;
     public Date deadline;
     public Boolean chekiran;
+    public Integer odgovornaOsoba;
+    public Integer klijentId;
+
+
+    public Task(String opis, String naziv, Date deadline, Boolean chekiran, Integer odgovornaOsoba, Integer klijentId) {
+        this.opis = opis;
+        this.naziv = naziv;
+        this.deadline = deadline;
+        this.chekiran = chekiran;
+        this.odgovornaOsoba = odgovornaOsoba;
+        this.klijentId = klijentId;
+    }
 
     public Task(String opis, String naziv, Date deadline, Boolean chekiran) {
         this.opis = opis;
@@ -45,6 +57,22 @@ public class Task {
 
     public void setChekiran(Boolean chekiran) {
         this.chekiran = chekiran;
+    }
+
+    public Integer getOdgovornaOsoba() {
+        return odgovornaOsoba;
+    }
+
+    public void setOdgovornaOsoba(Integer odgovornaOsoba) {
+        this.odgovornaOsoba = odgovornaOsoba;
+    }
+
+    public Integer getKlijentId() {
+        return klijentId;
+    }
+
+    public void setKlijentId(Integer klijentId) {
+        this.klijentId = klijentId;
     }
 }
 
