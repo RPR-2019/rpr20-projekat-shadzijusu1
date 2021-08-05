@@ -20,7 +20,7 @@ public class CRMDao {
     private Connection conn;
     private static PreparedStatement dodajKorisnika, dajKorisnika, postaviSliku, postaviIme, postaviPrezime,
     postaviMail, postaviPass, dajMojeProjekte, dajProjekat, dajKorisnikaFromId, dodajKlijenta, dajKlijentaZaOdgOsobu,
-    dajTaskoveZa, dajKlijentaPoImenu;
+    dajTaskoveZa, dajKlijentaPoImenu, dodajTask;
     private SimpleObjectProperty<Klijent> klijent = new SimpleObjectProperty<>();
 
     private CRMDao() {
@@ -41,6 +41,7 @@ public class CRMDao {
             dajKlijentaZaOdgOsobu = conn.prepareStatement("SELECT ime, prezime from Klijent where odgovornaOsoba=?");
             dajTaskoveZa = conn.prepareStatement("SELECT naziv, opis, deadline, chekiran from Task where odgovornaOsoba=? AND klijentId=?");
             dajKlijentaPoImenu = conn.prepareStatement("SELECT id from Klijent where ime=? and prezime=?");
+            dodajTask = conn.prepareStatement("INSERT INTO Task VALUES(?,?,?,?,?,?,?)");
         } catch (
                 SQLException e) {
             System.out.println(e);
@@ -292,4 +293,20 @@ public class CRMDao {
         }
         return -1;
     }
+    public void addTask(String naziv, String opis, LocalDate deadline, int klijent, int odgovornaOsoba) {
+        try {
+            dodajTask.setString(1, opis);
+            dodajTask.setString(2, naziv);
+            dodajTask.setString(3, deadline.toString());
+            dodajTask.setInt(4, 0);
+            int id = new Random().nextInt(789434);
+            dodajTask.setInt(5, id);
+            dodajTask.setInt(6, odgovornaOsoba);
+            dodajTask.setInt(7, klijent);
+            dodajTask.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
 }

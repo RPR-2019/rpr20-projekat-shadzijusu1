@@ -46,7 +46,11 @@
             <Menu fx:id="tasks" mnemonicParsing="false" text="Taskovi">
                <items>
                   <MenuItem mnemonicParsing="false" text="Pregled" onAction="#openTasks"/>
-               </items></Menu>
+               </items>
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Dodaj task" onAction="#addTask"/>
+               </items>
+            </Menu>
             <Menu fx:id="email" mnemonicParsing="false" text="Pošta">
                <items>
                   <MenuItem mnemonicParsing="false" text="Pošalji mail" onAction="#openMail" />
