@@ -38,15 +38,38 @@
       </Label>
       <MenuBar GridPane.columnSpan="2" GridPane.rowIndex="1">
          <menus>
-            <Menu mnemonicParsing="false" text="Uredi" />
-            <Menu mnemonicParsing="false" text="Pošta" />
-            <Menu mnemonicParsing="false" text="Klijenti" />
-            <Menu mnemonicParsing="false" text="Uposlenici" />
-            <Menu mnemonicParsing="false" text="Projekti">
+            <Menu mnemonicParsing="false" text="Profil">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#editProfile" text="Uredi" />
+               </items></Menu>
+            <Menu fx:id="email" mnemonicParsing="false" text="Pošta">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Pošalji mail" onAction="#openMail" />
+               </items></Menu>
+            <Menu fx:id="klijenti" mnemonicParsing="false" text="Klijenti">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Aktivni" onAction="#activeClients" />
+               </items>
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Arhiva" onAction="#archivedClients" />
+               </items>
             </Menu>
-            <Menu mnemonicParsing="false" text="Odjava" />
+            <Menu fx:id="uposlenici" mnemonicParsing="false" text="Uposlenici">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Pregled" onAction="#employeesTable" />
+               </items></Menu>
+            <Menu fx:id="projekti" mnemonicParsing="false" text="Projekti">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Pregled" onAction="#projectsTable" />
+               </items></Menu>
+            <Menu mnemonicParsing="false" text="Dodatno">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#odjaviSe" text="Odjava" />
+               </items></Menu>
          </menus>
       </MenuBar>
+
+
       <ImageView fx:id="profileImg" fitHeight="140.0" fitWidth="150.0" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets left="10.0" top="40.0" />
