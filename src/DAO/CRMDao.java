@@ -7,9 +7,12 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.SpinnerValueFactory;
 
 import java.sql.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Random;
 
 public class CRMDao {
@@ -36,11 +39,11 @@ public class CRMDao {
             dajKorisnikaFromId = conn.prepareStatement("SELECT ime, prezime from Korisnik where id=?");
             dodajKlijenta = conn.prepareStatement("INSERT INTO Klijent VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             dajKlijentaZaOdgOsobu = conn.prepareStatement("SELECT ime, prezime from Klijent where odgovornaOsoba=?");
-            dajTaskoveZa = conn.prepareStatement("SELECT naziv, opis, deadline, chekiran from Task where odgovornaOsoba=? AND klijent=?");
+            dajTaskoveZa = conn.prepareStatement("SELECT naziv, opis, deadline, chekiran from Task where odgovornaOsoba=? AND klijentId=?");
             dajKlijentaPoImenu = conn.prepareStatement("SELECT id from Klijent where ime=? and prezime=?");
         } catch (
                 SQLException e) {
-
+            System.out.println(e);
         }
 
     }
@@ -261,11 +264,13 @@ public class CRMDao {
             dajTaskoveZa.setInt(2, klijent);
             ResultSet rs = dajTaskoveZa.executeQuery();
             while(rs.next()) {
-                Task task = new Task(rs.getString(1), rs.getString(2), rs.getDate(3), rs.getBoolean(4));
+                SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+                    Date date = formatter.parse(rs.getString(3));
+                Task task = new Task(rs.getString(2), rs.getString(1), date, rs.getBoolean(4));
                 tasks.add(task);
             }
             return tasks;
-        } catch (SQLException throwables) {
+        } catch (SQLException | ParseException throwables) {
             throwables.printStackTrace();
         }
         return tasks;
@@ -273,12 +278,15 @@ public class CRMDao {
     public int getKlijentId(String naziv) {
         try {
             String[] nazivTrimed = naziv.split(" ");
-            String ime = "'"+ nazivTrimed[0] + "'";
-            String prezime = "'" + nazivTrimed[1] + "'";
+            String ime = nazivTrimed[0];
+            String prezime = nazivTrimed[1];
             dajKlijentaPoImenu.setString(1, ime);
             dajKlijentaPoImenu.setString(2, prezime);
             ResultSet rs = dajKlijentaPoImenu.executeQuery();
-            return rs.getInt(1);
+            int id = -1;
+            while(rs.next())
+            id = rs.getInt(1);
+            return id;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

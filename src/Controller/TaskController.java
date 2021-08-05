@@ -3,12 +3,14 @@ package Controller;
 import DAO.CRMDao;
 import Model.Korisnik;
 import Model.Task;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 
@@ -24,7 +26,7 @@ public class TaskController {
 
     public TableColumn<Task, String> colNaziv;
     public TableColumn<Task, String> colOpis;
-    public TableColumn<Task, CheckBox> colUradjen;
+    public TableColumn<Task, Boolean> colUradjen;
     public TableColumn<Task, Date> colDeadline;
 
     public TaskController(Korisnik fotograf) {
@@ -40,12 +42,15 @@ public class TaskController {
         colNaziv.setCellValueFactory(new PropertyValueFactory<Task, String>("naziv"));
         colOpis.setCellValueFactory(new PropertyValueFactory<Task, String>("opis"));
         colDeadline.setCellValueFactory(new PropertyValueFactory<Task, Date>("deadline"));
-
+        colUradjen.setCellValueFactory(c -> new SimpleBooleanProperty(c.getValue().getChekiran()));
+        colUradjen.setCellFactory(tc -> new CheckBoxTableCell<>());
         klijentChoice.valueProperty().addListener((obs, oldValue, newValue) -> {
+
             int id = model.getKlijentId(newValue);
             ArrayList<Task> tasks = model.taskovi(fotograf.getId(), id);
             taskovi.addAll(tasks);
             tableViewTaskovi.setItems(taskovi);
+
         });
     }
     public void okBtn(ActionEvent actionEvent) {
