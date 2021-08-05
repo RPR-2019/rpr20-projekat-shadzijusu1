@@ -33,8 +33,7 @@
       </TableView>
       <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
         <buttons>
-          <Button defaultButton="true" mnemonicParsing="false" onAction="#okBtn" text="Ok" />
-            <Button cancelButton="true" mnemonicParsing="false" onAction="#cancelBtn" text="Nazad" />
+          <Button defaultButton="true" mnemonicParsing="false" onAction="#okAction" text="Ok" />
         </buttons>
       </ButtonBar>
       <ChoiceBox fx:id="klijentChoice" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />

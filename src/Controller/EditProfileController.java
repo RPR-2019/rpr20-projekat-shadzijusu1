@@ -43,16 +43,6 @@ public class EditProfileController {
         profileImg.setImage(image);
     }
     public void dajSlike(ActionEvent actionEvent) throws IOException {
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource(
-//                "/fxml/pretragaslike.fxml"));
-//        GifController ctrl = new GifController(korisnik);
-//        ctrl.setImageView(profileImg);
-//        loader.setController(ctrl);
-//        Parent root = loader.load();
-//        Stage myStage = new Stage();
-//        myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-//        myStage.setResizable(false);
-//        myStage.show();
         Stage myStage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource(
                 "/fxml/pretragaslike.fxml"));
@@ -64,7 +54,6 @@ public class EditProfileController {
         myStage.show();
     }
     public void sacuvajPromjene(ActionEvent actionEvent) {
-        korisnik.setSlika(korisnik.getSlika());
         korisnik.setIme(imeFld.getText());
         korisnik.setPrezime(prezimeFld.getText());
         korisnik.setEmail(emailFld.getText());

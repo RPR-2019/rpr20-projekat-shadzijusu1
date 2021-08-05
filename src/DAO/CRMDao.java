@@ -20,7 +20,7 @@ public class CRMDao {
     private Connection conn;
     private static PreparedStatement dodajKorisnika, dajKorisnika, postaviSliku, postaviIme, postaviPrezime,
     postaviMail, postaviPass, dajMojeProjekte, dajProjekat, dajKorisnikaFromId, dodajKlijenta, dajKlijentaZaOdgOsobu,
-    dajTaskoveZa, dajKlijentaPoImenu, dodajTask;
+    dajTaskoveZa, dajKlijentaPoImenu, dodajTask, cekirajTask;
     private SimpleObjectProperty<Klijent> klijent = new SimpleObjectProperty<>();
 
     private CRMDao() {
@@ -42,6 +42,7 @@ public class CRMDao {
             dajTaskoveZa = conn.prepareStatement("SELECT naziv, opis, deadline, chekiran from Task where odgovornaOsoba=? AND klijentId=?");
             dajKlijentaPoImenu = conn.prepareStatement("SELECT id from Klijent where ime=? and prezime=?");
             dodajTask = conn.prepareStatement("INSERT INTO Task VALUES(?,?,?,?,?,?,?)");
+            cekirajTask = conn.prepareStatement("UPDATE Task set chekiran=1");
         } catch (
                 SQLException e) {
             System.out.println(e);
@@ -308,5 +309,11 @@ public class CRMDao {
             throwables.printStackTrace();
         }
     }
-
+    public void finishTask() {
+        try {
+            cekirajTask.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
 }

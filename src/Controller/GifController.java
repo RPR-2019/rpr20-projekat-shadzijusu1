@@ -61,6 +61,7 @@ public class GifController {
         if (choosenBtn) {
             trenutni.setSlika(choosenBtnUrl);
             Image image = new Image(trenutni.getSlika());
+            System.out.println(choosenBtnUrl);
             imageView.setImage(image);
 
             Node n = (Node) actionEvent.getSource();

@@ -4,15 +4,17 @@ import DAO.CRMDao;
 import Model.Korisnik;
 import Model.Task;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -42,8 +44,33 @@ public class TaskController {
         colNaziv.setCellValueFactory(new PropertyValueFactory<Task, String>("naziv"));
         colOpis.setCellValueFactory(new PropertyValueFactory<Task, String>("opis"));
         colDeadline.setCellValueFactory(new PropertyValueFactory<Task, Date>("deadline"));
-        colUradjen.setCellValueFactory(c -> new SimpleBooleanProperty(c.getValue().getChekiran()));
+//        colUradjen.setCellValueFactory(c -> new SimpleBooleanProperty(c.getValue().getChekiran()));
+//        colUradjen.setCellFactory(tc -> new CheckBoxTableCell<>());
+//
+//        colUradjen.setOnEditCommit( event -> {
+//            event.getRowValue().getChekiran();
+//            model.finishTask();
+//        });
+//
+//
         colUradjen.setCellFactory(tc -> new CheckBoxTableCell<>());
+
+        colUradjen.setCellValueFactory(
+                c -> {
+                    Task task = c.getValue();
+                    CheckBox checkBox = new CheckBox();
+                    checkBox.selectedProperty().setValue(task.chekiran);
+                    checkBox
+                            .selectedProperty()
+                            .addListener((ov, old_val, new_val) -> {
+                                task.setChekiran(new_val);
+                                model.finishTask();
+                            });
+                    return checkBox.selectedProperty();
+                });
+
+
+
         klijentChoice.valueProperty().addListener((obs, oldValue, newValue) -> {
 
             int id = model.getKlijentId(newValue);
@@ -53,11 +80,9 @@ public class TaskController {
 
         });
     }
-    public void okBtn(ActionEvent actionEvent) {
-        System.out.println("implement later");
-    }
-    public void cancelBtn(ActionEvent actionEvent) {
-        System.out.println("implement later");
-    }
+    public void okAction(ActionEvent actionEvent) {
+        Node n = (Node) actionEvent.getSource();
+        Stage stage = (Stage) n.getScene().getWindow();
+        stage.close();    }
 
 }
