@@ -477,6 +477,8 @@ public class CRMDao {
             postaviStatus.setString(1, "Neaktivan");
             postaviStatus.setInt(2, klijent);
             postaviStatus.executeUpdate();
+
+
         }
         catch (SQLException e) {
             e.printStackTrace();
