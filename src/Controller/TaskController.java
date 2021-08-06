@@ -55,7 +55,7 @@ public class TaskController {
                             .selectedProperty()
                             .addListener((ov, old_val, new_val) -> {
                                 task.setChekiran(new_val);
-                                model.finishTask();
+                                model.finishTask(task.naziv);
                             });
                     return checkBox.selectedProperty();
                 });

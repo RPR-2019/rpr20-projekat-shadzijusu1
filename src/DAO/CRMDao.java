@@ -45,7 +45,7 @@ public class CRMDao {
             dajKorisnikaPoImenu = conn.prepareStatement("SELECT id from Korisnik where ime=? and prezime=?");
 
             dodajTask = conn.prepareStatement("INSERT INTO Task VALUES(?,?,?,?,?,?,?)");
-            cekirajTask = conn.prepareStatement("UPDATE Task set chekiran=1");
+            cekirajTask = conn.prepareStatement("UPDATE Task set chekiran=1 where naziv=?");
             dajKlijente = conn.prepareStatement("SELECT ime, prezime, datumRodjenja, odgovornaOsoba, datumKontaktiranja, telefon, status, datumAktivacije from Klijent");
             dajZaposlene = conn.prepareStatement("SELECT id, ime, prezime, email from Korisnik where pozicija='Fotograf'");
             dajProjekte = conn.prepareStatement("SELECT klijent, naziv, odgovornaOsoba, gotov from Projekat");
@@ -359,8 +359,9 @@ public class CRMDao {
         }
     }
 
-    public void finishTask() {
+    public void finishTask(String naziv) {
         try {
+            cekirajTask.setString(1, naziv);
             cekirajTask.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();

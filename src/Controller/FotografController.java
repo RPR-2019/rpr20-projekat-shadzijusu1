@@ -54,6 +54,10 @@ public class FotografController {
 
         profileImg.setImage(image);
         ObservableList<String> projekti = model.dajProjekte(fotograf.getId());
+
+
+
+
         projektiView.setItems(projekti);
 
         projektiView.getSelectionModel().selectedItemProperty().addListener((obs, oldProjekat, newProjekat) -> {
