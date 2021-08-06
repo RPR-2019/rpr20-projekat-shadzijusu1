@@ -20,7 +20,8 @@ public class CRMDao {
     private static PreparedStatement dodajKorisnika, dajKorisnika, postaviSliku, postaviIme, postaviPrezime,
             postaviMail, postaviPass, dajMojeProjekte, dajProjekat, dajKorisnikaFromId, dodajKlijenta, dajKlijentaZaOdgOsobu,
             dajTaskoveZa, dajKlijentaPoImenu, dodajTask, cekirajTask, dajKlijente, dajZaposlene, dajProjekte,
-            postaviOdgovornuOsobu, dajKorisnikaPoImenu, dodajProjekat, dajStatus, postaviStatus;
+            postaviOdgovornuOsobu, dajKorisnikaPoImenu, dodajProjekat, dajStatus, postaviStatus,
+            apdejtProjekat;
     private SimpleObjectProperty<Klijent> klijent = new SimpleObjectProperty<>();
     private static Integer id = 0;
     private CRMDao() {
@@ -52,7 +53,8 @@ public class CRMDao {
 
             dodajProjekat = conn.prepareStatement("INSERT INTO PROJEKAT VALUES(?,?,?,?,?)");
             dajStatus = conn.prepareStatement("SELECT status from Klijent where id=?");
-            postaviStatus = conn.prepareStatement("UPDATE Klijent set status='Aktivan' where id=?");
+            postaviStatus = conn.prepareStatement("UPDATE Klijent set status=? where id=?");
+            apdejtProjekat = conn.prepareStatement("UPDATE Projekat set gotov=? and odgovornaOsoba=? where naziv=?");
         } catch (
                 SQLException e) {
             System.out.println(e);
@@ -240,7 +242,7 @@ public class CRMDao {
             String klijent = userNameFromId(klijentId);
             int odgovornaOsobaId = rs.getInt(2);
             String odgovornaOsoba = userNameFromId(odgovornaOsobaId);
-            Boolean status = rs.getBoolean(4);
+            Boolean status = rs.getBoolean(3);
             String gotov = "Završen";
             if (status == false)
                 gotov = "Aktivan";
@@ -449,10 +451,32 @@ public class CRMDao {
            ResultSet rs = dajStatus.executeQuery();
            while(rs.next()) {
                if(rs.getString(1).equals("Neaktivan")) {
-                   postaviStatus.setInt(1, klijent);
+                   postaviStatus.setString(1, "Aktivan");
+                   postaviStatus.setInt(2, klijent);
                    postaviStatus.executeUpdate();
                }
            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public void updateProject(int odgovornaOsoba, int gotov, String naziv) {
+        try {
+            apdejtProjekat.setInt(1, gotov);
+            apdejtProjekat.setInt(2, odgovornaOsoba);
+            apdejtProjekat.setString(3, naziv);
+            apdejtProjekat.executeUpdate();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public void arhivirajKlijenta(int klijent) {
+        try {
+            postaviStatus.setString(1, "Neaktivan");
+            postaviStatus.setInt(2, klijent);
+            postaviStatus.executeUpdate();
         }
         catch (SQLException e) {
             e.printStackTrace();

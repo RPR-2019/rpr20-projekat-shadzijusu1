@@ -6,11 +6,18 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.ArrayList;
+
+import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
 public class ProjektiController {
     public CRMDao model;
@@ -31,5 +38,27 @@ public class ProjektiController {
         colStatus.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().gotov));
         projekti.addAll(projects);
         tableViewProjekti.setItems(projekti);
+
+        tableViewProjekti.getSelectionModel().selectedItemProperty().addListener(
+                ((observableValue, stariProjekat, noviProjekat) -> {
+                    try {
+                        openProjectDetails(noviProjekat.naziv);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                })
+        );
+    }
+
+    private void openProjectDetails(String naziv) throws IOException {
+        Stage myStage = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(
+                "/fxml/project_detail.fxml"));
+        ProjectDataController ctrl = new ProjectDataController(naziv);
+        loader.setController(ctrl);
+        Parent root = loader.load();
+        myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        myStage.setResizable(false);
+        myStage.show();
     }
 }
