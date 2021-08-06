@@ -1,12 +1,12 @@
 package Model;
 
 public class Projekat {
-    public int klijent;
     public String naziv;
-    public int odgovornaOsoba;
-    public Boolean gotov;
+    public String odgovornaOsoba;
+    public String klijent;
+    public String gotov;
 
-    public Projekat(int klijent, String naziv, int odgovornaOsoba, Boolean gotov) {
+    public Projekat(String klijent, String naziv, String odgovornaOsoba, String gotov) {
         this.klijent = klijent;
         this.naziv = naziv;
         this.odgovornaOsoba = odgovornaOsoba;

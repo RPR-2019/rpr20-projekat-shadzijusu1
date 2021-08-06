@@ -4,7 +4,6 @@ import Model.*;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.SpinnerValueFactory;
 
 import java.sql.*;
 import java.text.ParseException;
@@ -19,8 +18,8 @@ public class CRMDao {
     private static CRMDao instance = null;
     private Connection conn;
     private static PreparedStatement dodajKorisnika, dajKorisnika, postaviSliku, postaviIme, postaviPrezime,
-    postaviMail, postaviPass, dajMojeProjekte, dajProjekat, dajKorisnikaFromId, dodajKlijenta, dajKlijentaZaOdgOsobu,
-    dajTaskoveZa, dajKlijentaPoImenu, dodajTask, cekirajTask, dajKlijente;
+            postaviMail, postaviPass, dajMojeProjekte, dajProjekat, dajKorisnikaFromId, dodajKlijenta, dajKlijentaZaOdgOsobu,
+            dajTaskoveZa, dajKlijentaPoImenu, dodajTask, cekirajTask, dajKlijente, dajZaposlene, dajProjekte;
     private SimpleObjectProperty<Klijent> klijent = new SimpleObjectProperty<>();
 
     private CRMDao() {
@@ -44,6 +43,8 @@ public class CRMDao {
             dodajTask = conn.prepareStatement("INSERT INTO Task VALUES(?,?,?,?,?,?,?)");
             cekirajTask = conn.prepareStatement("UPDATE Task set chekiran=1");
             dajKlijente = conn.prepareStatement("SELECT ime, prezime, datumRodjenja, odgovornaOsoba, datumKontaktiranja, telefon, status, datumAktivacije from Klijent");
+            dajZaposlene = conn.prepareStatement("SELECT ime, prezime, email from Korisnik where pozicija='Fotograf'");
+            dajProjekte = conn.prepareStatement("SELECT klijent, naziv, odgovornaOsoba, gotov from Projekat");
         } catch (
                 SQLException e) {
             System.out.println(e);
@@ -83,14 +84,15 @@ public class CRMDao {
             dodajKorisnika.setInt(6, id);
             dodajKorisnika.executeUpdate();
 
-            if(pozicija.toString().equals("Klijent")) {
-              klijent = new SimpleObjectProperty<>(new Klijent(ime, prezime, email, password, pozicija));
-              klijent.get().setSlika("/img/blank-profile-picture.png");
+            if (pozicija.toString().equals("Klijent")) {
+                klijent = new SimpleObjectProperty<>(new Klijent(ime, prezime, email, password, pozicija));
+                klijent.get().setSlika("/img/blank-profile-picture.png");
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
     public void addKlijentInfo(LocalDate datumRodjenja, String telefon) {
         try {
             dodajKlijenta.setString(1, klijent.get().getIme());
@@ -112,6 +114,7 @@ public class CRMDao {
             e.printStackTrace();
         }
     }
+
     public Korisnik getKorisnik(String email, String pass) {
         Korisnik k = null;
         try {
@@ -134,20 +137,21 @@ public class CRMDao {
                 String poz = result.getString(5);
                 POZICIJA pozicija = POZICIJA.Klijent;
                 String slika = result.getString(6);
-                if(poz.equals("Vlasnik"))
+                if (poz.equals("Vlasnik"))
                     pozicija = POZICIJA.Vlasnik;
-                else if(poz.equals("Fotograf"))
+                else if (poz.equals("Fotograf"))
                     pozicija = POZICIJA.Fotograf;
                 int id = result.getInt(7);
                 k = new Korisnik(ime, prezime, email, pass, pozicija, slika);
                 k.setId(id);
                 return k;
             }
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return k;
     }
+
     public static void postaviSliku(String slika, String email) {
         try {
             postaviSliku.setString(1, slika);
@@ -157,6 +161,7 @@ public class CRMDao {
             throwables.printStackTrace();
         }
     }
+
     public static void postaviIme(String ime, String email) {
         try {
             postaviIme.setString(1, ime);
@@ -166,6 +171,7 @@ public class CRMDao {
             throwables.printStackTrace();
         }
     }
+
     public static void postaviPrezime(String prezime, String email) {
         try {
             postaviPrezime.setString(1, prezime);
@@ -175,6 +181,7 @@ public class CRMDao {
             throwables.printStackTrace();
         }
     }
+
     public static void postaviMail(String email, String ime, String prezime, String password) {
         try {
             postaviMail.setString(1, email);
@@ -187,6 +194,7 @@ public class CRMDao {
             throwables.printStackTrace();
         }
     }
+
     public static void postaviPass(String password, String email) {
         try {
             postaviPass.setString(1, password);
@@ -196,6 +204,7 @@ public class CRMDao {
             throwables.printStackTrace();
         }
     }
+
     public ObservableList<String> dajProjekte(int id) {
         ObservableList<String> naziviProjekata = FXCollections.observableArrayList();
         try {
@@ -212,24 +221,28 @@ public class CRMDao {
         }
         return naziviProjekata;
     }
+
     public Projekat dajProjekat(String naziv) {
-            Projekat projekat = null;
-            try {
+        Projekat projekat = null;
+        try {
             dajProjekat.setString(1, naziv);
             ResultSet rs = dajProjekat.executeQuery();
-            int klijent = rs.getInt(1);
-            int odgovornaOsoba = rs.getInt(2);
-            int status = rs.getInt(3);
-            boolean gotov = false;
-            if(status == 1)
-                gotov = true;
-               projekat = new Projekat(klijent, naziv, odgovornaOsoba, gotov);
+            int klijentId = rs.getInt(1);
+            String klijent = userNameFromId(klijentId);
+            int odgovornaOsobaId = rs.getInt(2);
+            String odgovornaOsoba = userNameFromId(odgovornaOsobaId);
+            Boolean status = rs.getBoolean(4);
+            String gotov = "Završen";
+            if (status == false)
+                gotov = "Aktivan";
+            projekat = new Projekat(klijent, naziv, odgovornaOsoba, gotov);
             return projekat;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
         return projekat;
     }
+
     public String userNameFromId(int id) {
         Korisnik k = null;
         try {
@@ -243,12 +256,13 @@ public class CRMDao {
         }
         return "";
     }
+
     public ObservableList<String> getKlijentZaOdgOsobu(int id) {
         ObservableList<String> klijenti = FXCollections.observableArrayList();
         try {
             dajKlijentaZaOdgOsobu.setInt(1, id);
             ResultSet rs = dajKlijentaZaOdgOsobu.executeQuery();
-            while(rs.next()) {
+            while (rs.next()) {
                 String ime = rs.getString(1);
                 String prezime = rs.getString(2);
                 String naziv = ime + " " + prezime;
@@ -260,15 +274,16 @@ public class CRMDao {
         }
         return klijenti;
     }
+
     public ArrayList<Task> taskovi(int odgovornaOsoba, int klijent) {
-       ArrayList<Task> tasks = new ArrayList<>();
+        ArrayList<Task> tasks = new ArrayList<>();
         try {
             dajTaskoveZa.setInt(1, odgovornaOsoba);
             dajTaskoveZa.setInt(2, klijent);
             ResultSet rs = dajTaskoveZa.executeQuery();
-            while(rs.next()) {
+            while (rs.next()) {
                 SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-                    Date date = formatter.parse(rs.getString(3));
+                Date date = formatter.parse(rs.getString(3));
                 Task task = new Task(rs.getString(2), rs.getString(1), date, rs.getBoolean(4));
                 tasks.add(task);
             }
@@ -278,6 +293,7 @@ public class CRMDao {
         }
         return tasks;
     }
+
     public int getKlijentId(String naziv) {
         try {
             String[] nazivTrimed = naziv.split(" ");
@@ -287,14 +303,15 @@ public class CRMDao {
             dajKlijentaPoImenu.setString(2, prezime);
             ResultSet rs = dajKlijentaPoImenu.executeQuery();
             int id = -1;
-            while(rs.next())
-            id = rs.getInt(1);
+            while (rs.next())
+                id = rs.getInt(1);
             return id;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
         return -1;
     }
+
     public void addTask(String naziv, String opis, LocalDate deadline, int klijent, int odgovornaOsoba) {
         try {
             dodajTask.setString(1, opis);
@@ -310,6 +327,7 @@ public class CRMDao {
             throwables.printStackTrace();
         }
     }
+
     public void finishTask() {
         try {
             cekirajTask.executeUpdate();
@@ -317,11 +335,12 @@ public class CRMDao {
             throwables.printStackTrace();
         }
     }
+
     public ArrayList<Klijent> getClients() {
         ArrayList<Klijent> klijenti = new ArrayList<>();
         try {
             ResultSet rs = dajKlijente.executeQuery();
-            while(rs.next()) {
+            while (rs.next()) {
                 Klijent k = new Klijent();
                 k.setIme(rs.getString(1));
                 k.setPrezime(rs.getString(2));
@@ -331,7 +350,7 @@ public class CRMDao {
                 int odgovornaOsobaId = rs.getInt(4);
                 String odgovornaOsoba = userNameFromId(odgovornaOsobaId);
                 k.setOdgovornaOsoba(odgovornaOsoba);
-                 date = formatter.parse(rs.getString(5));
+                date = formatter.parse(rs.getString(5));
                 k.setDatumKontaktiranja(date);
                 k.setTelefon(rs.getString(6));
                 k.setStatus(rs.getString(7));
@@ -344,5 +363,44 @@ public class CRMDao {
             throwables.printStackTrace();
         }
         return klijenti;
+    }
+
+    public ArrayList<Korisnik> getEmployees() {
+        ArrayList<Korisnik> employees = new ArrayList<>();
+        try {
+            ResultSet rs = dajZaposlene.executeQuery();
+            while (rs.next()) {
+                Korisnik employee = new Korisnik(rs.getString(1), rs.getString(2), rs.getString(3));
+                employees.add(employee);
+            }
+            return employees;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return employees;
+    }
+
+    // public Projekat(int klijent, String naziv, int odgovornaOsoba, Boolean gotov) {
+    public ArrayList<Projekat> getProjects() {
+        ArrayList<Projekat> projekti = new ArrayList<>();
+        try {
+            ResultSet rs = dajProjekte.executeQuery();
+            while (rs.next()) {
+                int klijentId = rs.getInt(1);
+                String klijent = userNameFromId(klijentId);
+                int odgovornaOsobaId = rs.getInt(3);
+                String odgovornaOsoba = userNameFromId(odgovornaOsobaId);
+                Boolean status = rs.getBoolean(4);
+                String gotov = "Završen";
+                if (status == false)
+                    gotov = "Aktivan";
+                Projekat projekat = new Projekat(klijent, rs.getString(2), odgovornaOsoba, gotov);
+                projekti.add(projekat);
+            }
+            return projekti;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return projekti;
     }
 }

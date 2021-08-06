@@ -22,17 +22,10 @@ public class ProjectDataController {
     public void initialize() {
         model = CRMDao.getInstance();
         Projekat projekat = model.dajProjekat(naziv);
-        String kli = model.userNameFromId(projekat.klijent);
-        String odgOsoba = model.userNameFromId(projekat.odgovornaOsoba);
-
         nazivProjekta.setText(naziv);
-        odgovornaOsoba.setText(odgOsoba);
-        klijent.setText(kli);
-        if(projekat.gotov)
-            status.setText("Gotov");
-        else
-            status.setText("Aktivan");
-
+        odgovornaOsoba.setText(projekat.odgovornaOsoba);
+        klijent.setText(projekat.klijent);
+        status.setText(projekat.gotov);
     }
         public void close(ActionEvent actionEvent) {
             Node n = (Node) actionEvent.getSource();

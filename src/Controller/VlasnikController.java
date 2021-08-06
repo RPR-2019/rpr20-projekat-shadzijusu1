@@ -94,7 +94,9 @@ public class VlasnikController {
     public void employeesTable(ActionEvent actionEvent) throws IOException {
         Stage myStage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource(
-                "/fxml/send_email.fxml"));
+                "/fxml/uposlenici.fxml"));
+        UposleniciController ctrl = new UposleniciController();
+        loader.setController(ctrl);
         Parent root = loader.load();
         myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         myStage.setResizable(false);
@@ -103,7 +105,9 @@ public class VlasnikController {
     public void projectsTable(ActionEvent actionEvent) throws IOException {
         Stage myStage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource(
-                "/fxml/send_email.fxml"));
+                "/fxml/projekti.fxml"));
+        ProjektiController ctrl = new ProjektiController();
+        loader.setController(ctrl);
         Parent root = loader.load();
         myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         myStage.setResizable(false);
