@@ -64,7 +64,15 @@
             <Menu fx:id="projekti" mnemonicParsing="false" text="Projekti">
                <items>
                   <MenuItem mnemonicParsing="false" text="Pregled" onAction="#projectsTable" />
-               </items></Menu>
+               </items>
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Dodaj projekat" onAction="#addProject" />
+               </items>
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Dodaj task" onAction="#addTask" />
+               </items>
+            </Menu>
+
             <Menu mnemonicParsing="false" text="Dodatno">
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#odjaviSe" text="Odjava" />

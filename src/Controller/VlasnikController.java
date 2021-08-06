@@ -124,6 +124,30 @@ public class VlasnikController {
         myStage.setResizable(false);
         myStage.show();
     }
+    public void addProject(ActionEvent actionEvent) throws IOException {
+        Stage myStage = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(
+                "/fxml/add_project.fxml"));
+        //addprojectcontroller
+        AddEmployeeController ctrl = new AddEmployeeController();
+        loader.setController(ctrl);
+        Parent root = loader.load();
+        myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        myStage.setResizable(false);
+        myStage.show();
+    }
+
+    public void addTask(ActionEvent actionEvent) throws IOException {
+        Stage myStage = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(
+                "/fxml/add_task.fxml"));
+        AddTaskController ctrl = new AddTaskController("Vlasnik");
+        loader.setController(ctrl);
+        Parent root = loader.load();
+        myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        myStage.setResizable(false);
+        myStage.show();
+    }
 
 
 }

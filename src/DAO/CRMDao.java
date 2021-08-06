@@ -20,7 +20,7 @@ public class CRMDao {
     private static PreparedStatement dodajKorisnika, dajKorisnika, postaviSliku, postaviIme, postaviPrezime,
             postaviMail, postaviPass, dajMojeProjekte, dajProjekat, dajKorisnikaFromId, dodajKlijenta, dajKlijentaZaOdgOsobu,
             dajTaskoveZa, dajKlijentaPoImenu, dodajTask, cekirajTask, dajKlijente, dajZaposlene, dajProjekte,
-            postaviOdgovornuOsobu;
+            postaviOdgovornuOsobu, dajKorisnikaPoImenu;
     private SimpleObjectProperty<Klijent> klijent = new SimpleObjectProperty<>();
     private static Integer id = 0;
     private CRMDao() {
@@ -41,6 +41,8 @@ public class CRMDao {
             dajKlijentaZaOdgOsobu = conn.prepareStatement("SELECT ime, prezime from Klijent where odgovornaOsoba=?");
             dajTaskoveZa = conn.prepareStatement("SELECT naziv, opis, deadline, chekiran from Task where odgovornaOsoba=? AND klijentId=?");
             dajKlijentaPoImenu = conn.prepareStatement("SELECT id from Klijent where ime=? and prezime=?");
+            dajKorisnikaPoImenu = conn.prepareStatement("SELECT id from Korisnik where ime=? and prezime=?");
+
             dodajTask = conn.prepareStatement("INSERT INTO Task VALUES(?,?,?,?,?,?,?)");
             cekirajTask = conn.prepareStatement("UPDATE Task set chekiran=1");
             dajKlijente = conn.prepareStatement("SELECT ime, prezime, datumRodjenja, odgovornaOsoba, datumKontaktiranja, telefon, status, datumAktivacije from Klijent");
@@ -314,7 +316,23 @@ public class CRMDao {
         }
         return -1;
     }
-
+    public int getKorisnikFromName(String naziv) {
+        try {
+            String[] nazivTrimed = naziv.split(" ");
+            String ime = nazivTrimed[0];
+            String prezime = nazivTrimed[1];
+            dajKorisnikaPoImenu.setString(1, ime);
+            dajKorisnikaPoImenu.setString(2, prezime);
+            ResultSet rs = dajKorisnikaPoImenu.executeQuery();
+            int id = -1;
+            while (rs.next())
+                id = rs.getInt(1);
+            return id;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return -1;
+    }
     public void addTask(String naziv, String opis, LocalDate deadline, int klijent, int odgovornaOsoba) {
         try {
             dodajTask.setString(1, opis);
@@ -326,6 +344,10 @@ public class CRMDao {
             dodajTask.setInt(6, odgovornaOsoba);
             dodajTask.setInt(7, klijent);
             dodajTask.executeUpdate();
+
+            postaviOdgovornuOsobu.setInt(1, odgovornaOsoba);
+            postaviOdgovornuOsobu.setInt(2, klijent);
+            postaviOdgovornuOsobu.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
