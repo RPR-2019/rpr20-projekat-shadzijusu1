@@ -20,7 +20,7 @@ public class CRMDao {
     private static PreparedStatement dodajKorisnika, dajKorisnika, postaviSliku, postaviIme, postaviPrezime,
             postaviMail, postaviPass, dajMojeProjekte, dajProjekat, dajKorisnikaFromId, dodajKlijenta, dajKlijentaZaOdgOsobu,
             dajTaskoveZa, dajKlijentaPoImenu, dodajTask, cekirajTask, dajKlijente, dajZaposlene, dajProjekte,
-            postaviOdgovornuOsobu, dajKorisnikaPoImenu;
+            postaviOdgovornuOsobu, dajKorisnikaPoImenu, dodajProjekat, dajStatus, postaviStatus;
     private SimpleObjectProperty<Klijent> klijent = new SimpleObjectProperty<>();
     private static Integer id = 0;
     private CRMDao() {
@@ -49,6 +49,10 @@ public class CRMDao {
             dajZaposlene = conn.prepareStatement("SELECT id, ime, prezime, email from Korisnik where pozicija='Fotograf'");
             dajProjekte = conn.prepareStatement("SELECT klijent, naziv, odgovornaOsoba, gotov from Projekat");
             postaviOdgovornuOsobu = conn.prepareStatement("UPDATE Klijent set odgovornaOsoba=? where id=?");
+
+            dodajProjekat = conn.prepareStatement("INSERT INTO PROJEKAT VALUES(?,?,?,?,?)");
+            dajStatus = conn.prepareStatement("SELECT status from Klijent where id=?");
+            postaviStatus = conn.prepareStatement("UPDATE Klijent set status='Aktivan' where id=?");
         } catch (
                 SQLException e) {
             System.out.println(e);
@@ -405,7 +409,6 @@ public class CRMDao {
         return employees;
     }
 
-    // public Projekat(int klijent, String naziv, int odgovornaOsoba, Boolean gotov) {
     public ArrayList<Projekat> getProjects() {
         ArrayList<Projekat> projekti = new ArrayList<>();
         try {
@@ -427,5 +430,32 @@ public class CRMDao {
             throwables.printStackTrace();
         }
         return projekti;
+    }
+    public void addProject(int klijent, String naziv, int odgovornaOsoba) {
+        try {
+            int id = new Random().nextInt(64546);
+            dodajProjekat.setInt(1, id);
+            dodajProjekat.setInt(2, klijent);
+            dodajProjekat.setString(3, naziv);
+            dodajProjekat.setInt(4, odgovornaOsoba);
+            dodajProjekat.setInt(5, 0);
+            dodajProjekat.executeUpdate();
+
+            postaviOdgovornuOsobu.setInt(1, odgovornaOsoba);
+            postaviOdgovornuOsobu.setInt(2, klijent);
+            postaviOdgovornuOsobu.executeUpdate();
+
+           dajStatus.setInt(1, klijent);
+           ResultSet rs = dajStatus.executeQuery();
+           while(rs.next()) {
+               if(rs.getString(1).equals("Neaktivan")) {
+                   postaviStatus.setInt(1, klijent);
+                   postaviStatus.executeUpdate();
+               }
+           }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

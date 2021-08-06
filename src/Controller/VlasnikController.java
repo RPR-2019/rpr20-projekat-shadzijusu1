@@ -128,8 +128,7 @@ public class VlasnikController {
         Stage myStage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource(
                 "/fxml/add_project.fxml"));
-        //addprojectcontroller
-        AddEmployeeController ctrl = new AddEmployeeController();
+        AddProjectController ctrl = new AddProjectController();
         loader.setController(ctrl);
         Parent root = loader.load();
         myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
