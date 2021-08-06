@@ -38,7 +38,7 @@ public class KlijentInfoController {
     }
     public void okBtn(ActionEvent actionEvent) throws IOException {
         model = CRMDao.getInstance();
-        model.addKlijentInfo(datumRodjenja.getValue(), telefon.getText());
+        model.addKlijentInfo(datumRodjenja.getValue(), telefon.getText(), 1081);
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource(
                 "/fxml/klijent_front_page.fxml"));

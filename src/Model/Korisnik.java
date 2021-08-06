@@ -11,7 +11,8 @@ public class Korisnik {
     private POZICIJA pozicija;
     private String slika;
 
-    public Korisnik(String ime, String prezime, String email) {
+    public Korisnik(int id, String ime, String prezime, String email) {
+        this.id = id;
         this.ime = ime;
         this.prezime = prezime;
         this.email = email;

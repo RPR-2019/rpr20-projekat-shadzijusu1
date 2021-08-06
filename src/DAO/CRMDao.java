@@ -19,9 +19,10 @@ public class CRMDao {
     private Connection conn;
     private static PreparedStatement dodajKorisnika, dajKorisnika, postaviSliku, postaviIme, postaviPrezime,
             postaviMail, postaviPass, dajMojeProjekte, dajProjekat, dajKorisnikaFromId, dodajKlijenta, dajKlijentaZaOdgOsobu,
-            dajTaskoveZa, dajKlijentaPoImenu, dodajTask, cekirajTask, dajKlijente, dajZaposlene, dajProjekte;
+            dajTaskoveZa, dajKlijentaPoImenu, dodajTask, cekirajTask, dajKlijente, dajZaposlene, dajProjekte,
+            postaviOdgovornuOsobu;
     private SimpleObjectProperty<Klijent> klijent = new SimpleObjectProperty<>();
-
+    private static Integer id = 0;
     private CRMDao() {
         try {
             conn = DriverManager.getConnection("jdbc:sqlite:baza.db");
@@ -43,8 +44,9 @@ public class CRMDao {
             dodajTask = conn.prepareStatement("INSERT INTO Task VALUES(?,?,?,?,?,?,?)");
             cekirajTask = conn.prepareStatement("UPDATE Task set chekiran=1");
             dajKlijente = conn.prepareStatement("SELECT ime, prezime, datumRodjenja, odgovornaOsoba, datumKontaktiranja, telefon, status, datumAktivacije from Klijent");
-            dajZaposlene = conn.prepareStatement("SELECT ime, prezime, email from Korisnik where pozicija='Fotograf'");
+            dajZaposlene = conn.prepareStatement("SELECT id, ime, prezime, email from Korisnik where pozicija='Fotograf'");
             dajProjekte = conn.prepareStatement("SELECT klijent, naziv, odgovornaOsoba, gotov from Projekat");
+            postaviOdgovornuOsobu = conn.prepareStatement("UPDATE Klijent set odgovornaOsoba=? where id=?");
         } catch (
                 SQLException e) {
             System.out.println(e);
@@ -80,7 +82,7 @@ public class CRMDao {
             dodajKorisnika.setString(5, pozicija.toString());
             dodajKorisnika.setString(7, "/img/blank-profile-picture.png");
             Random random = new Random();
-            int id = random.nextInt(25555);
+            id = random.nextInt(25555);
             dodajKorisnika.setInt(6, id);
             dodajKorisnika.executeUpdate();
 
@@ -93,21 +95,22 @@ public class CRMDao {
         }
     }
 
-    public void addKlijentInfo(LocalDate datumRodjenja, String telefon) {
+    public void addKlijentInfo(LocalDate datumRodjenja, String telefon, int odgovornaOsobaId) {
         try {
             dodajKlijenta.setString(1, klijent.get().getIme());
             dodajKlijenta.setString(2, klijent.get().getPrezime());
             dodajKlijenta.setString(3, klijent.get().getEmail());
             dodajKlijenta.setString(4, klijent.get().getPassword());
             dodajKlijenta.setString(5, klijent.get().getPozicija().toString());
-            dodajKlijenta.setInt(6, klijent.get().getId());
+            System.out.println(id);
+            dodajKlijenta.setInt(6, id);
             dodajKlijenta.setString(7, datumRodjenja.toString());
             dodajKlijenta.setString(8, "Sarajevo");
             dodajKlijenta.setString(9, telefon);
-            dodajKlijenta.setString(10, null);
+            dodajKlijenta.setInt(10, odgovornaOsobaId);
             dodajKlijenta.setString(11, LocalDateTime.now().toString());
             dodajKlijenta.setString(12, "Aktivan");
-            dodajKlijenta.setString(13, null);
+            dodajKlijenta.setString(13, LocalDateTime.now().toString());
             dodajKlijenta.setString(14, klijent.get().getSlika());
             dodajKlijenta.executeUpdate();
         } catch (SQLException e) {
@@ -370,7 +373,7 @@ public class CRMDao {
         try {
             ResultSet rs = dajZaposlene.executeQuery();
             while (rs.next()) {
-                Korisnik employee = new Korisnik(rs.getString(1), rs.getString(2), rs.getString(3));
+                Korisnik employee = new Korisnik(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4));
                 employees.add(employee);
             }
             return employees;
