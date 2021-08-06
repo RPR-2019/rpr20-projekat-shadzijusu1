@@ -90,7 +90,7 @@ public class KlijentController {
     public void editProfile(ActionEvent actionEvent) throws IOException {
         Stage myStage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource(
-                "/fxml/edit_profile.fxml"));
+                "/fxml/edit_client_info.fxml"));
         EditProfileController ctrl = new EditProfileController(klijent);
         loader.setController(ctrl);
         Parent root = loader.load();

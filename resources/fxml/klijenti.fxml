@@ -35,7 +35,7 @@
       <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
          <buttons>
             <Button fx:id="addClientBtn" defaultButton="true" mnemonicParsing="false" text="Dodaj klijenta" />
-            <Button mnemonicParsing="false" text="Nazad" />
+            <Button fx:id="closeBtn" mnemonicParsing="false" text="Nazad" />
          </buttons>
       </ButtonBar>
    </children>

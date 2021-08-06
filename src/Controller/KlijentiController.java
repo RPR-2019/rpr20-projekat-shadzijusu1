@@ -7,8 +7,10 @@ import Model.Task;
 import com.sun.glass.ui.Accessible;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -18,7 +20,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -31,6 +32,8 @@ public class KlijentiController {
     public TableView<Klijent> tableViewKlijenti;
     private ObservableList<Klijent> klijenti = FXCollections.observableArrayList();
     public Button addClientBtn;
+    public Button closeBtn;
+
     public TableColumn<Klijent, String> colIme;
     public TableColumn<Klijent, String> colPrezime;
     public TableColumn<Klijent, Date> colDatumRodj;
@@ -44,6 +47,8 @@ public class KlijentiController {
     }
     @FXML
     public void initialize() {
+        if(status == "Neaktivan")
+            addClientBtn.setVisible(false);
         model = CRMDao.getInstance();
         colIme.setCellValueFactory(new PropertyValueFactory<Klijent, String>("ime"));
         colPrezime.setCellValueFactory(new PropertyValueFactory<Klijent, String>("prezime"));
@@ -80,6 +85,13 @@ public class KlijentiController {
                 e.printStackTrace();
             }
         });
+        closeBtn.setOnAction(actionEvent -> closeAction(actionEvent)
+                );
+    }
+    private void closeAction(ActionEvent actionEvent) {
+        Node n = (Node) actionEvent.getSource();
+        Stage stage = (Stage) n.getScene().getWindow();
+        stage.close();
     }
     public void dodajKlijenta() throws IOException {
         Stage myStage = new Stage();

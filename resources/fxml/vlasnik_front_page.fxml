@@ -54,9 +54,12 @@
                   <MenuItem mnemonicParsing="false" text="Arhiva" onAction="#archivedClients" />
                </items>
             </Menu>
-            <Menu fx:id="uposlenici" mnemonicParsing="false" text="Uposlenici">
+            <Menu fx:id="uposlenici" mnemonicParsing="false" text="Zaposlenici">
                <items>
                   <MenuItem mnemonicParsing="false" text="Pregled" onAction="#employeesTable" />
+               </items>
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Dodaj zaposlenog" onAction="#addEmployee" />
                </items></Menu>
             <Menu fx:id="projekti" mnemonicParsing="false" text="Projekti">
                <items>
