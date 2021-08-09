@@ -20,14 +20,17 @@
       <RowConstraints vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <TableView fx:id="tableViewZaposleni" editable="true" GridPane.columnSpan="2147483647" GridPane.rowIndex="1" GridPane.rowSpan="2">
+      <TableView fx:id="tableViewZaposleni" editable="true" style="-fx-border-color: gold;" GridPane.columnSpan="2147483647" GridPane.rowIndex="1" GridPane.rowSpan="2">
          <columns>
             <TableColumn fx:id="colIme" prefWidth="75.0" text="%ime" />
             <TableColumn fx:id="colPrezime" prefWidth="75.0" text="%prezime" />
-            <TableColumn fx:id="colEmail" prefWidth="137.5999755859375" text="%email" />
+            <TableColumn fx:id="colEmail" prefWidth="139.19996643066406" text="%email" />
          </columns>
+         <GridPane.margin>
+            <Insets bottom="5.0" left="10.0" right="10.0" top="10.0" />
+         </GridPane.margin>
       </TableView>
-      <Button mnemonicParsing="false" text="%close_window" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+      <Button mnemonicParsing="false" style="-fx-background-color: lightgrey;" text="%close_window" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
          <GridPane.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </GridPane.margin>

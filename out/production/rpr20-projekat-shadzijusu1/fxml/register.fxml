@@ -6,20 +6,20 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<?import javafx.scene.image.Image?>
-<GridPane hgap="10.0" style="-fx-background-color: white;" vgap="10.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.Controller.RegLogController">
+<GridPane hgap="10.0" style="-fx-background-color: white;" vgap="15.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.Controller.RegLogController">
     <columnConstraints>
-      <ColumnConstraints hgrow="ALWAYS" />
-        <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-        <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" />
+        <ColumnConstraints hgrow="ALWAYS" />
+        <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" maxWidth="155.20001220703125" minWidth="144.0" prefWidth="144.0" />
         <ColumnConstraints hgrow="ALWAYS" />
     </columnConstraints>
     <rowConstraints>
+      <RowConstraints vgrow="ALWAYS" />
         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
@@ -28,42 +28,46 @@
         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
     </rowConstraints>
     <children>
-        <ImageView fitHeight="134.0" fitWidth="133.0" GridPane.halignment="CENTER" GridPane.rowSpan="2" GridPane.valignment="CENTER">
-            <image>
-                <Image url="/img/RPR Pictures.png" />
-            </image>
-            <GridPane.margin>
-                <Insets left="10.0" right="10.0" top="70.0" />
-            </GridPane.margin>
-        </ImageView>
-      <Label text="%ime" textFill="#aa3451" GridPane.columnIndex="1">
+       
+      <Label text="%ime" textFill="#aa3451" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
       </Label>
-      <Label text="%prezime" textFill="#aa3451" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-      <Label text="%email" textFill="#aa3451" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-      <Label ellipsisString="word" text="%password" textFill="#aa3451" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-      <Label text="%pozicija" textFill="#aa3451" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-      <TextField fx:id="imeFld" GridPane.columnIndex="2">
+      <Label text="%prezime" textFill="#aa3451" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+      <Label text="%email" textFill="#aa3451" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+      <Label ellipsisString="word" text="%password" textFill="#aa3451" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
+      <Label text="%pozicija" textFill="#aa3451" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
+      <TextField fx:id="imeFld" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <GridPane.margin>
-            <Insets />
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin>
       </TextField>
-      <TextField fx:id="prezimeFld" GridPane.columnIndex="2" GridPane.rowIndex="1">
+      <TextField fx:id="prezimeFld" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <GridPane.margin>
-            <Insets />
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin>
       </TextField>
-      <TextField fx:id="emailFld" GridPane.columnIndex="2" GridPane.rowIndex="2">
+      <TextField fx:id="emailFld" GridPane.columnIndex="1" GridPane.rowIndex="3">
          <GridPane.margin>
-            <Insets />
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin>
       </TextField>
-      <PasswordField fx:id="passFld" GridPane.columnIndex="2" GridPane.rowIndex="3">
+      <PasswordField fx:id="passFld" GridPane.columnIndex="1" GridPane.rowIndex="4">
          <GridPane.margin>
-            <Insets />
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin>
       </PasswordField>
-      <ChoiceBox fx:id="pozicijaBox" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-      <Button fx:id="doneBtn" defaultButton="true" mnemonicParsing="false" onAction="#registrujSe" text="%registrujse" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+      <ChoiceBox fx:id="pozicijaBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin></ChoiceBox>
+      <Button fx:id="doneBtn" defaultButton="true" mnemonicParsing="false" onAction="#registrujSe" text="%registrujse" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="6">
+         <GridPane.margin>
+            <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
+         </GridPane.margin></Button>
+      <ImageView fitHeight="216.0" fitWidth="216.0" GridPane.columnSpan="2" GridPane.halignment="CENTER">
+         <image>
+            <Image url="@/img/RPR Pictures.png" />
+         </image>
+      </ImageView>
    </children>
    <padding>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
