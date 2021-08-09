@@ -21,9 +21,10 @@ public class CRMDao {
             postaviMail, postaviPass, dajMojeProjekte, dajProjekat, dajKorisnikaFromId, dodajKlijenta, dajKlijentaZaOdgOsobu,
             dajTaskoveZa, dajKlijentaPoImenu, dodajTask, cekirajTask, dajKlijente, dajZaposlene, dajProjekte,
             postaviOdgovornuOsobu, dajKorisnikaPoImenu, dodajProjekat, dajStatus, postaviStatus,
-            apdejtProjekat;
+            apdejtProjekat, postaviDatumKontaktiranja, dajMailove;
     private SimpleObjectProperty<Klijent> klijent = new SimpleObjectProperty<>();
     private static Integer id = 0;
+
     private CRMDao() {
         try {
             conn = DriverManager.getConnection("jdbc:sqlite:baza.db");
@@ -55,6 +56,10 @@ public class CRMDao {
             dajStatus = conn.prepareStatement("SELECT status from Klijent where id=?");
             postaviStatus = conn.prepareStatement("UPDATE Klijent set status=? where id=?");
             apdejtProjekat = conn.prepareStatement("UPDATE Projekat set gotov=? and odgovornaOsoba=? where naziv=?");
+
+            postaviDatumKontaktiranja = conn.prepareStatement("UPDATE Klijent set datumKontaktiranja=? where email=?");
+            dajMailove = conn.prepareStatement("SELECT email from Klijent");
+
         } catch (
                 SQLException e) {
             System.out.println(e);
@@ -322,6 +327,7 @@ public class CRMDao {
         }
         return -1;
     }
+
     public int getKorisnikFromName(String naziv) {
         try {
             String[] nazivTrimed = naziv.split(" ");
@@ -339,6 +345,7 @@ public class CRMDao {
         }
         return -1;
     }
+
     public void addTask(String naziv, String opis, LocalDate deadline, int klijent, int odgovornaOsoba) {
         try {
             dodajTask.setString(1, opis);
@@ -434,6 +441,7 @@ public class CRMDao {
         }
         return projekti;
     }
+
     public void addProject(int klijent, String naziv, int odgovornaOsoba) {
         try {
             int id = new Random().nextInt(64546);
@@ -448,31 +456,31 @@ public class CRMDao {
             postaviOdgovornuOsobu.setInt(2, klijent);
             postaviOdgovornuOsobu.executeUpdate();
 
-           dajStatus.setInt(1, klijent);
-           ResultSet rs = dajStatus.executeQuery();
-           while(rs.next()) {
-               if(rs.getString(1).equals("Neaktivan")) {
-                   postaviStatus.setString(1, "Aktivan");
-                   postaviStatus.setInt(2, klijent);
-                   postaviStatus.executeUpdate();
-               }
-           }
-        }
-        catch (SQLException e) {
+            dajStatus.setInt(1, klijent);
+            ResultSet rs = dajStatus.executeQuery();
+            while (rs.next()) {
+                if (rs.getString(1).equals("Neaktivan")) {
+                    postaviStatus.setString(1, "Aktivan");
+                    postaviStatus.setInt(2, klijent);
+                    postaviStatus.executeUpdate();
+                }
+            }
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
     public void updateProject(int odgovornaOsoba, int gotov, String naziv) {
         try {
             apdejtProjekat.setInt(1, gotov);
             apdejtProjekat.setInt(2, odgovornaOsoba);
             apdejtProjekat.setString(3, naziv);
             apdejtProjekat.executeUpdate();
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
     public void arhivirajKlijenta(int klijent) {
         try {
             postaviStatus.setString(1, "Neaktivan");
@@ -480,9 +488,31 @@ public class CRMDao {
             postaviStatus.executeUpdate();
 
 
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+    public ArrayList<String> getClientMails() {
+        ArrayList<String> mejlovi = new ArrayList<>(0);
+        try {
+            ResultSet rs = dajMailove.executeQuery();
+            while (rs.next()) {
+                mejlovi.add(rs.getString(1));
+            }
+            return mejlovi;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return mejlovi;
+    }
+    public void setDatumKontaktiranja(String kontakt, String email) {
+        try {
+            postaviDatumKontaktiranja.setString(1, (kontakt));
+            postaviDatumKontaktiranja.setString(2, email);
+            postaviDatumKontaktiranja.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

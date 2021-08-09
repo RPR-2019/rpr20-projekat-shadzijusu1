@@ -1,6 +1,7 @@
 package ba.unsa.etf.rpr.Controller;
 
 
+import ba.unsa.etf.rpr.DAO.CRMDao;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
@@ -12,6 +13,8 @@ import javafx.stage.Stage;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Properties;
 
 public class SendEmailController {
@@ -20,9 +23,19 @@ public class SendEmailController {
     public TextField primalac;
     public TextField subject;
     public TextField text;
-
+    public static CRMDao model;
 
     public static boolean sendEmail(String sender, String password, String recipent, String subject, String text) throws MessagingException {
+       model = CRMDao.getInstance();
+        ArrayList<String> mejlovi = model.getClientMails();
+        for(int i = 0; i < mejlovi.size(); i++) {
+            if(mejlovi.get(i).equals(recipent)) {
+                model.setDatumKontaktiranja(LocalDateTime.now().toString(), recipent);
+                break;
+            }
+        }
+
+
         System.out.println("PREPARING MESSAGE");
         //  Dialog dialog = AlertMaker.loadingMail();
         Properties properties = new Properties();

@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 
 <?import javafx.scene.image.Image?>
-<GridPane hgap="10.0" style="-fx-background-color: white;" vgap="10.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.RegLogController">
+<GridPane hgap="10.0" style="-fx-background-color: white;" vgap="10.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.Controller.RegLogController">
     <columnConstraints>
       <ColumnConstraints hgrow="ALWAYS" />
         <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
