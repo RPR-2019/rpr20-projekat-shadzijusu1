@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
@@ -78,6 +79,8 @@ public class RegLogController {
             myStage.setResizable(false);
             myStage.show();
         }
+
+        ((Node)(actionEvent.getSource())).getScene().getWindow().hide();
     }
 
     public void logujSe(ActionEvent actionEvent) throws IOException {
@@ -120,6 +123,8 @@ public class RegLogController {
             myStage.setResizable(false);
             myStage.show();
             }
+        ((Node)(actionEvent.getSource())).getScene().getWindow().hide();
+
     }
 
     private void otvoriDodatne(Korisnik k) throws IOException {

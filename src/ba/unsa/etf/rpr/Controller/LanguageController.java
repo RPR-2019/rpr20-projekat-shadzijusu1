@@ -2,11 +2,13 @@ package ba.unsa.etf.rpr.Controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.RadioButton;
 import javafx.stage.Stage;
 
+import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -20,21 +22,21 @@ public class LanguageController {
     public void initialize() {
         bhsBtn.setOnAction(actionEvent -> {
             try {
-                setBHS();
+                setBHS(actionEvent);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         });
         englishBtn.setOnAction(actionEvent -> {
             try {
-                setEng();
+                setEng(actionEvent);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         });
     }
 
-    private void setEng() throws IOException {
+    private void setEng(javafx.event.ActionEvent actionEvent) throws IOException {
         Locale.setDefault(new Locale("en_US", "US"));
         ResourceBundle bundle = ResourceBundle.getBundle("Translation");
         FXMLLoader loader = new FXMLLoader( getClass().getResource(
@@ -46,9 +48,10 @@ public class LanguageController {
         myStage.setTitle("RPR pictures");
         myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         myStage.show();
+        ((Node)(actionEvent.getSource())).getScene().getWindow().hide();
     }
 
-    private void setBHS() throws IOException {
+    private void setBHS(javafx.event.ActionEvent actionEvent) throws IOException {
         Locale.setDefault(new Locale("bs", "BA"));
         ResourceBundle bundle = ResourceBundle.getBundle("Translation");
         FXMLLoader loader = new FXMLLoader( getClass().getResource(
@@ -60,5 +63,8 @@ public class LanguageController {
         myStage.setTitle("RPR pictures");
         myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         myStage.show();
+        ((Node)(actionEvent.getSource())).getScene().getWindow().hide();
     }
+
+
 }

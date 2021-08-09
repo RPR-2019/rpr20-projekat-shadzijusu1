@@ -30,11 +30,11 @@
       </ImageView>
       <ButtonBar GridPane.rowIndex="2">
         <buttons>
-          <Button fx:id="prijavaBtn" mnemonicParsing="false" onAction="#login" style="-fx-background-color: lightblue;" text="%login">
+          <Button fx:id="prijavaBtn" mnemonicParsing="false" style="-fx-background-color: lightblue;" text="%login">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Button>
-            <Button fx:id="registerBtn" mnemonicParsing="false" onAction="#register" style="-fx-background-color: gold;" text="%register">
+            <Button fx:id="registerBtn" mnemonicParsing="false" style="-fx-background-color: gold;" text="%register">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Button>
