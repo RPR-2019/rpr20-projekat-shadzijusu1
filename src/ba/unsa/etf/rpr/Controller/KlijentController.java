@@ -24,7 +24,7 @@ import java.util.ResourceBundle;
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
 public class KlijentController {
-    public Klijent klijent = new Klijent("","","","", POZICIJA.Klijent);
+    public Korisnik klijent ;
     public CRMDao model;
     public Label fldIme;
     public Label fldPrezime;
@@ -34,13 +34,7 @@ public class KlijentController {
     public ImageView profileImg;
     public ListView<String> projektiView;
     public KlijentController(Korisnik korisnik) {
-        this.klijent.setIme(korisnik.getIme());
-        this.klijent.setPrezime(korisnik.getPrezime());
-        this.klijent.setEmail(korisnik.getEmail());
-        this.klijent.setPassword(korisnik.getPassword());
-        this.klijent.setPozicija(korisnik.getPozicija());
-        this.klijent.setId(korisnik.getId());
-        this.klijent.setSlika(korisnik.getSlika());
+        this.klijent = korisnik;
     }
 
 
@@ -53,6 +47,7 @@ public class KlijentController {
         fldPrezime.setText(klijent.getPrezime());
         fldEmail.setText(klijent.getEmail());
         fldPass.setText(klijent.getPassword());
+        System.out.println(klijent.getSlika());
         Image image;
         if(klijent.getSlika().equals("/img/blank-profile-picture.png"))
             image = new Image(getClass().getResourceAsStream(klijent.getSlika()));

@@ -1,0 +1,12 @@
+#gridpane{
+    -fx-background-image: url("/img/hdr-photography.jpg");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 600 400;
+    -fx-background-position: center center;
+}
+#contactgridpane{
+    -fx-background-image: url("/img/businesscard.png");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 500 300;
+    -fx-background-position: center center;
+}

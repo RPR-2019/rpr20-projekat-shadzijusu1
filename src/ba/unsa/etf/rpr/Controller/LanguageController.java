@@ -45,7 +45,7 @@ public class LanguageController {
         loader.setController(ctrl);
         Parent root = loader.load();
         Stage myStage = new Stage();
-        myStage.setTitle("RPR pictures");
+        myStage.setTitle("RPR studios");
         myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         myStage.show();
         ((Node)(actionEvent.getSource())).getScene().getWindow().hide();
@@ -60,7 +60,7 @@ public class LanguageController {
         loader.setController(ctrl);
         Parent root = loader.load();
         Stage myStage = new Stage();
-        myStage.setTitle("RPR pictures");
+        myStage.setTitle("RPR studios");
         myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         myStage.show();
         ((Node)(actionEvent.getSource())).getScene().getWindow().hide();

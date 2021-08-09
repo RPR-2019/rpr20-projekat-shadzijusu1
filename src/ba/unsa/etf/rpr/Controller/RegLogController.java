@@ -122,7 +122,6 @@ public class RegLogController {
                 ResourceBundle bundle = ResourceBundle.getBundle("Translation");
                 FXMLLoader loader = new FXMLLoader(getClass().getResource(
                         "/fxml/klijent_front_page.fxml"), bundle);
-
                 KlijentController ctrl = new KlijentController(k);
                 loader.setController(ctrl);
                 Parent root = loader.load();
