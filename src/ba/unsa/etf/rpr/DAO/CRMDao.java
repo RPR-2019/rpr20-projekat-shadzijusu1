@@ -138,29 +138,21 @@ public class CRMDao {
             dajKorisnika.setString(2, pass);
 
             ResultSet result = dajKorisnika.executeQuery();
-//            if(result.next() == false) {
-//                Alert alert = new Alert(Alert.AlertType.ERROR);
-//                alert.setTitle("Greška");
-//                alert.setHeaderText("Neispravan email ili password.");
-//                alert.setContentText("Pokušajte ponovo!");
-//
-//                alert.showAndWait();
-//                return k;
-//            }
-            while (result.next()) {
-                String ime = result.getString(1);
-                String prezime = result.getString(2);
-                String poz = result.getString(5);
-                POZICIJA pozicija = POZICIJA.Klijent;
-                String slika = result.getString(6);
-                if (poz.equals("Vlasnik"))
-                    pozicija = POZICIJA.Vlasnik;
-                else if (poz.equals("Fotograf"))
-                    pozicija = POZICIJA.Fotograf;
-                int id = result.getInt(7);
-                k = new Korisnik(ime, prezime, email, pass, pozicija, slika);
-                k.setId(id);
-                return k;
+
+                while (result.next()) {
+                    String ime = result.getString(1);
+                    String prezime = result.getString(2);
+                    String poz = result.getString(5);
+                    POZICIJA pozicija = POZICIJA.Klijent;
+                    String slika = result.getString(6);
+                    if (poz.equals("Vlasnik"))
+                        pozicija = POZICIJA.Vlasnik;
+                    else if (poz.equals("Fotograf"))
+                        pozicija = POZICIJA.Fotograf;
+                    int id = result.getInt(7);
+                    k = new Korisnik(ime, prezime, email, pass, pozicija, slika);
+                    k.setId(id);
+                    return k;
             }
         } catch (SQLException e) {
             e.printStackTrace();

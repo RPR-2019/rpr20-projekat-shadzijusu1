@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -85,46 +86,55 @@ public class RegLogController {
 
     public void logujSe(ActionEvent actionEvent) throws IOException {
         Korisnik k = model.getKorisnik(emailFld.getText(), passFld.getText());
-        if (k.getPozicija() == POZICIJA.Vlasnik) {
-            ResourceBundle bundle = ResourceBundle.getBundle("Translation");
-            FXMLLoader loader = new FXMLLoader( getClass().getResource(
-                    "/fxml/vlasnik_front_page.fxml" ), bundle);
+        if(k == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Greška");
+            alert.setHeaderText("Neispravan email ili password.");
+            alert.setContentText("Pokušajte ponovo!");
+            alert.showAndWait();
+        }
+        else {
+            if (k.getPozicija() == POZICIJA.Vlasnik) {
+                ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+                FXMLLoader loader = new FXMLLoader(getClass().getResource(
+                        "/fxml/vlasnik_front_page.fxml"), bundle);
                 VlasnikController ctrl = new VlasnikController(k);
                 loader.setController(ctrl);
                 Parent root = loader.load();
                 Stage myStage = new Stage();
-            myStage.setTitle(bundle.getString("my_page"));
-            myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+                myStage.setTitle(bundle.getString("my_page"));
+                myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
                 myStage.setResizable(false);
                 myStage.show();
             } else if (k.getPozicija() == POZICIJA.Fotograf) {
-            ResourceBundle bundle = ResourceBundle.getBundle("Translation");
-            FXMLLoader loader = new FXMLLoader( getClass().getResource(
-                    "/fxml/fotograf_front_page.fxml" ), bundle);
+                ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+                FXMLLoader loader = new FXMLLoader(getClass().getResource(
+                        "/fxml/fotograf_front_page.fxml"), bundle);
                 FotografController ctrl = new FotografController(k);
                 loader.setController(ctrl);
                 Parent root = loader.load();
                 Stage myStage = new Stage();
-            myStage.setTitle(bundle.getString("my_page"));
-            myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+                myStage.setTitle(bundle.getString("my_page"));
+                myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
                 myStage.setResizable(false);
                 myStage.show();
             } else {
-            ResourceBundle bundle = ResourceBundle.getBundle("Translation");
-            FXMLLoader loader = new FXMLLoader( getClass().getResource(
-                    "/fxml/klijent_front_page.fxml" ), bundle);
+                ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+                FXMLLoader loader = new FXMLLoader(getClass().getResource(
+                        "/fxml/klijent_front_page.fxml"), bundle);
 
-            KlijentController ctrl = new KlijentController(k);
-            loader.setController(ctrl);
-            Parent root = loader.load();
-            Stage myStage = new Stage();
-            myStage.setTitle(bundle.getString("my_page"));
-            myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-            myStage.setResizable(false);
-            myStage.show();
+                KlijentController ctrl = new KlijentController(k);
+                loader.setController(ctrl);
+                Parent root = loader.load();
+                Stage myStage = new Stage();
+                myStage.setTitle(bundle.getString("my_page"));
+                myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+                myStage.setResizable(false);
+                myStage.show();
             }
-        ((Node)(actionEvent.getSource())).getScene().getWindow().hide();
+            ((Node) (actionEvent.getSource())).getScene().getWindow().hide();
 
+        }
     }
 
     private void otvoriDodatne(Korisnik k) throws IOException {
