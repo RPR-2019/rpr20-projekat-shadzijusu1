@@ -5,9 +5,11 @@ import ba.unsa.etf.rpr.Model.Korisnik;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.PopupControl;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -44,8 +46,18 @@ public class VlasnikController {
             image = new Image(vlasnik.getSlika());
         profileImg.setImage(image);
     }
-    public void odjaviSe(ActionEvent actionEvent) {
-        System.exit(0);
+    public void odjaviSe(ActionEvent actionEvent) throws IOException {
+        Stage myStage = new Stage();
+        LanguageController ctrl = new LanguageController();
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/choose_your_language.fxml"), bundle);
+        loader.setController(ctrl);
+        Parent root = loader.load();
+        myStage.setScene(new Scene(root, PopupControl.USE_COMPUTED_SIZE, PopupControl.USE_COMPUTED_SIZE));
+        myStage.show();
+        myStage.toFront();
+        fldIme.getScene().getWindow().hide();
+
     }
 
     public void editProfile(ActionEvent actionEvent) throws IOException {
