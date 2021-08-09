@@ -19,6 +19,7 @@ public class HomeController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(
                 "/fxml/login.fxml"));
         Parent root = loader.load();
+        myStage.setTitle("RPR pictures");
         myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         myStage.setResizable(false);
         myStage.show();
@@ -28,6 +29,7 @@ public class HomeController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(
                 "/fxml/register.fxml"));
         Parent root = loader.load();
+        myStage.setTitle("RPR pictures");
         myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         myStage.setResizable(false);
         myStage.show();

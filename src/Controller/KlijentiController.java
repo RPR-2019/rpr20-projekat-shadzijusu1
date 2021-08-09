@@ -100,6 +100,7 @@ public class KlijentiController {
         AddClientController ctrl = new AddClientController();
         loader.setController(ctrl);
         Parent root = loader.load();
+        myStage.setTitle("Dodavanje klijenta");
         myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         myStage.setResizable(false);
         myStage.show();

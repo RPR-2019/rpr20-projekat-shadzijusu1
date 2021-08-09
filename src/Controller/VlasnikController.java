@@ -56,6 +56,8 @@ public class VlasnikController {
         EditProfileController ctrl = new EditProfileController(vlasnik);
         loader.setController(ctrl);
         Parent root = loader.load();
+        myStage.setTitle("Uređivanje profila");
+
         myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         myStage.setResizable(false);
         myStage.show();
@@ -65,6 +67,7 @@ public class VlasnikController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(
                 "/fxml/send_email.fxml"));
         Parent root = loader.load();
+        myStage.setTitle("Pošta");
         myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         myStage.setResizable(false);
         myStage.show();
@@ -76,6 +79,7 @@ public class VlasnikController {
         KlijentiController ctrl = new KlijentiController("Aktivan");
         loader.setController(ctrl);
         Parent root = loader.load();
+        myStage.setTitle("Aktivni klijenti");
         myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         myStage.setResizable(false);
         myStage.show();
@@ -87,6 +91,7 @@ public class VlasnikController {
         KlijentiController ctrl = new KlijentiController("Neaktivan");
         loader.setController(ctrl);
         Parent root = loader.load();
+        myStage.setTitle("Arhivirani klijenti");
         myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         myStage.setResizable(false);
         myStage.show();
@@ -98,6 +103,7 @@ public class VlasnikController {
         UposleniciController ctrl = new UposleniciController();
         loader.setController(ctrl);
         Parent root = loader.load();
+        myStage.setTitle("Zaposleni");
         myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         myStage.setResizable(false);
         myStage.show();
@@ -109,6 +115,7 @@ public class VlasnikController {
         ProjektiController ctrl = new ProjektiController();
         loader.setController(ctrl);
         Parent root = loader.load();
+        myStage.setTitle("Projekti");
         myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         myStage.setResizable(false);
         myStage.show();
@@ -120,6 +127,7 @@ public class VlasnikController {
         AddEmployeeController ctrl = new AddEmployeeController();
         loader.setController(ctrl);
         Parent root = loader.load();
+        myStage.setTitle("Dodavanje zaposlenog");
         myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         myStage.setResizable(false);
         myStage.show();
@@ -131,6 +139,7 @@ public class VlasnikController {
         AddProjectController ctrl = new AddProjectController();
         loader.setController(ctrl);
         Parent root = loader.load();
+        myStage.setTitle("Dodavanje projekta");
         myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         myStage.setResizable(false);
         myStage.show();
@@ -143,6 +152,7 @@ public class VlasnikController {
         AddTaskController ctrl = new AddTaskController("Vlasnik");
         loader.setController(ctrl);
         Parent root = loader.load();
+        myStage.setTitle("Dodavanje taska");
         myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         myStage.setResizable(false);
         myStage.show();

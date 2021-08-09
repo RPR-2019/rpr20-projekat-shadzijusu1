@@ -46,6 +46,7 @@ public class KlijentInfoController {
         loader.setController(ctrl);
         Parent root = loader.load();
         Stage myStage = new Stage();
+        myStage.setTitle("Moja stranica");
         myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         myStage.setResizable(false);
         myStage.show();

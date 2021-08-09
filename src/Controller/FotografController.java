@@ -92,6 +92,7 @@ public class FotografController {
         EditProfileController ctrl = new EditProfileController(fotograf);
         loader.setController(ctrl);
         Parent root = loader.load();
+        myStage.setTitle("Uređivanje profila");
         myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         myStage.setResizable(false);
         myStage.show();
@@ -101,6 +102,7 @@ public class FotografController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(
                 "/fxml/send_email.fxml"));
         Parent root = loader.load();
+        myStage.setTitle("Mail");
         myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         myStage.setResizable(false);
         myStage.show();
@@ -112,6 +114,7 @@ public class FotografController {
         TaskController ctrl = new TaskController(fotograf);
         loader.setController(ctrl);
         Parent root = loader.load();
+        myStage.setTitle("Taskovi");
         myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         myStage.setResizable(false);
         myStage.show();
@@ -123,6 +126,7 @@ public class FotografController {
         AddTaskController ctrl = new AddTaskController(fotograf);
         loader.setController(ctrl);
         Parent root = loader.load();
+        myStage.setTitle("Dodaj task");
         myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         myStage.setResizable(false);
         myStage.show();

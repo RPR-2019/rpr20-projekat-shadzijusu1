@@ -44,6 +44,7 @@ public class EditProfileController {
     }
     public void dajSlike(ActionEvent actionEvent) throws IOException {
         Stage myStage = new Stage();
+        myStage.setTitle("Pretraživač slika");
         FXMLLoader loader = new FXMLLoader(getClass().getResource(
                 "/fxml/pretragaslike.fxml"));
         Parent root = loader.load();

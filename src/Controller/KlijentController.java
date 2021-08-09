@@ -94,6 +94,7 @@ public class KlijentController {
         EditProfileController ctrl = new EditProfileController(klijent);
         loader.setController(ctrl);
         Parent root = loader.load();
+        myStage.setTitle("Uređivanje profila");
         myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         myStage.setResizable(false);
         myStage.show();
@@ -103,6 +104,7 @@ public class KlijentController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(
                 "/fxml/send_email.fxml"));
         Parent root = loader.load();
+        myStage.setTitle("Pošta");
         myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         myStage.setResizable(false);
         myStage.show();
@@ -112,6 +114,7 @@ public class KlijentController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(
                 "/fxml/contact_info.fxml"));
         Parent root = loader.load();
+        myStage.setTitle("Kontakt");
         myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         myStage.setResizable(false);
         myStage.show();
