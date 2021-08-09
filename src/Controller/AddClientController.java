@@ -60,8 +60,6 @@ public class AddClientController {
         String[] nazivTrimed = osoba.split(" ");
         String imeFotografa = nazivTrimed[0];
         String  prezimeFotografa= nazivTrimed[1];
-        System.out.println(imeFotografa);
-        System.out.println(prezimeFotografa);
         uposlenici = model.getEmployees();
         for(int i = 0; i < uposlenici.size(); i++) {
             if (uposlenici.get(i).getIme().equals(imeFotografa) &&

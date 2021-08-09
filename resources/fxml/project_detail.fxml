@@ -24,7 +24,7 @@
     <RowConstraints vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Label fx:id="nazivProjekta" text="Naziv projekta" GridPane.halignment="CENTER">
+      <Label fx:id="nazivProjekta" text="%naziv_projekta" GridPane.halignment="CENTER">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -38,9 +38,9 @@
                <children>
                   <VBox layoutX="7.0" layoutY="22.0" spacing="20.0">
                      <children>
-                        <Label text="Odgovorna osoba" textFill="#1b78dd" />
-                        <Label text="Klijent" textFill="#1b78dd" />
-                        <Label text="Status" textFill="#1b78dd" />
+                        <Label text="%odgovorna_osoba" textFill="#1b78dd" />
+                        <Label text="%klijent" textFill="#1b78dd" />
+                        <Label text="%status" textFill="#1b78dd" />
                      </children>
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -71,7 +71,7 @@
          </GridPane.margin>
       </SplitPane>
       <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-      <Button fx:id="okBtn" cancelButton="true" mnemonicParsing="false" text="Uredu" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+      <Button fx:id="okBtn" cancelButton="true" mnemonicParsing="false" text="%close_window" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
          <GridPane.margin>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </GridPane.margin>

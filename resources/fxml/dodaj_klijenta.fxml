@@ -25,13 +25,13 @@
    <children>
       <VBox prefHeight="357.0" prefWidth="0.0" spacing="30.0" GridPane.halignment="CENTER" GridPane.rowSpan="2">
          <children>
-            <Label text="Ime" />
-            <Label text="Prezime" />
-            <Label text="Email" />
-            <Label text="Password" />
-            <Label text="Datum rođenja" />
-            <Label text="Telefon" />
-            <Label text="Odgovorna osoba" />
+            <Label text="%ime" />
+            <Label text="%prezime" />
+            <Label text="%email" />
+            <Label text="%password" />
+            <Label text="%birth_date" />
+            <Label text="%telefon" />
+            <Label text="%odgovorna_osoba" />
          </children>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -53,8 +53,8 @@
       </VBox>
       <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
         <buttons>
-          <Button fx:id="addUserBtn" defaultButton="true" mnemonicParsing="false" text="Dodaj" />
-            <Button fx:id="closeBtn" cancelButton="true" mnemonicParsing="false" text="Nazad" />
+          <Button fx:id="addUserBtn" defaultButton="true" mnemonicParsing="false" text="%add" />
+            <Button fx:id="closeBtn" cancelButton="true" mnemonicParsing="false" text="%close" />
         </buttons>
          <GridPane.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

@@ -13,6 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
@@ -44,10 +45,12 @@ public class EditProfileController {
     }
     public void dajSlike(ActionEvent actionEvent) throws IOException {
         Stage myStage = new Stage();
-        myStage.setTitle("Pretraživač slika");
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(
-                "/fxml/pretragaslike.fxml"));
+
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+        FXMLLoader loader = new FXMLLoader( getClass().getResource(
+                "/fxml/pretragaslike.fxml" ), bundle);
         Parent root = loader.load();
+        myStage.setTitle(bundle.getString("picture_search"));
         gifController = loader.getController();
         gifController.setImageView(profileImg);
         gifController.setTrenutni(korisnik);

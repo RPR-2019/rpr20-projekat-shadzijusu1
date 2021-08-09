@@ -23,6 +23,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.ResourceBundle;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
@@ -95,12 +96,13 @@ public class KlijentiController {
     }
     public void dodajKlijenta() throws IOException {
         Stage myStage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(
-                "/fxml/dodaj_klijenta.fxml"));
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+        FXMLLoader loader = new FXMLLoader( getClass().getResource(
+                "/fxml/dodaj_klijenta.fxml" ), bundle);
         AddClientController ctrl = new AddClientController();
         loader.setController(ctrl);
         Parent root = loader.load();
-        myStage.setTitle("Dodavanje klijenta");
+        myStage.setTitle(bundle.getString("adding_client"));
         myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         myStage.setResizable(false);
         myStage.show();

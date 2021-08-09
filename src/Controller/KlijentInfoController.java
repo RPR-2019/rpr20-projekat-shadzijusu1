@@ -16,6 +16,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
@@ -39,14 +40,14 @@ public class KlijentInfoController {
     public void okBtn(ActionEvent actionEvent) throws IOException {
         model = CRMDao.getInstance();
         model.addKlijentInfo(datumRodjenja.getValue(), telefon.getText(), 1081);
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(
-                "/fxml/klijent_front_page.fxml"));
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+        FXMLLoader loader = new FXMLLoader( getClass().getResource(
+                "/fxml/klijent_front_page.fxml" ), bundle);
         KlijentController ctrl = new KlijentController(klijent);
         loader.setController(ctrl);
         Parent root = loader.load();
         Stage myStage = new Stage();
-        myStage.setTitle("Moja stranica");
+        myStage.setTitle(bundle.getString("my_page"));
         myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         myStage.setResizable(false);
         myStage.show();

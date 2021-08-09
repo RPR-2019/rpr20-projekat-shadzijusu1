@@ -13,6 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
@@ -23,7 +24,6 @@ public class VlasnikController {
     public Label fldPrezime;
     public Label fldEmail;
     public Label fldPass;
-    public Label fldPozicija;
     public Label nameFld;
     public ImageView profileImg;
     public VlasnikController(Korisnik vlasnik) {
@@ -37,7 +37,6 @@ public class VlasnikController {
         fldPrezime.setText(vlasnik.getPrezime());
         fldEmail.setText(vlasnik.getEmail());
         fldPass.setText(vlasnik.getPassword());
-        fldPozicija.setText(vlasnik.getPozicija().toString());
         Image image;
         if(vlasnik.getSlika().equals("/img/blank-profile-picture.png"))
         image = new Image(getClass().getResourceAsStream(vlasnik.getSlika()));
@@ -51,12 +50,13 @@ public class VlasnikController {
 
     public void editProfile(ActionEvent actionEvent) throws IOException {
         Stage myStage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(
-                "/fxml/edit_profile.fxml"));
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+        FXMLLoader loader = new FXMLLoader( getClass().getResource(
+                "/fxml/edit_profile.fxml" ), bundle);
         EditProfileController ctrl = new EditProfileController(vlasnik);
         loader.setController(ctrl);
         Parent root = loader.load();
-        myStage.setTitle("Uređivanje profila");
+        myStage.setTitle(bundle.getString("edit_profile"));
 
         myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         myStage.setResizable(false);
@@ -64,82 +64,89 @@ public class VlasnikController {
     }
     public void openMail(ActionEvent actionEvent) throws IOException {
         Stage myStage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(
-                "/fxml/send_email.fxml"));
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+        FXMLLoader loader = new FXMLLoader( getClass().getResource(
+                "/fxml/send_email.fxml" ), bundle);
         Parent root = loader.load();
-        myStage.setTitle("Pošta");
+        myStage.setTitle(bundle.getString("posta"));
         myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         myStage.setResizable(false);
         myStage.show();
     }
     public void activeClients(ActionEvent actionEvent) throws IOException {
         Stage myStage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(
-                "/fxml/klijenti.fxml"));
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+        FXMLLoader loader = new FXMLLoader( getClass().getResource(
+                "/fxml/klijenti.fxml" ), bundle);
         KlijentiController ctrl = new KlijentiController("Aktivan");
         loader.setController(ctrl);
         Parent root = loader.load();
-        myStage.setTitle("Aktivni klijenti");
+        myStage.setTitle(bundle.getString("active_clients"));
         myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         myStage.setResizable(false);
         myStage.show();
     }
     public void archivedClients(ActionEvent actionEvent) throws IOException {
         Stage myStage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(
-                "/fxml/klijenti.fxml"));
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+        FXMLLoader loader = new FXMLLoader( getClass().getResource(
+                "/fxml/klijenti.fxml" ), bundle);
         KlijentiController ctrl = new KlijentiController("Neaktivan");
         loader.setController(ctrl);
         Parent root = loader.load();
-        myStage.setTitle("Arhivirani klijenti");
+        myStage.setTitle(bundle.getString("archived_clients"));
         myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         myStage.setResizable(false);
         myStage.show();
     }
     public void employeesTable(ActionEvent actionEvent) throws IOException {
         Stage myStage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(
-                "/fxml/uposlenici.fxml"));
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+        FXMLLoader loader = new FXMLLoader( getClass().getResource(
+                "/fxml/uposlenici.fxml" ), bundle);
         UposleniciController ctrl = new UposleniciController();
         loader.setController(ctrl);
         Parent root = loader.load();
-        myStage.setTitle("Zaposleni");
+        myStage.setTitle(bundle.getString("employees"));
         myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         myStage.setResizable(false);
         myStage.show();
     }
     public void projectsTable(ActionEvent actionEvent) throws IOException {
         Stage myStage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(
-                "/fxml/projekti.fxml"));
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+        FXMLLoader loader = new FXMLLoader( getClass().getResource(
+                "/fxml/projekti.fxml" ), bundle);
         ProjektiController ctrl = new ProjektiController();
         loader.setController(ctrl);
         Parent root = loader.load();
-        myStage.setTitle("Projekti");
+        myStage.setTitle(bundle.getString("projekti"));
         myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         myStage.setResizable(false);
         myStage.show();
     }
     public void addEmployee(ActionEvent actionEvent) throws IOException {
         Stage myStage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(
-                "/fxml/dodaj_zaposlenog.fxml"));
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+        FXMLLoader loader = new FXMLLoader( getClass().getResource(
+                "/fxml/dodaj_zaposlenog.fxml" ), bundle);
         AddEmployeeController ctrl = new AddEmployeeController();
         loader.setController(ctrl);
         Parent root = loader.load();
-        myStage.setTitle("Dodavanje zaposlenog");
+        myStage.setTitle(bundle.getString("adding_employee"));
         myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         myStage.setResizable(false);
         myStage.show();
     }
     public void addProject(ActionEvent actionEvent) throws IOException {
         Stage myStage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(
-                "/fxml/add_project.fxml"));
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+        FXMLLoader loader = new FXMLLoader( getClass().getResource(
+                "/fxml/add_project.fxml" ), bundle);
         AddProjectController ctrl = new AddProjectController();
         loader.setController(ctrl);
         Parent root = loader.load();
-        myStage.setTitle("Dodavanje projekta");
+        myStage.setTitle(bundle.getString("adding_project"));
         myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         myStage.setResizable(false);
         myStage.show();
@@ -147,12 +154,13 @@ public class VlasnikController {
 
     public void addTask(ActionEvent actionEvent) throws IOException {
         Stage myStage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(
-                "/fxml/add_task.fxml"));
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+        FXMLLoader loader = new FXMLLoader( getClass().getResource(
+                "/fxml/add_task.fxml" ), bundle);
         AddTaskController ctrl = new AddTaskController("Vlasnik");
         loader.setController(ctrl);
         Parent root = loader.load();
-        myStage.setTitle("Dodavanje taska");
+        myStage.setTitle(bundle.getString("adding_task"));
         myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         myStage.setResizable(false);
         myStage.show();

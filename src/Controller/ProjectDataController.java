@@ -10,6 +10,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.util.Locale;
+
 public class ProjectDataController {
     public String naziv;
     public Label nazivProjekta;
@@ -29,7 +31,16 @@ public class ProjectDataController {
         nazivProjekta.setText(naziv);
         fldOdgovornaOsoba.setText(projekat.odgovornaOsoba);
         klijent.setText(projekat.klijent);
-        fldStatus.setText(projekat.gotov);
+        Locale locale = new Locale("en_US", "US");
+        System.out.println(locale.getCountry());
+        if(Locale.getDefault().getCountry().equals(locale.getCountry())) {
+            if(projekat.gotov.equals("Aktivan"))
+            fldStatus.setText("Active");
+            else fldStatus.setText("Completed");
+        }
+        else {
+            fldStatus.setText(projekat.gotov);
+        }
         okBtn.setOnAction(actionEvent -> okAction(actionEvent));
     }
         public void okAction(ActionEvent actionEvent) {

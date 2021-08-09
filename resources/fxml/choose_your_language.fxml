@@ -24,7 +24,7 @@
    <children>
       <ImageView fitHeight="404.0" fitWidth="600.0" GridPane.columnSpan="2" GridPane.rowSpan="3">
          <image>
-            <Image url="@../../../../Desktop/hdr-photography.jpg" />
+            <Image url="/img/hdr-photography.jpg" />
          </image>
       </ImageView>
       <Label text="Odaberite jezik" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
@@ -34,8 +34,8 @@
       </Label>
       <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <buttons>
-            <RadioButton mnemonicParsing="false" text="B/H/S" textFill="#fffdfd" />
-            <RadioButton mnemonicParsing="false" text="Engleski" textFill="#ffffff" />
+            <RadioButton mnemonicParsing="false" text="B/H/S" textFill="#fffdfd" fx:id="bhsBtn"/>
+            <RadioButton mnemonicParsing="false" text="Engleski" textFill="#ffffff" fx:id="englishBtn"/>
          </buttons>
          <GridPane.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

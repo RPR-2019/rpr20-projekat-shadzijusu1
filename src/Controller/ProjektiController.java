@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
@@ -52,8 +53,9 @@ public class ProjektiController {
 
     private void openProjectDetails(String naziv) throws IOException {
         Stage myStage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(
-                "/fxml/project_detail.fxml"));
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+        FXMLLoader loader = new FXMLLoader( getClass().getResource(
+                "/fxml/project_detail.fxml" ), bundle);
         ProjectDataController ctrl = new ProjectDataController(naziv);
         loader.setController(ctrl);
         Parent root = loader.load();

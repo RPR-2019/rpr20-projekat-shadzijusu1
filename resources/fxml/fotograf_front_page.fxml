@@ -7,6 +7,7 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -15,7 +16,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<?import javafx.scene.image.Image?>
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="455.0" prefWidth="690.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="395.79997558593755" minWidth="346.9999877929688" prefWidth="354.9999877929688" />
@@ -39,25 +39,25 @@
       </Label>
       <MenuBar GridPane.columnSpan="2" GridPane.rowIndex="1">
          <menus>
-            <Menu mnemonicParsing="false" text="Profil">
+            <Menu mnemonicParsing="false" text="%profil">
                <items>
-                  <MenuItem mnemonicParsing="false" onAction="#editProfile" text="Uredi" />
+                  <MenuItem mnemonicParsing="false" onAction="#editProfile" text="%uredi" />
                </items></Menu>
-            <Menu fx:id="tasks" mnemonicParsing="false" text="Taskovi">
+            <Menu fx:id="tasks" mnemonicParsing="false" text="%taskovi">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Pregled" onAction="#openTasks"/>
+                  <MenuItem mnemonicParsing="false" onAction="#openTasks" text="Pregled" />
                </items>
                <items>
-                  <MenuItem mnemonicParsing="false" text="Dodaj task" onAction="#addTask"/>
+                  <MenuItem mnemonicParsing="false" onAction="#addTask" text="%add_task" />
                </items>
             </Menu>
-            <Menu fx:id="email" mnemonicParsing="false" text="Pošta">
+            <Menu fx:id="email" mnemonicParsing="false" text="%posta">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Pošalji mail" onAction="#openMail" />
+                  <MenuItem mnemonicParsing="false" onAction="#openMail" text="%send_mail" />
                </items></Menu>
-            <Menu mnemonicParsing="false" text="Dodatno">
+            <Menu mnemonicParsing="false" text="%dodatno">
                <items>
-                  <MenuItem mnemonicParsing="false" onAction="#odjaviSe" text="Odjava" />
+                  <MenuItem mnemonicParsing="false" onAction="#odjaviSe" text="%odjava" />
                </items></Menu>
          </menus>
       </MenuBar>
@@ -75,11 +75,10 @@
                <children>
                   <VBox layoutY="-1.0" prefHeight="130.0" prefWidth="95.0" spacing="10.0">
                      <children>
-                        <Label text="Ime" />
-                        <Label text="Prezime" />
-                        <Label text="Email" />
-                        <Label text="Password" />
-                        <Label text="Pozicija" />
+                        <Label text="%ime" />
+                        <Label text="%prezime" />
+                        <Label text="%email" />
+                        <Label text="%password" />
                      </children>
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -95,7 +94,6 @@
                         <Label fx:id="fldPrezime" text="Label" />
                         <Label fx:id="fldEmail" text="Label" />
                         <Label fx:id="fldPass" text="Label" />
-                        <Label fx:id="fldPozicija" text="Label" />
                      </children>
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -110,7 +108,7 @@
       </SplitPane>
       <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.rowSpan="2">
          <children>
-            <Label text="Moji projekti" textFill="#29b9dd">
+            <Label text="%moji_projekti" textFill="#29b9dd">
                <font>
                   <Font name="Times New Roman" size="21.0" />
                </font>

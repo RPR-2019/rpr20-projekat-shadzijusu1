@@ -45,8 +45,7 @@ public class AddProjectController {
         okBtn.setOnAction(actionEvent -> addAction(actionEvent));
         closeBtn.setOnAction(actionEvent -> closeAction(actionEvent));
     }
-    //id, klijent, naziv, odgosoba, gotov
-  //  public void addProject(int klijent, String naziv, int odgovornaOsoba) {
+
     private void addAction(ActionEvent actionEvent) {
         int klijentId = model.getKlijentId(choiceKlijenti.getValue());
         int odgovornaOsobaId = model.getKorisnikFromName(choiceOdgovornaOsoba.getValue());

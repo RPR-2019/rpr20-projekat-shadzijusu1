@@ -17,6 +17,8 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
@@ -51,13 +53,14 @@ public class RegLogController {
         Korisnik k = new Korisnik(ime, prezime, email, pass, pozicija);
         model.dodajKorisnika(ime, prezime, email, pass, pozicija);
         if (pozicija == POZICIJA.Fotograf) {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(
-                    "/fxml/fotograf_front_page.fxml"));
+            ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+            FXMLLoader loader = new FXMLLoader( getClass().getResource(
+                    "/fxml/fotograf_front_page.fxml" ), bundle);
             FotografController ctrl = new FotografController(k);
             loader.setController(ctrl);
             Parent root = loader.load();
             Stage myStage = new Stage();
-            myStage.setTitle("Moja stranica");
+            myStage.setTitle(bundle.getString("my_page"));
             myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
             myStage.setResizable(false);
             myStage.show();
@@ -65,13 +68,14 @@ public class RegLogController {
 
             otvoriDodatne(k);
         } else {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(
-                    "/fxml/vlasnik_front_page.fxml"));
+            ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+            FXMLLoader loader = new FXMLLoader( getClass().getResource(
+                    "/fxml/vlasnik_front_page.fxml" ), bundle);
             VlasnikController ctrl = new VlasnikController(k);
             loader.setController(ctrl);
             Parent root = loader.load();
             Stage myStage = new Stage();
-            myStage.setTitle("Moja stranica");
+            myStage.setTitle(bundle.getString("my_page"));
             myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
             myStage.setResizable(false);
             myStage.show();
@@ -81,35 +85,39 @@ public class RegLogController {
     public void logujSe(ActionEvent actionEvent) throws IOException {
         Korisnik k = model.getKorisnik(emailFld.getText(), passFld.getText());
         if (k.getPozicija() == POZICIJA.Vlasnik) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource(
-                        "/fxml/vlasnik_front_page.fxml"));
+            ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+            FXMLLoader loader = new FXMLLoader( getClass().getResource(
+                    "/fxml/vlasnik_front_page.fxml" ), bundle);
                 VlasnikController ctrl = new VlasnikController(k);
                 loader.setController(ctrl);
                 Parent root = loader.load();
                 Stage myStage = new Stage();
-            myStage.setTitle("Moja stranica");
+            myStage.setTitle(bundle.getString("my_page"));
             myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
                 myStage.setResizable(false);
                 myStage.show();
             } else if (k.getPozicija() == POZICIJA.Fotograf) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource(
-                        "/fxml/fotograf_front_page.fxml"));
+            ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+            FXMLLoader loader = new FXMLLoader( getClass().getResource(
+                    "/fxml/fotograf_front_page.fxml" ), bundle);
                 FotografController ctrl = new FotografController(k);
                 loader.setController(ctrl);
                 Parent root = loader.load();
                 Stage myStage = new Stage();
-            myStage.setTitle("Moja stranica");
+            myStage.setTitle(bundle.getString("my_page"));
             myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
                 myStage.setResizable(false);
                 myStage.show();
             } else {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(
-                    "/fxml/klijent_front_page.fxml"));
+            ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+            FXMLLoader loader = new FXMLLoader( getClass().getResource(
+                    "/fxml/klijent_front_page.fxml" ), bundle);
+
             KlijentController ctrl = new KlijentController(k);
             loader.setController(ctrl);
             Parent root = loader.load();
             Stage myStage = new Stage();
-            myStage.setTitle("Moja stranica");
+            myStage.setTitle(bundle.getString("my_page"));
             myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
             myStage.setResizable(false);
             myStage.show();
@@ -117,8 +125,9 @@ public class RegLogController {
     }
 
     private void otvoriDodatne(Korisnik k) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(
-                "/fxml/klijent_info_register.fxml"));
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+        FXMLLoader loader = new FXMLLoader( getClass().getResource(
+                "/fxml/klijent_info_register.fxml" ), bundle);
         KlijentInfoController ctrl = new KlijentInfoController(k);
         loader.setController(ctrl);
         Parent root = loader.load();

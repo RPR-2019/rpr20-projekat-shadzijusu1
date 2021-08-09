@@ -6,7 +6,6 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -38,44 +37,44 @@
       </Label>
       <MenuBar GridPane.columnSpan="2" GridPane.rowIndex="1">
          <menus>
-            <Menu mnemonicParsing="false" text="Profil">
+            <Menu mnemonicParsing="false" text="%profil">
                <items>
-                  <MenuItem mnemonicParsing="false" onAction="#editProfile" text="Uredi" />
+                  <MenuItem mnemonicParsing="false" onAction="#editProfile" text="%uredi" />
                </items></Menu>
-            <Menu fx:id="email" mnemonicParsing="false" text="Pošta">
+            <Menu fx:id="email" mnemonicParsing="false" text="%posta">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Pošalji mail" onAction="#openMail" />
+                  <MenuItem mnemonicParsing="false" onAction="#openMail" text="%send_mail" />
                </items></Menu>
-            <Menu fx:id="klijenti" mnemonicParsing="false" text="Klijenti">
+            <Menu fx:id="klijenti" mnemonicParsing="false" text="%klijenti">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Aktivni" onAction="#activeClients" />
+                  <MenuItem mnemonicParsing="false" onAction="#activeClients" text="%aktivni" />
                </items>
                <items>
-                  <MenuItem mnemonicParsing="false" text="Arhiva" onAction="#archivedClients" />
+                  <MenuItem mnemonicParsing="false" onAction="#archivedClients" text="%arhiva" />
                </items>
             </Menu>
-            <Menu fx:id="uposlenici" mnemonicParsing="false" text="Zaposlenici">
+            <Menu fx:id="uposlenici" mnemonicParsing="false" text="%employees">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Pregled" onAction="#employeesTable" />
+                  <MenuItem mnemonicParsing="false" onAction="#employeesTable" text="%pregled" />
                </items>
                <items>
-                  <MenuItem mnemonicParsing="false" text="Dodaj zaposlenog" onAction="#addEmployee" />
+                  <MenuItem mnemonicParsing="false" onAction="#addEmployee" text="%add_employee" />
                </items></Menu>
-            <Menu fx:id="projekti" mnemonicParsing="false" text="Projekti">
+            <Menu fx:id="projekti" mnemonicParsing="false" text="%projekti">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Pregled" onAction="#projectsTable" />
+                  <MenuItem mnemonicParsing="false" onAction="#projectsTable" text="%pregled" />
                </items>
                <items>
-                  <MenuItem mnemonicParsing="false" text="Dodaj projekat" onAction="#addProject" />
+                  <MenuItem mnemonicParsing="false" onAction="#addProject" text="%dodaj_projekat" />
                </items>
                <items>
-                  <MenuItem mnemonicParsing="false" text="Dodaj task" onAction="#addTask" />
+                  <MenuItem mnemonicParsing="false" onAction="#addTask" text="%add_task" />
                </items>
             </Menu>
 
-            <Menu mnemonicParsing="false" text="Dodatno">
+            <Menu mnemonicParsing="false" text="%dodatno">
                <items>
-                  <MenuItem mnemonicParsing="false" onAction="#odjaviSe" text="Odjava" />
+                  <MenuItem mnemonicParsing="false" onAction="#odjaviSe" text="%odjava" />
                </items></Menu>
          </menus>
       </MenuBar>
@@ -92,11 +91,10 @@
                <children>
                   <VBox layoutY="-1.0" prefHeight="130.0" prefWidth="95.0" spacing="10.0">
                      <children>
-                        <Label text="Ime" />
-                        <Label text="Prezime" />
-                        <Label text="Email" />
-                        <Label text="Password" />
-                        <Label text="Pozicija" />
+                        <Label text="%ime" />
+                        <Label text="%prezime" />
+                        <Label text="%email" />
+                        <Label text="%password" />
                      </children>
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -112,7 +110,6 @@
                         <Label fx:id="fldPrezime" text="Label" />
                         <Label fx:id="fldEmail" text="Label" />
                         <Label fx:id="fldPass" text="Label" />
-                        <Label fx:id="fldPozicija" text="Label" />
                      </children>
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

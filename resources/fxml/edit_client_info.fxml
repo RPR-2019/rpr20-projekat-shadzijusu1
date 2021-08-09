@@ -11,24 +11,24 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="415.0" prefWidth="349.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <columnConstraints>
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="278.20001220703125" minWidth="118.99999999999997" prefWidth="128.60003662109372" />
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="460.6" minWidth="301.3999877929688" prefWidth="450.9999633789063" />
+        <ColumnConstraints hgrow="SOMETIMES" />
+        <ColumnConstraints hgrow="SOMETIMES" />
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints maxHeight="205.4" minHeight="10.0" prefHeight="167.79999389648438" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="128.60001220703128" minHeight="10.0" prefHeight="99.00000610351566" vgrow="SOMETIMES" />
+        <RowConstraints vgrow="SOMETIMES" />
+        <RowConstraints vgrow="SOMETIMES" />
         <RowConstraints vgrow="SOMETIMES" />
     </rowConstraints>
     <children>
-        <VBox prefHeight="200.0" prefWidth="100.0" spacing="15.0" GridPane.halignment="RIGHT">
+        <VBox spacing="15.0" GridPane.halignment="RIGHT">
             <children>
-                <Label text="Ime" />
-                <Label text="Prezime" />
-                <Label text="Email" />
-                <Label text="Password" />
-            <Label text="Telefon" />
+                <Label text="%ime" />
+                <Label text="%prezime" />
+                <Label text="%email" />
+                <Label text="%password" />
+            <Label text="%telefon" />
             </children>
             <padding>
                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -37,7 +37,7 @@
                 <Insets left="40.0" />
             </GridPane.margin>
         </VBox>
-        <VBox fillWidth="false" prefHeight="200.0" prefWidth="100.0" spacing="10.0" GridPane.columnIndex="1">
+        <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" GridPane.columnIndex="1">
             <children>
                 <TextField fx:id="imeFld" />
                 <TextField fx:id="prezimeFld" />
@@ -48,8 +48,11 @@
             <padding>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
             </padding>
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
         </VBox>
-        <Label text="Korisnička slika" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+        <Label text="%user_picture" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
             <GridPane.margin>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
             </GridPane.margin>
@@ -62,12 +65,15 @@
                 <Image url="@../img/blank-profile-picture.png" />
             </image>
         </ImageView>
-        <Button fx:id="changePic" mnemonicParsing="false" onAction="#dajSlike" style="-fx-background-color: lightblue;" text="Promijeni" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+        <Button fx:id="changePic" mnemonicParsing="false" onAction="#dajSlike" style="-fx-background-color: lightblue;" text="%change" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
             <GridPane.margin>
-                <Insets bottom="10.0" left="15.0" />
+                <Insets bottom="10.0" left="120.0" right="10.0" />
             </GridPane.margin>
         </Button>
-        <Button fx:id="save" mnemonicParsing="false" onAction="#sacuvajPromjene" text="Sačuvaj promjene" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+        <Button fx:id="save" mnemonicParsing="false" onAction="#sacuvajPromjene" text="%save_changes" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </GridPane.margin></Button>
     </children>
     <padding>
         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

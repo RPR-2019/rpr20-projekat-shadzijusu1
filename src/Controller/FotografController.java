@@ -16,6 +16,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
@@ -24,7 +25,6 @@ public class FotografController {
     public Label fldPrezime;
     public Label fldEmail;
     public Label fldPass;
-    public Label fldPozicija;
     public ListView<Projekat> mojiProjekti;
     public Label nameFld;
     public Korisnik fotograf;
@@ -45,7 +45,6 @@ public class FotografController {
         fldPrezime.setText(fotograf.getPrezime());
         fldEmail.setText(fotograf.getEmail());
         fldPass.setText(fotograf.getPassword());
-        fldPozicija.setText(fotograf.getPozicija().toString());
         Image image;
         if(fotograf.getSlika().equals("/img/blank-profile-picture.png"))
              image = new Image(getClass().getResourceAsStream(fotograf.getSlika()));
@@ -71,8 +70,9 @@ public class FotografController {
 
     private void openProjectDetails(String newProjekat) throws IOException {
         Stage myStage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(
-                "/fxml/project_detail.fxml"));
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+        FXMLLoader loader = new FXMLLoader( getClass().getResource(
+                "/fxml/project_detail.fxml" ), bundle);
         ProjectDataController ctrl = new ProjectDataController(newProjekat);
         loader.setController(ctrl);
         Parent root = loader.load();
@@ -87,8 +87,9 @@ public class FotografController {
 
     public void editProfile(ActionEvent actionEvent) throws IOException {
         Stage myStage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(
-                "/fxml/edit_profile.fxml"));
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+        FXMLLoader loader = new FXMLLoader( getClass().getResource(
+                "/fxml/edit_profile.fxml" ), bundle);
         EditProfileController ctrl = new EditProfileController(fotograf);
         loader.setController(ctrl);
         Parent root = loader.load();
@@ -99,8 +100,9 @@ public class FotografController {
     }
     public void openMail(ActionEvent actionEvent) throws IOException {
         Stage myStage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(
-                "/fxml/send_email.fxml"));
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+        FXMLLoader loader = new FXMLLoader( getClass().getResource(
+                "/fxml/send_email.fxml" ), bundle);
         Parent root = loader.load();
         myStage.setTitle("Mail");
         myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
@@ -109,8 +111,9 @@ public class FotografController {
     }
     public void openTasks(ActionEvent actionEvent) throws IOException {
         Stage myStage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(
-                "/fxml/taskovi.fxml"));
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+        FXMLLoader loader = new FXMLLoader( getClass().getResource(
+                "/fxml/taskovi.fxml" ), bundle);
         TaskController ctrl = new TaskController(fotograf);
         loader.setController(ctrl);
         Parent root = loader.load();
@@ -121,8 +124,9 @@ public class FotografController {
     }
     public void addTask(ActionEvent actionEvent) throws IOException {
         Stage myStage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(
-                "/fxml/add_task.fxml"));
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+        FXMLLoader loader = new FXMLLoader( getClass().getResource(
+                "/fxml/add_task.fxml" ), bundle);
         AddTaskController ctrl = new AddTaskController(fotograf);
         loader.setController(ctrl);
         Parent root = loader.load();
