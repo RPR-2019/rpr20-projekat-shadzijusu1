@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -22,7 +23,7 @@ public class SendEmailController {
     public PasswordField pass;
     public TextField primalac;
     public TextField subject;
-    public TextField text;
+    public TextArea text;
     public static CRMDao model;
 
     public static boolean sendEmail(String sender, String password, String recipent, String subject, String text) throws MessagingException {

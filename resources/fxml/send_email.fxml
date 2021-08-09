@@ -5,6 +5,7 @@
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -43,16 +44,12 @@
             <PasswordField fx:id="pass" />
             <TextField fx:id="primalac" />
             <TextField fx:id="subject" />
+            <TextArea fx:id="text" prefHeight="200.0" prefWidth="200.0" />
          </children>
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </VBox>
-      <TextField fx:id="text" prefHeight="135.0" prefWidth="387.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="2">
-         <GridPane.margin>
-            <Insets top="60.0" />
-         </GridPane.margin>
-      </TextField>
       <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
         <buttons>
           <Button defaultButton="true" mnemonicParsing="false" onAction="#send" text="%send_email" />
