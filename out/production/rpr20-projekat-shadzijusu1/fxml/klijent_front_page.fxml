@@ -46,11 +46,10 @@
                <children>
                   <VBox layoutY="-1.0" prefHeight="130.0" prefWidth="95.0" spacing="10.0">
                      <children>
-                        <Label text="Ime" />
-                        <Label text="Prezime" />
-                        <Label text="Email" />
-                        <Label text="Password" />
-                        <Label text="Pozicija" />
+                        <Label text="%ime" />
+                        <Label text="%prezime" />
+                        <Label text="%email" />
+                        <Label text="%password" />
                      </children>
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -66,7 +65,6 @@
                         <Label fx:id="fldPrezime" text="Label" />
                         <Label fx:id="fldEmail" text="Label" />
                         <Label fx:id="fldPass" text="Label" />
-                        <Label fx:id="fldPozicija" text="Label" />
                      </children>
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -81,7 +79,7 @@
       </SplitPane>
       <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="2">
          <children>
-            <Label text="Moji projekti" textFill="#29b9dd">
+            <Label text="%moji_projekti" textFill="#29b9dd">
                <font>
                   <Font name="Times New Roman" size="21.0" />
                </font>
@@ -101,20 +99,20 @@
       </VBox>
        <MenuBar GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.valignment="TOP">
            <menus>
-               <Menu mnemonicParsing="false" text="Profil">
+               <Menu mnemonicParsing="false" text="%profil">
                    <items>
-                       <MenuItem mnemonicParsing="false" onAction="#editProfile" text="Uredi" />
+                       <MenuItem mnemonicParsing="false" onAction="#editProfile" text="%uredi" />
                    </items></Menu>
-               <Menu fx:id="email" mnemonicParsing="false" text="Pošta" onAction="#openMail">
+               <Menu fx:id="email" mnemonicParsing="false" onAction="#openMail" text="%posta">
                    <items>
-                       <MenuItem mnemonicParsing="false" text="Pošalji mail" />
+                       <MenuItem mnemonicParsing="false" text="%send_mail" />
                    </items></Menu>
-               <Menu mnemonicParsing="false" text="Dodatno">
+               <Menu mnemonicParsing="false" text="%dodatno">
                    <items>
-                       <MenuItem mnemonicParsing="false" onAction="#kontakt" text="Kontakt" />
+                       <MenuItem mnemonicParsing="false" onAction="#kontakt" text="%kontakt" />
                    </items>
                    <items>
-                       <MenuItem mnemonicParsing="false" onAction="#odjaviSe" text="Odjava" />
+                       <MenuItem mnemonicParsing="false" onAction="#odjaviSe" text="%odjava" />
                    </items>
                </Menu>
            </menus>

@@ -23,19 +23,19 @@
    <children>
       <TableView fx:id="tableViewKlijenti" editable="true" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="2">
          <columns>
-            <TableColumn fx:id="colIme" prefWidth="75.0" text="Ime" />
-            <TableColumn fx:id="colPrezime" prefWidth="75.0" text="Prezime" />
-            <TableColumn fx:id="colDatumRodj" prefWidth="137.5999755859375" text="Datum rođenja" />
-            <TableColumn fx:id="colDatumAktivacije" prefWidth="131.199951171875" text="Datum aktivacije" />
-            <TableColumn fx:id="colOdgovornaOsoba" prefWidth="128.00006103515625" text="Odgovorna osoba" />
-            <TableColumn fx:id="colKontaktiranje" minWidth="-1.0" prefWidth="172.79998779296875" text="Datum kontaktiranja" />
-            <TableColumn fx:id="colTelefon" prefWidth="116.79998779296875" text="Telefon" />
+            <TableColumn fx:id="colIme" prefWidth="75.0" text="%ime" />
+            <TableColumn fx:id="colPrezime" prefWidth="75.0" text="%prezime" />
+            <TableColumn fx:id="colDatumRodj" prefWidth="137.5999755859375" text="%birth_date" />
+            <TableColumn fx:id="colDatumAktivacije" prefWidth="131.199951171875" text="%activation_date" />
+            <TableColumn fx:id="colOdgovornaOsoba" prefWidth="128.00006103515625" text="%odgovorna_osoba" />
+            <TableColumn fx:id="colKontaktiranje" minWidth="-1.0" prefWidth="172.79998779296875" text="%contact_date" />
+            <TableColumn fx:id="colTelefon" prefWidth="116.79998779296875" text="%telefon" />
          </columns>
       </TableView>
       <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
          <buttons>
-            <Button fx:id="addClientBtn" defaultButton="true" mnemonicParsing="false" text="Dodaj klijenta" />
-            <Button fx:id="closeBtn" mnemonicParsing="false" text="Nazad" />
+            <Button fx:id="addClientBtn" defaultButton="true" mnemonicParsing="false" text="%add_client" />
+            <Button fx:id="closeBtn" mnemonicParsing="false" text="%close" />
          </buttons>
       </ButtonBar>
    </children>

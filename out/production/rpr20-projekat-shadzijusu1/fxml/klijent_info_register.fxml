@@ -24,9 +24,9 @@
    <children>
       <VBox spacing="30.0" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
          <children>
-            <Label prefHeight="22.0" prefWidth="83.0" text="Datum rođenja" />
-            <Label text="Grad" />
-            <Label text="Broj telefona" />
+            <Label prefHeight="22.0" prefWidth="83.0" text="%birth_date" />
+            <Label text="%city" />
+            <Label text="%telefon" />
          </children>
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -35,7 +35,7 @@
             <Insets left="50.0" />
          </GridPane.margin>
       </VBox>
-      <Label prefHeight="18.0" prefWidth="144.0" text="Unesite potrebne podatke" />
+      <Label prefHeight="18.0" prefWidth="144.0" text="%potrebni_podaci" />
       <VBox spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <children>
             <DatePicker fx:id="datumRodjenja" />

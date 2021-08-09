@@ -25,10 +25,10 @@
    <children>
       <VBox prefHeight="125.0" prefWidth="94.0" spacing="25.0" GridPane.halignment="RIGHT" GridPane.rowSpan="2">
          <children>
-            <Label text="Pošiljalac" />
-            <Label text="Password" />
-            <Label text="Primalac" />
-            <Label text="Predmet" />
+            <Label text="%posiljalac" />
+            <Label text="%password" />
+            <Label text="%primalac" />
+            <Label text="%subject" />
          </children>
          <GridPane.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -55,8 +55,8 @@
       </TextField>
       <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
         <buttons>
-          <Button defaultButton="true" mnemonicParsing="false" onAction="#send" text="Pošalji" />
-            <Button cancelButton="true" mnemonicParsing="false" onAction="#close" text="Nazad" />
+          <Button defaultButton="true" mnemonicParsing="false" onAction="#send" text="%send_email" />
+            <Button cancelButton="true" mnemonicParsing="false" onAction="#close" text="%close" />
         </buttons>
       </ButtonBar>
    </children>
