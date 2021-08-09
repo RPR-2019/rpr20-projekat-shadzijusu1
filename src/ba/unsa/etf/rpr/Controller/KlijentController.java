@@ -92,7 +92,9 @@ public class KlijentController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/choose_your_language.fxml"), bundle);
         loader.setController(ctrl);
         Parent root = loader.load();
-        myStage.setScene(new Scene(root, PopupControl.USE_COMPUTED_SIZE, PopupControl.USE_COMPUTED_SIZE));
+        Scene scene = new Scene(root, PopupControl.USE_COMPUTED_SIZE, PopupControl.USE_COMPUTED_SIZE);
+        scene.getStylesheets().addAll(this.getClass().getResource("/css/style.css").toExternalForm());
+        myStage.setScene(scene);
         myStage.show();
         myStage.toFront();
         fldIme.getScene().getWindow().hide();
@@ -130,8 +132,10 @@ public class KlijentController {
                 "/fxml/contact_info.fxml" ), bundle);
 
         Parent root = loader.load();
+        Scene scene = new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
+        scene.getStylesheets().addAll(this.getClass().getResource("/css/style.css").toExternalForm());
+        myStage.setScene(scene);
         myStage.setTitle(bundle.getString("kontakt"));
-        myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         myStage.setResizable(false);
         myStage.show();
     }

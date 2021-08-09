@@ -52,6 +52,9 @@
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#archivedClients" text="%arhiva" />
                </items>
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#dodajKlijenta" text="%add_client" />
+               </items>
             </Menu>
             <Menu fx:id="uposlenici" mnemonicParsing="false" text="%employees">
                <items>

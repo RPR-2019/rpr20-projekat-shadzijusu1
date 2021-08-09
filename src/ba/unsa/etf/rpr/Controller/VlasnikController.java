@@ -53,7 +53,9 @@ public class VlasnikController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/choose_your_language.fxml"), bundle);
         loader.setController(ctrl);
         Parent root = loader.load();
-        myStage.setScene(new Scene(root, PopupControl.USE_COMPUTED_SIZE, PopupControl.USE_COMPUTED_SIZE));
+        Scene scene = new Scene(root, PopupControl.USE_COMPUTED_SIZE, PopupControl.USE_COMPUTED_SIZE);
+        scene.getStylesheets().addAll(this.getClass().getResource("/css/style.css").toExternalForm());
+        myStage.setScene(scene);
         myStage.show();
         myStage.toFront();
         fldIme.getScene().getWindow().hide();
@@ -146,6 +148,19 @@ public class VlasnikController {
         loader.setController(ctrl);
         Parent root = loader.load();
         myStage.setTitle(bundle.getString("adding_employee"));
+        myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        myStage.setResizable(false);
+        myStage.show();
+    }
+    public void dodajKlijenta(ActionEvent actionEvent) throws IOException {
+        Stage myStage = new Stage();
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+        FXMLLoader loader = new FXMLLoader( getClass().getResource(
+                "/fxml/dodaj_klijenta.fxml" ), bundle);
+        AddClientController ctrl = new AddClientController();
+        loader.setController(ctrl);
+        Parent root = loader.load();
+        myStage.setTitle(bundle.getString("adding_client"));
         myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         myStage.setResizable(false);
         myStage.show();

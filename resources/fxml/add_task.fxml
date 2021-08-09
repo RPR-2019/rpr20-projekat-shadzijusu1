@@ -7,10 +7,13 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <GridPane hgap="5.0" style="-fx-background-color: oldlace;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <columnConstraints>
@@ -18,19 +21,20 @@
     <ColumnConstraints hgrow="SOMETIMES" />
   </columnConstraints>
   <rowConstraints>
+      <RowConstraints vgrow="SOMETIMES" />
     <RowConstraints vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="43.9999938964844" minHeight="0.0" prefHeight="37.60003051757815" vgrow="SOMETIMES" />
+    <RowConstraints vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <VBox spacing="10.0" GridPane.columnIndex="1">
+      <VBox alignment="CENTER_LEFT" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <children>
-            <TextField fx:id="naziv" promptText="Naziv">
+            <TextField fx:id="naziv">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="opis" promptText="Opis" />
-            <DatePicker fx:id="rok" promptText="Rok" />
+            <TextField fx:id="opis" />
+            <DatePicker fx:id="rok" />
             <ChoiceBox fx:id="choiceKlijenti" prefWidth="150.0" />
             <ChoiceBox fx:id="choiceOdgovornaOsoba" prefWidth="150.0" />
          </children>
@@ -41,16 +45,16 @@
             <Insets top="10.0" />
          </GridPane.margin>
       </VBox>
-      <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
         <buttons>
-          <Button fx:id="dodajBtn" defaultButton="true" mnemonicParsing="false" text="Ok" />
-            <Button fx:id="closeBtn" cancelButton="true" mnemonicParsing="false" text="%close" />
+          <Button fx:id="dodajBtn" mnemonicParsing="false" style="-fx-background-color: lightblue;" text="Ok" />
+            <Button fx:id="closeBtn" mnemonicParsing="false" style="-fx-background-color: lightgrey;" text="%close" />
         </buttons>
          <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </GridPane.margin>
       </ButtonBar>
-      <VBox spacing="15.0">
+      <VBox alignment="CENTER_RIGHT" spacing="15.0" GridPane.rowIndex="1">
          <children>
             <Label text="%naziv_taska" />
             <Label text="%opis_taska" />
@@ -65,6 +69,22 @@
             <Insets top="10.0" />
          </GridPane.margin>
       </VBox>
+      <ImageView fitHeight="88.0" fitWidth="88.0" GridPane.halignment="RIGHT">
+         <image>
+            <Image url="@../img/task.png" />
+         </image>
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin>
+      </ImageView>
+      <Label text="%new_task" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+         <font>
+            <Font name="Lucida Fax Regular" size="14.0" />
+         </font>
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin>
+      </Label>
    </children>
    <padding>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

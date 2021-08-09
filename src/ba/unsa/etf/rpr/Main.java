@@ -20,7 +20,9 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/choose_your_language.fxml"), bundle);
         loader.setController(ctrl);
         Parent root = loader.load();
-        primaryStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        Scene scene = new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
+        scene.getStylesheets().addAll(this.getClass().getResource("/css/style.css").toExternalForm());
+        primaryStage.setScene(scene);
         primaryStage.show();
         primaryStage.toFront();
 
