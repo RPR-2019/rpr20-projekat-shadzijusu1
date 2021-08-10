@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<?import java.net.URL?>
+<GridPane hgap="5.0" maxHeight="-Infinity" maxWidth="-Infinity" style="-fx-background-color: mistyrose;" vgap="5.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <stylesheets>
+        <URL value="@/css/validation.css" />
+    </stylesheets>
+    <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" />
+    <ColumnConstraints hgrow="SOMETIMES" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints vgrow="SOMETIMES" />
+    <RowConstraints vgrow="SOMETIMES" />
+    <RowConstraints vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <VBox alignment="TOP_RIGHT" prefHeight="295.0" prefWidth="130.0" spacing="25.0" GridPane.halignment="CENTER" GridPane.rowSpan="2">
+         <children>
+            <Label text="%ime" />
+            <Label text="%prezime" />
+            <Label text="%email" />
+            <Label text="%password" />
+            <Label text="%birth_date" />
+            <Label text="%telefon" />
+            <Label text="%odgovorna_osoba" />
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+         <GridPane.margin>
+            <Insets top="10.0" />
+         </GridPane.margin>
+      </VBox>
+      <VBox alignment="CENTER_LEFT" spacing="17.0" GridPane.columnIndex="1" GridPane.rowSpan="2">
+         <children>
+            <TextField fx:id="fldIme" />
+            <TextField fx:id="fldPrezime" />
+            <TextField fx:id="fldEmail" />
+            <TextField fx:id="fldPassword" />
+            <DatePicker fx:id="datumPicker">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin></DatePicker>
+            <TextField fx:id="fldTelefon">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin></TextField>
+            <ChoiceBox fx:id="osobaChoice" prefWidth="150.0">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin></ChoiceBox>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+         <GridPane.margin>
+            <Insets top="5.0" />
+         </GridPane.margin>
+      </VBox>
+      <ButtonBar GridPane.columnIndex="1" GridPane.rowIndex="2">
+        <buttons>
+          <Button fx:id="addUserBtn" mnemonicParsing="false" style="-fx-background-color: lightblue;" text="%add" />
+            <Button fx:id="closeBtn" mnemonicParsing="false" style="-fx-background-color: lightgrey;" text="%close" />
+        </buttons>
+         <GridPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </GridPane.margin>
+      </ButtonBar>
+   </children>
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </padding>
+</GridPane>
