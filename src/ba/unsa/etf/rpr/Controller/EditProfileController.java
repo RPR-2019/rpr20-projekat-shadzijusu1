@@ -134,7 +134,9 @@ public class EditProfileController {
         korisnik.setEmail(emailFld.getText());
         korisnik.setPassword(passFld.getText());
         korisnik.setSlika(profileImg.getImage().getUrl());
-        model.postaviTelefon(telefonFld.getText(), korisnik.getId());
+        if(telefonFld != null) {
+            model.postaviTelefon(telefonFld.getText(), korisnik.getId());
+        }
         imeFld.getScene().getWindow().hide();
         if (tipKorisnika.equals("Klijent")) {
             ResourceBundle bundle = ResourceBundle.getBundle("Translation");

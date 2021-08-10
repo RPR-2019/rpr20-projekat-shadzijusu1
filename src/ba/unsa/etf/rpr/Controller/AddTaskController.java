@@ -8,10 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -24,7 +21,7 @@ public class AddTaskController {
     public DatePicker rok;
     public ChoiceBox<String> choiceOdgovornaOsoba;
     public ChoiceBox<String> choiceKlijenti;
-
+    public Label labelOsoba;
     public String koDodaje = "fotograf";
     public CRMDao model;
     public Button dodajBtn;
@@ -41,8 +38,10 @@ public class AddTaskController {
 
     @FXML
     public void initialize() {
-        if(koDodaje.equals("fotograf"))
+        if(koDodaje.equals("fotograf")) {
             choiceOdgovornaOsoba.setVisible(false);
+            labelOsoba.setVisible(false);
+        }
         model = CRMDao.getInstance();
         uposlenici = model.getEmployees();
         klijenti = model.getClients();
