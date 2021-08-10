@@ -1,9 +1,7 @@
 package ba.unsa.etf.rpr.Controller;
 
 import ba.unsa.etf.rpr.DAO.CRMDao;
-import ba.unsa.etf.rpr.Model.Klijent;
 import ba.unsa.etf.rpr.Model.Korisnik;
-import ba.unsa.etf.rpr.Model.POZICIJA;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,7 +22,7 @@ import java.util.ResourceBundle;
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
 public class KlijentController {
-    public Korisnik klijent ;
+    public Korisnik klijent;
     public CRMDao model;
     public Label fldIme;
     public Label fldPrezime;
@@ -33,15 +31,16 @@ public class KlijentController {
     public Label nameFld;
     public ImageView profileImg;
     public ListView<String> projektiView;
+
     public KlijentController(Korisnik korisnik) {
         this.klijent = korisnik;
     }
 
 
-
     @FXML
     public void initialize() {
         model = CRMDao.getInstance();
+        klijent = model.getUser(klijent.getId());
         nameFld.setText(klijent.getIme() + " " + klijent.getPrezime());
         fldIme.setText(klijent.getIme());
         fldPrezime.setText(klijent.getPrezime());
@@ -49,7 +48,7 @@ public class KlijentController {
         fldPass.setText(klijent.getPassword());
         System.out.println(klijent.getSlika());
         Image image;
-        if(klijent.getSlika().equals("/img/blank-profile-picture.png"))
+        if (klijent.getSlika().equals("/img/blank-profile-picture.png"))
             image = new Image(getClass().getResourceAsStream(klijent.getSlika()));
         else
             image = new Image(klijent.getSlika());
@@ -69,8 +68,8 @@ public class KlijentController {
     private void openProjectDetails(String newProjekat) throws IOException {
         Stage myStage = new Stage();
         ResourceBundle bundle = ResourceBundle.getBundle("Translation");
-        FXMLLoader loader = new FXMLLoader( getClass().getResource(
-                "/fxml/project_detail.fxml" ), bundle);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(
+                "/fxml/project_detail.fxml"), bundle);
 
         ProjectDataController ctrl = new ProjectDataController(newProjekat);
         loader.setController(ctrl);
@@ -99,32 +98,38 @@ public class KlijentController {
     public void editProfile(ActionEvent actionEvent) throws IOException {
         Stage myStage = new Stage();
         ResourceBundle bundle = ResourceBundle.getBundle("Translation");
-        FXMLLoader loader = new FXMLLoader( getClass().getResource(
-                "/fxml/edit_client_info.fxml" ), bundle);
-        EditProfileController ctrl = new EditProfileController(klijent);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(
+                "/fxml/edit_client_info.fxml"), bundle);
+        EditProfileController ctrl = new EditProfileController();
+        ctrl.setProfileImg(profileImg);
+        ctrl.setKorisnik(klijent);
+        ctrl.setTipKorisnika("Klijent");
         loader.setController(ctrl);
         Parent root = loader.load();
         myStage.setTitle(bundle.getString("edit_profile"));
         myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         myStage.setResizable(false);
         myStage.show();
+        fldIme.getScene().getWindow().hide();
     }
+
     public void openMail(ActionEvent actionEvent) throws IOException {
         Stage myStage = new Stage();
         ResourceBundle bundle = ResourceBundle.getBundle("Translation");
-        FXMLLoader loader = new FXMLLoader( getClass().getResource(
-                "/fxml/send_email.fxml" ), bundle);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(
+                "/fxml/send_email.fxml"), bundle);
         Parent root = loader.load();
         myStage.setTitle(bundle.getString("posta"));
         myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         myStage.setResizable(false);
         myStage.show();
     }
+
     public void kontakt(ActionEvent actionEvent) throws IOException {
         Stage myStage = new Stage();
         ResourceBundle bundle = ResourceBundle.getBundle("Translation");
-        FXMLLoader loader = new FXMLLoader( getClass().getResource(
-                "/fxml/contact_info.fxml" ), bundle);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(
+                "/fxml/contact_info.fxml"), bundle);
 
         Parent root = loader.load();
         Scene scene = new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);

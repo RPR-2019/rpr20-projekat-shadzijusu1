@@ -22,10 +22,10 @@ public class GifController {
     private String choosenBtnUrl;
     private Korisnik trenutni;
     private boolean choosenBtn = false;
-    private ImageView imageView;
 
+    public ImageView profileImg;
     public void setImageView(ImageView imageView) {
-        this.imageView = imageView;
+        this.profileImg = imageView;
     }
 
     public GifController() {
@@ -60,9 +60,8 @@ public class GifController {
     public void clickOk(ActionEvent actionEvent) {
         if (choosenBtn) {
             trenutni.setSlika(choosenBtnUrl);
-            Image image = new Image(trenutni.getSlika());
-            imageView.setImage(image);
-
+            Image image = new Image(choosenBtnUrl);
+            profileImg.setImage(image);
             Node n = (Node) actionEvent.getSource();
             Stage stage = (Stage) n.getScene().getWindow();
             stage.close();

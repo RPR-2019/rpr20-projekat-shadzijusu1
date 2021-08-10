@@ -42,6 +42,7 @@ public class FotografController {
     @FXML
     public void initialize() {
         model = CRMDao.getInstance();
+        fotograf = model.getUser(fotograf.getId());
         nameFld.setText(fotograf.getIme() + " " + fotograf.getPrezime());
         fldIme.setText(fotograf.getIme());
         fldPrezime.setText(fotograf.getPrezime());
@@ -55,9 +56,6 @@ public class FotografController {
 
         profileImg.setImage(image);
         ObservableList<String> projekti = model.dajProjekte(fotograf.getId());
-
-
-
 
         projektiView.setItems(projekti);
 
@@ -104,13 +102,18 @@ public class FotografController {
         ResourceBundle bundle = ResourceBundle.getBundle("Translation");
         FXMLLoader loader = new FXMLLoader( getClass().getResource(
                 "/fxml/edit_profile.fxml" ), bundle);
-        EditProfileController ctrl = new EditProfileController(fotograf);
+        EditProfileController ctrl = new EditProfileController();
+        ctrl.setProfileImg(profileImg);
+        ctrl.setKorisnik(fotograf);
+        ctrl.setTipKorisnika("Fotograf");
         loader.setController(ctrl);
         Parent root = loader.load();
         myStage.setTitle("Uređivanje profila");
         myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         myStage.setResizable(false);
         myStage.show();
+        fldIme.getScene().getWindow().hide();
+
     }
     public void openMail(ActionEvent actionEvent) throws IOException {
         Stage myStage = new Stage();

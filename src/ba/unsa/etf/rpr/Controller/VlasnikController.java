@@ -34,6 +34,7 @@ public class VlasnikController {
     @FXML
     public void initialize() {
         model = CRMDao.getInstance();
+        vlasnik = model.getUser(vlasnik.getId());
         nameFld.setText(vlasnik.getIme() + " " + vlasnik.getPrezime());
         fldIme.setText(vlasnik.getIme());
         fldPrezime.setText(vlasnik.getPrezime());
@@ -45,6 +46,7 @@ public class VlasnikController {
         else
             image = new Image(vlasnik.getSlika());
         profileImg.setImage(image);
+
     }
     public void odjaviSe(ActionEvent actionEvent) throws IOException {
         Stage myStage = new Stage();
@@ -67,14 +69,18 @@ public class VlasnikController {
         ResourceBundle bundle = ResourceBundle.getBundle("Translation");
         FXMLLoader loader = new FXMLLoader( getClass().getResource(
                 "/fxml/edit_profile.fxml" ), bundle);
-        EditProfileController ctrl = new EditProfileController(vlasnik);
+        EditProfileController ctrl = new EditProfileController();
+        ctrl.setProfileImg(profileImg);
+        ctrl.setKorisnik(vlasnik);
+        ctrl.setTipKorisnika("Vlasnik");
         loader.setController(ctrl);
         Parent root = loader.load();
         myStage.setTitle(bundle.getString("edit_profile"));
-
         myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         myStage.setResizable(false);
         myStage.show();
+        fldIme.getScene().getWindow().hide();
+
     }
     public void openMail(ActionEvent actionEvent) throws IOException {
         Stage myStage = new Stage();

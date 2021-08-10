@@ -21,7 +21,7 @@ public class CRMDao {
             postaviMail, postaviPass, dajMojeProjekte, dajProjekat, dajKorisnikaFromId, dodajKlijenta, dajKlijentaZaOdgOsobu,
             dajTaskoveZa, dajKlijentaPoImenu, dodajTask, cekirajTask, dajKlijente, dajZaposlene, dajProjekte,
             postaviOdgovornuOsobu, dajKorisnikaPoImenu, dodajProjekat, dajStatus, postaviStatus,
-            apdejtProjekat, postaviDatumKontaktiranja, dajMailove;
+            apdejtProjekat, postaviDatumKontaktiranja, dajMailove, getUserFromId;
     private SimpleObjectProperty<Klijent> klijent = new SimpleObjectProperty<>();
     private static Integer id = 0;
 
@@ -59,7 +59,7 @@ public class CRMDao {
 
             postaviDatumKontaktiranja = conn.prepareStatement("UPDATE Klijent set datumKontaktiranja=? where email=?");
             dajMailove = conn.prepareStatement("SELECT email from Klijent");
-
+            getUserFromId = conn.prepareStatement("SELECT ime, prezime, email, password, pozicija, slika from Korisnik where id=?");
         } catch (
                 SQLException e) {
             System.out.println(e);
@@ -505,6 +505,35 @@ public class CRMDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public Korisnik getUser(int id) {
+        Korisnik k = null;
+        try {
+            getUserFromId.setInt(1, id);
+
+            ResultSet result = getUserFromId.executeQuery();
+
+            while (result.next()) {
+                String ime = result.getString(1);
+                String prezime = result.getString(2);
+                String email = result.getString(3);
+                String pass = result.getString(4);
+                String poz = result.getString(5);
+                POZICIJA pozicija = POZICIJA.Klijent;
+                String slika = result.getString(6);
+                if (poz.equals("Vlasnik"))
+                    pozicija = POZICIJA.Vlasnik;
+                else if (poz.equals("Fotograf"))
+                    pozicija = POZICIJA.Fotograf;
+                k = new Korisnik(ime, prezime, email, pass, pozicija, slika);
+                k.setId(id);
+                return k;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return k;
     }
 
 }
