@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<GridPane hgap="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: white;" vgap="5.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="395.79997558593755" minWidth="346.9999877929688" prefWidth="354.9999877929688" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="342.20001220703125" minWidth="10.0" prefWidth="334.20001220703125" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints />
+    <RowConstraints />
+    <RowConstraints vgrow="SOMETIMES" />
+      <RowConstraints vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <Label fx:id="nameFld" text="Dobrodošao fotografe!" GridPane.rowIndex="2" GridPane.valignment="TOP">
+         <font>
+            <Font name="Times New Roman" size="18.0" />
+         </font>
+         <GridPane.margin>
+            <Insets bottom="5.0" left="10.0" right="5.0" top="10.0" />
+         </GridPane.margin>
+      </Label>
+      <MenuBar GridPane.columnSpan="2" GridPane.rowIndex="1">
+         <menus>
+            <Menu mnemonicParsing="false" text="%profil">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#editProfile" text="%uredi" />
+               </items></Menu>
+            <Menu fx:id="tasks" mnemonicParsing="false" text="%taskovi">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#openTasks" text="Pregled" />
+               </items>
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#addTask" text="%add_task" />
+               </items>
+            </Menu>
+            <Menu fx:id="email" mnemonicParsing="false" text="%posta">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#openMail" text="%send_mail" />
+               </items></Menu>
+            <Menu mnemonicParsing="false" text="%dodatno">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#odjaviSe" text="%odjava" />
+               </items></Menu>
+         </menus>
+      </MenuBar>
+      <ImageView fx:id="profileImg" fitHeight="140.0" fitWidth="150.0" GridPane.rowIndex="2">
+         <image>
+            <Image url="@/img/blank-profile-picture.png" />
+         </image>
+         <GridPane.margin>
+            <Insets left="10.0" top="40.0" />
+         </GridPane.margin>
+      </ImageView>
+      <SplitPane dividerPositions="0.28402366863905326" style="-fx-background-color: lightgrey;" GridPane.rowIndex="3">
+         <items>
+            <AnchorPane>
+               <children>
+                  <VBox alignment="CENTER_RIGHT" layoutY="-1.0" spacing="10.0" AnchorPane.leftAnchor="30.0">
+                     <children>
+                        <Label text="%ime">
+                           <font>
+                              <Font name="Times New Roman" size="14.0" />
+                           </font></Label>
+                        <Label text="%prezime">
+                           <font>
+                              <Font name="Times New Roman" size="14.0" />
+                           </font></Label>
+                        <Label text="%email">
+                        <font>
+                        <Font name="Times New Roman" size="14.0" />
+                     </font></Label>
+                        <Label text="%password">
+                           <font>
+                        <Font name="Times New Roman" size="14.0" />
+                     </font></Label>
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </AnchorPane>
+            <AnchorPane>
+               <children>
+                  <VBox layoutY="1.0" spacing="10.0">
+                     <children>
+                        <Label fx:id="fldIme" text="Label">
+                           <font>
+                              <Font name="Times New Roman" size="14.0" />
+                           </font></Label>
+                        <Label fx:id="fldPrezime" text="Label"><font>
+                           <Font name="Times New Roman" size="14.0" />
+                        </font></Label>
+                        <Label fx:id="fldEmail" text="Label">
+                           <font>
+                              <Font name="Times New Roman" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="fldPass" text="Label">
+                           <font>
+                              <Font name="Times New Roman" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </AnchorPane>
+         </items>
+         <GridPane.margin>
+            <Insets left="10.0" right="5.0" top="20.0" />
+         </GridPane.margin>
+      </SplitPane>
+      <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.rowSpan="2">
+         <children>
+            <Label text="%moji_projekti" textFill="#db2a2a">
+               <font>
+                  <Font name="Times New Roman" size="21.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="5.0" left="50.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </Label>
+            <ListView fx:id="projektiView" prefHeight="338.0" prefWidth="312.0">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="10.0" top="5.0" />
+               </VBox.margin>
+            </ListView>
+         </children>
+      </VBox>
+   </children>
+</GridPane>
