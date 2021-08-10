@@ -1,5 +1,6 @@
 package ba.unsa.etf.rpr.Controller;
 
+import ba.unsa.etf.rpr.DAO.CRMDao;
 import ba.unsa.etf.rpr.Model.Korisnik;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,11 +24,11 @@ public class EditProfileController {
     public TextField emailFld;
     public TextField passFld;
     public TextField telefonFld;
-
+    public int klijentId;
     public ImageView profileImg;
     private GifController gifController;
     public String tipKorisnika;
-
+    public CRMDao model;
     public void setTipKorisnika(String tipKorisnika) {
         this.tipKorisnika = tipKorisnika;
     }
@@ -40,8 +41,13 @@ public class EditProfileController {
         this.korisnik = korisnik;
     }
 
+    public void setKlijentId(int klijentId) {
+        this.klijentId = klijentId;
+    }
+
     @FXML
     public void initialize() {
+        model = CRMDao.getInstance();
         imeFld.setText(korisnik.getIme());
         prezimeFld.setText(korisnik.getPrezime());
         emailFld.setText(korisnik.getEmail());
@@ -54,6 +60,10 @@ public class EditProfileController {
             image = new Image(korisnik.getSlika());
         profileImg.setImage(image);
 
+
+        if(tipKorisnika.equals("Klijent")) {
+            telefonFld.setText(model.getTelefon(klijentId));
+        }
             imeFld.textProperty().addListener((obs, oldIme, newIme) -> {
                 if (!newIme.isEmpty()) {
                     imeFld.getStyleClass().removeAll("poljeNijeIspravno");
@@ -124,6 +134,7 @@ public class EditProfileController {
         korisnik.setEmail(emailFld.getText());
         korisnik.setPassword(passFld.getText());
         korisnik.setSlika(profileImg.getImage().getUrl());
+        model.postaviTelefon(telefonFld.getText(), korisnik.getId());
         imeFld.getScene().getWindow().hide();
         if (tipKorisnika.equals("Klijent")) {
             ResourceBundle bundle = ResourceBundle.getBundle("Translation");

@@ -46,7 +46,6 @@ public class KlijentController {
         fldPrezime.setText(klijent.getPrezime());
         fldEmail.setText(klijent.getEmail());
         fldPass.setText(klijent.getPassword());
-        System.out.println(klijent.getSlika());
         Image image;
         if (klijent.getSlika().equals("/img/blank-profile-picture.png"))
             image = new Image(getClass().getResourceAsStream(klijent.getSlika()));
@@ -104,6 +103,7 @@ public class KlijentController {
         ctrl.setProfileImg(profileImg);
         ctrl.setKorisnik(klijent);
         ctrl.setTipKorisnika("Klijent");
+        ctrl.setKlijentId(klijent.getId());
         loader.setController(ctrl);
         Parent root = loader.load();
         myStage.setTitle(bundle.getString("edit_profile"));

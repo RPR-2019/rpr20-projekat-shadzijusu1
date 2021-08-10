@@ -21,7 +21,7 @@ public class CRMDao {
             postaviMail, postaviPass, dajMojeProjekte, dajProjekat, dajKorisnikaFromId, dodajKlijenta, dajKlijentaZaOdgOsobu,
             dajTaskoveZa, dajKlijentaPoImenu, dodajTask, cekirajTask, dajKlijente, dajZaposlene, dajProjekte,
             postaviOdgovornuOsobu, dajKorisnikaPoImenu, dodajProjekat, dajStatus, postaviStatus,
-            apdejtProjekat, postaviDatumKontaktiranja, dajMailove, getUserFromId;
+            apdejtProjekat, postaviDatumKontaktiranja, dajMailove, getUserFromId, dajTelefon, postaviTelefon;
     private SimpleObjectProperty<Klijent> klijent = new SimpleObjectProperty<>();
     private static Integer id = 0;
 
@@ -60,6 +60,9 @@ public class CRMDao {
             postaviDatumKontaktiranja = conn.prepareStatement("UPDATE Klijent set datumKontaktiranja=? where email=?");
             dajMailove = conn.prepareStatement("SELECT email from Klijent");
             getUserFromId = conn.prepareStatement("SELECT ime, prezime, email, password, pozicija, slika from Korisnik where id=?");
+
+            dajTelefon = conn.prepareStatement("SELECT telefon from Klijent where id=?");
+            postaviTelefon = conn.prepareStatement("UPDATE Klijent set telefon=? where id=?");
         } catch (
                 SQLException e) {
             System.out.println(e);
@@ -212,7 +215,26 @@ public class CRMDao {
             throwables.printStackTrace();
         }
     }
+    public void postaviTelefon(String telefon, int id) {
+        try {
+            postaviTelefon.setString(1, telefon);
+            postaviTelefon.setInt(2, id);
+            postaviTelefon.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+    public String getTelefon(int id) {
+        try {
+            dajTelefon.setInt(1, id);
+            ResultSet rs = dajTelefon.executeQuery();
+                return rs.getString(1);
 
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return "";
+    }
     public ObservableList<String> dajProjekte(int id) {
         ObservableList<String> naziviProjekata = FXCollections.observableArrayList();
         try {

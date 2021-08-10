@@ -1,5 +1,7 @@
 package ba.unsa.etf.rpr.Model;
 
+import ba.unsa.etf.rpr.DAO.CRMDao;
+
 import java.util.Date;
 
 public class Klijent extends Korisnik {
