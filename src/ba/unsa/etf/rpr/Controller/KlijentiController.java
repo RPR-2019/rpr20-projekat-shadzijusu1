@@ -11,12 +11,14 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
@@ -49,9 +51,67 @@ public class KlijentiController {
         model = CRMDao.getInstance();
         colIme.setCellValueFactory(new PropertyValueFactory<Klijent, String>("ime"));
         colPrezime.setCellValueFactory(new PropertyValueFactory<Klijent, String>("prezime"));
+        colDatumRodj.setCellFactory(column -> {
+            TableCell<Klijent, Date> cell = new TableCell<Klijent, Date>() {
+                private SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+
+                @Override
+                protected void updateItem(Date item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if(empty) {
+                        setText(null);
+                    }
+                    else {
+                        this.setText(format.format(item));
+
+                    }
+                }
+            };
+
+            return cell;
+        });
         colDatumRodj.setCellValueFactory(new PropertyValueFactory<Klijent, Date>("datumRodjenja"));
+        colDatumAktivacije.setCellFactory(column -> {
+            TableCell<Klijent, Date> cell = new TableCell<Klijent, Date>() {
+                private SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+
+                @Override
+                protected void updateItem(Date item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if(empty) {
+                        setText(null);
+                    }
+                    else {
+                        this.setText(format.format(item));
+
+                    }
+                }
+            };
+
+            return cell;
+        });
         colDatumAktivacije.setCellValueFactory(new PropertyValueFactory<Klijent, Date>("datumAktivacije"));
+
         colOdgovornaOsoba.setCellValueFactory(new PropertyValueFactory<Klijent, String>("odgovornaOsoba"));
+        colKontaktiranje.setCellFactory(column -> {
+            TableCell<Klijent, Date> cell = new TableCell<Klijent, Date>() {
+                private SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+
+                @Override
+                protected void updateItem(Date item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if(empty) {
+                        setText(null);
+                    }
+                    else {
+                        this.setText(format.format(item));
+
+                    }
+                }
+            };
+
+            return cell;
+        });
         colKontaktiranje.setCellValueFactory(new PropertyValueFactory<Klijent, Date>("datumKontaktiranja"));
         colTelefon.setCellValueFactory(new PropertyValueFactory<Klijent, String>("telefon"));
 

@@ -142,20 +142,20 @@ public class CRMDao {
 
             ResultSet result = dajKorisnika.executeQuery();
 
-            while (result.next()) {
-                String ime = result.getString(1);
-                String prezime = result.getString(2);
-                String poz = result.getString(5);
-                POZICIJA pozicija = POZICIJA.Klijent;
-                String slika = result.getString(6);
-                if (poz.equals("Vlasnik"))
-                    pozicija = POZICIJA.Vlasnik;
-                else if (poz.equals("Fotograf"))
-                    pozicija = POZICIJA.Fotograf;
-                int id = result.getInt(7);
-                k = new Korisnik(ime, prezime, email, pass, pozicija, slika);
-                k.setId(id);
-                return k;
+                while (result.next()) {
+                    String ime = result.getString(1);
+                    String prezime = result.getString(2);
+                    String poz = result.getString(5);
+                    POZICIJA pozicija = POZICIJA.Klijent;
+                    String slika = result.getString(6);
+                    if (poz.equals("Vlasnik"))
+                        pozicija = POZICIJA.Vlasnik;
+                    else if (poz.equals("Fotograf"))
+                        pozicija = POZICIJA.Fotograf;
+                    int id = result.getInt(7);
+                    k = new Korisnik(ime, prezime, email, pass, pozicija, slika);
+                    k.setId(id);
+                    return k;
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -212,7 +212,6 @@ public class CRMDao {
             throwables.printStackTrace();
         }
     }
-
     public void postaviTelefon(String telefon, int id) {
         try {
             postaviTelefon.setString(1, telefon);
@@ -222,19 +221,17 @@ public class CRMDao {
             throwables.printStackTrace();
         }
     }
-
     public String getTelefon(int id) {
         try {
             dajTelefon.setInt(1, id);
             ResultSet rs = dajTelefon.executeQuery();
-            return rs.getString(1);
+                return rs.getString(1);
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
         return "";
     }
-
     public ObservableList<String> dajProjekte(int id) {
         ObservableList<String> naziviProjekata = FXCollections.observableArrayList();
         try {
@@ -312,7 +309,7 @@ public class CRMDao {
             dajTaskoveZa.setInt(2, klijent);
             ResultSet rs = dajTaskoveZa.executeQuery();
             while (rs.next()) {
-                SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
                 Date date = formatter.parse(rs.getString(3));
                 Task task = new Task(rs.getString(2), rs.getString(1), date, rs.getBoolean(4));
                 tasks.add(task);
@@ -397,7 +394,7 @@ public class CRMDao {
                 Klijent k = new Klijent();
                 k.setIme(rs.getString(1));
                 k.setPrezime(rs.getString(2));
-                SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
                 Date date = formatter.parse(rs.getString(3));
                 k.setDatumRodjenja(date);
                 int odgovornaOsobaId = rs.getInt(4);
@@ -506,7 +503,6 @@ public class CRMDao {
             e.printStackTrace();
         }
     }
-
     public ArrayList<String> getClientMails() {
         ArrayList<String> mejlovi = new ArrayList<>(0);
         try {
@@ -520,7 +516,6 @@ public class CRMDao {
         }
         return mejlovi;
     }
-
     public void setDatumKontaktiranja(String kontakt, String email) {
         try {
             postaviDatumKontaktiranja.setString(1, (kontakt));

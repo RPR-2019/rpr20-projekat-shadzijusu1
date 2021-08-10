@@ -1,0 +1,12 @@
+#tableViewKlijenti .table-column {
+  -fx-alignment: CENTER-LEFT;
+}
+#tableViewProjekti .table-column {
+  -fx-alignment: CENTER-LEFT;
+}
+#tableViewTaskovi .table-column {
+  -fx-alignment: CENTER;
+}
+#tableViewZaposleni .table-column {
+  -fx-alignment: CENTER-LEFT;
+}

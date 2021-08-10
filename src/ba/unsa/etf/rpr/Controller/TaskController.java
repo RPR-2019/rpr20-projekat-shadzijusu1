@@ -1,6 +1,7 @@
 package ba.unsa.etf.rpr.Controller;
 
 import ba.unsa.etf.rpr.DAO.CRMDao;
+import ba.unsa.etf.rpr.Model.Klijent;
 import ba.unsa.etf.rpr.Model.Korisnik;
 import ba.unsa.etf.rpr.Model.Task;
 import javafx.collections.FXCollections;
@@ -13,6 +14,7 @@ import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -40,6 +42,25 @@ public class TaskController {
 
         colNaziv.setCellValueFactory(new PropertyValueFactory<Task, String>("naziv"));
         colOpis.setCellValueFactory(new PropertyValueFactory<Task, String>("opis"));
+        colDeadline.setCellFactory(column -> {
+            TableCell<Task, Date> cell = new TableCell<Task, Date>() {
+                private SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+
+                @Override
+                protected void updateItem(Date item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if(empty) {
+                        setText(null);
+                    }
+                    else {
+                        this.setText(format.format(item));
+
+                    }
+                }
+            };
+
+            return cell;
+        });
         colDeadline.setCellValueFactory(new PropertyValueFactory<Task, Date>("deadline"));
         colUradjen.setCellFactory(tc -> new CheckBoxTableCell<>());
 
