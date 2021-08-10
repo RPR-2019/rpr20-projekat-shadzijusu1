@@ -57,6 +57,25 @@ public class AddTaskController {
         }
         choiceOdgovornaOsoba.setItems(employeeNames);
         choiceKlijenti.setItems(clientNames);
+        naziv.textProperty().addListener((obs, oldIme, newIme) -> {
+            if (!newIme.isEmpty()) {
+                naziv.getStyleClass().removeAll("poljeNijeIspravno");
+                naziv.getStyleClass().add("poljeIspravno");
+            } else {
+                naziv.getStyleClass().removeAll("poljeIspravno");
+                naziv.getStyleClass().add("poljeNijeIspravno");
+            }
+        });
+        opis.textProperty().addListener((obs, oldIme, newIme) -> {
+            if (!newIme.isEmpty()) {
+                opis.getStyleClass().removeAll("poljeNijeIspravno");
+                opis.getStyleClass().add("poljeIspravno");
+            } else {
+                opis.getStyleClass().removeAll("poljeIspravno");
+                opis.getStyleClass().add("poljeNijeIspravno");
+            }
+        });
+
         dodajBtn.setOnAction(actionEvent -> dodajTask(actionEvent));
         closeBtn.setOnAction(actionEvent -> closeAction(actionEvent));
     }

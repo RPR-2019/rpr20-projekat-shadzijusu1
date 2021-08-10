@@ -4,6 +4,7 @@ package ba.unsa.etf.rpr.Controller;
 import ba.unsa.etf.rpr.DAO.CRMDao;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
@@ -25,7 +26,54 @@ public class SendEmailController {
     public TextField subject;
     public TextArea text;
     public static CRMDao model;
-
+    @FXML
+    public void initialize() {
+        sender.textProperty().addListener((obs, oldIme, newIme) -> {
+            if (!newIme.isEmpty()) {
+                sender.getStyleClass().removeAll("poljeNijeIspravno");
+                sender.getStyleClass().add("poljeIspravno");
+            } else {
+                sender.getStyleClass().removeAll("poljeIspravno");
+                sender.getStyleClass().add("poljeNijeIspravno");
+            }
+        });
+        pass.textProperty().addListener((obs, oldIme, newIme) -> {
+            if (!newIme.isEmpty()) {
+                pass.getStyleClass().removeAll("poljeNijeIspravno");
+                pass.getStyleClass().add("poljeIspravno");
+            } else {
+                pass.getStyleClass().removeAll("poljeIspravno");
+                pass.getStyleClass().add("poljeNijeIspravno");
+            }
+        });
+        primalac.textProperty().addListener((obs, oldIme, newIme) -> {
+            if (!newIme.isEmpty()) {
+                primalac.getStyleClass().removeAll("poljeNijeIspravno");
+                primalac.getStyleClass().add("poljeIspravno");
+            } else {
+                primalac.getStyleClass().removeAll("poljeIspravno");
+                primalac.getStyleClass().add("poljeNijeIspravno");
+            }
+        });
+        subject.textProperty().addListener((obs, oldIme, newIme) -> {
+            if (!newIme.isEmpty()) {
+                subject.getStyleClass().removeAll("poljeNijeIspravno");
+                subject.getStyleClass().add("poljeIspravno");
+            } else {
+                subject.getStyleClass().removeAll("poljeIspravno");
+                subject.getStyleClass().add("poljeNijeIspravno");
+            }
+        });
+        text.textProperty().addListener((obs, oldIme, newIme) -> {
+            if (!newIme.isEmpty()) {
+                text.getStyleClass().removeAll("poljeNijeIspravno");
+                text.getStyleClass().add("poljeIspravno");
+            } else {
+                text.getStyleClass().removeAll("poljeIspravno");
+                text.getStyleClass().add("poljeNijeIspravno");
+            }
+        });
+    }
     public static boolean sendEmail(String sender, String password, String recipent, String subject, String text) throws MessagingException {
        model = CRMDao.getInstance();
         ArrayList<String> mejlovi = model.getClientMails();

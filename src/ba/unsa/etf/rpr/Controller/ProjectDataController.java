@@ -41,6 +41,24 @@ public class ProjectDataController {
         else {
             fldStatus.setText(projekat.gotov);
         }
+        fldOdgovornaOsoba.textProperty().addListener((obs, oldIme, newIme) -> {
+            if (!newIme.isEmpty()) {
+                fldOdgovornaOsoba.getStyleClass().removeAll("poljeNijeIspravno");
+                fldOdgovornaOsoba.getStyleClass().add("poljeIspravno");
+            } else {
+                fldOdgovornaOsoba.getStyleClass().removeAll("poljeIspravno");
+                fldOdgovornaOsoba.getStyleClass().add("poljeNijeIspravno");
+            }
+        });
+        fldStatus.textProperty().addListener((obs, oldIme, newIme) -> {
+            if (!newIme.isEmpty()) {
+                fldStatus.getStyleClass().removeAll("poljeNijeIspravno");
+                fldStatus.getStyleClass().add("poljeIspravno");
+            } else {
+                fldStatus.getStyleClass().removeAll("poljeIspravno");
+                fldStatus.getStyleClass().add("poljeNijeIspravno");
+            }
+        });
         okBtn.setOnAction(actionEvent -> okAction(actionEvent));
     }
         public void okAction(ActionEvent actionEvent) {

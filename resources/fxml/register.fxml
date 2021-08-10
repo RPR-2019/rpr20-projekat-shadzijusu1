@@ -12,7 +12,11 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
+<?import java.net.URL?>
 <GridPane hgap="10.0" style="-fx-background-color: white;" vgap="15.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.Controller.RegLogController">
+    <stylesheets>
+        <URL value="@/css/validacija.css" />
+    </stylesheets>
     <columnConstraints>
         <ColumnConstraints hgrow="ALWAYS" />
         <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" maxWidth="155.20001220703125" minWidth="144.0" prefWidth="144.0" />

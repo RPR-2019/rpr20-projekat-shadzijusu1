@@ -22,6 +22,8 @@ public class EditProfileController {
     public TextField prezimeFld;
     public TextField emailFld;
     public TextField passFld;
+    public TextField telefonFld;
+
     public ImageView profileImg;
     private GifController gifController;
     public String tipKorisnika;
@@ -44,12 +46,62 @@ public class EditProfileController {
         prezimeFld.setText(korisnik.getPrezime());
         emailFld.setText(korisnik.getEmail());
         passFld.setText(korisnik.getPassword());
+
         Image image;
         if (korisnik.getSlika().equals("/img/blank-profile-picture"))
             image = new Image(getClass().getResourceAsStream(korisnik.getSlika()));
         else
             image = new Image(korisnik.getSlika());
         profileImg.setImage(image);
+
+            imeFld.textProperty().addListener((obs, oldIme, newIme) -> {
+                if (!newIme.isEmpty()) {
+                    imeFld.getStyleClass().removeAll("poljeNijeIspravno");
+                    imeFld.getStyleClass().add("poljeIspravno");
+                } else {
+                    imeFld.getStyleClass().removeAll("poljeIspravno");
+                    imeFld.getStyleClass().add("poljeNijeIspravno");
+                }
+            });
+            prezimeFld.textProperty().addListener((obs, oldIme, newIme) -> {
+                if (!newIme.isEmpty()) {
+                    prezimeFld.getStyleClass().removeAll("poljeNijeIspravno");
+                    prezimeFld.getStyleClass().add("poljeIspravno");
+                } else {
+                    prezimeFld.getStyleClass().removeAll("poljeIspravno");
+                    prezimeFld.getStyleClass().add("poljeNijeIspravno");
+                }
+            });
+        emailFld.textProperty().addListener((obs, oldIme, newIme) -> {
+            if (!newIme.isEmpty()) {
+                emailFld.getStyleClass().removeAll("poljeNijeIspravno");
+                emailFld.getStyleClass().add("poljeIspravno");
+            } else {
+                emailFld.getStyleClass().removeAll("poljeIspravno");
+                emailFld.getStyleClass().add("poljeNijeIspravno");
+            }
+        });
+
+        passFld.textProperty().addListener((obs, oldIme, newIme) -> {
+            if (!newIme.isEmpty()) {
+                passFld.getStyleClass().removeAll("poljeNijeIspravno");
+                passFld.getStyleClass().add("poljeIspravno");
+            } else {
+                passFld.getStyleClass().removeAll("poljeIspravno");
+                passFld.getStyleClass().add("poljeNijeIspravno");
+            }
+        });
+        if(telefonFld != null) {
+            telefonFld.textProperty().addListener((obs, oldIme, newIme) -> {
+                if (!newIme.isEmpty()) {
+                    telefonFld.getStyleClass().removeAll("poljeNijeIspravno");
+                    telefonFld.getStyleClass().add("poljeIspravno");
+                } else {
+                    telefonFld.getStyleClass().removeAll("poljeIspravno");
+                    telefonFld.getStyleClass().add("poljeNijeIspravno");
+                }
+            });
+        }
     }
 
     public void dajSlike(ActionEvent actionEvent) throws IOException {

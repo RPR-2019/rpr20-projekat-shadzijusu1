@@ -39,6 +39,54 @@ public class AddClientController {
             employeeNames.add(uposlenici.get(i).getIme() + " " + uposlenici.get(i).getPrezime());
         }
         osobaChoice.setItems(employeeNames);
+            fldIme.textProperty().addListener((obs, oldIme, newIme) -> {
+                if (!newIme.isEmpty()) {
+                    fldIme.getStyleClass().removeAll("poljeNijeIspravno");
+                    fldIme.getStyleClass().add("poljeIspravno");
+                } else {
+                    fldIme.getStyleClass().removeAll("poljeIspravno");
+                    fldIme.getStyleClass().add("poljeNijeIspravno");
+                }
+            });
+
+            fldPrezime.textProperty().addListener((obs, oldIme, newIme) -> {
+                if (!newIme.isEmpty()) {
+                    fldPrezime.getStyleClass().removeAll("poljeNijeIspravno");
+                    fldPrezime.getStyleClass().add("poljeIspravno");
+                } else {
+                    fldPrezime.getStyleClass().removeAll("poljeIspravno");
+                    fldPrezime.getStyleClass().add("poljeNijeIspravno");
+                }
+            });
+
+        fldEmail.textProperty().addListener((obs, oldIme, newIme) -> {
+            if (!newIme.isEmpty()) {
+                fldEmail.getStyleClass().removeAll("poljeNijeIspravno");
+                fldEmail.getStyleClass().add("poljeIspravno");
+            } else {
+                fldEmail.getStyleClass().removeAll("poljeIspravno");
+                fldEmail.getStyleClass().add("poljeNijeIspravno");
+            }
+        });
+
+        fldPassword.textProperty().addListener((obs, oldIme, newIme) -> {
+            if (!newIme.isEmpty()) {
+                fldPassword.getStyleClass().removeAll("poljeNijeIspravno");
+                fldPassword.getStyleClass().add("poljeIspravno");
+            } else {
+                fldPassword.getStyleClass().removeAll("poljeIspravno");
+                fldPassword.getStyleClass().add("poljeNijeIspravno");
+            }
+        });
+        fldTelefon.textProperty().addListener((obs, oldIme, newIme) -> {
+            if (!newIme.isEmpty()) {
+                fldTelefon.getStyleClass().removeAll("poljeNijeIspravno");
+                fldTelefon.getStyleClass().add("poljeIspravno");
+            } else {
+                fldTelefon.getStyleClass().removeAll("poljeIspravno");
+                fldTelefon.getStyleClass().add("poljeNijeIspravno");
+            }
+        });
         addUserBtn.setOnAction(event -> addUser(event));
         closeBtn.setOnAction(actionEvent -> closeAction(actionEvent));
     }

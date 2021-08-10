@@ -41,6 +41,48 @@ public class RegLogController {
             pozicije.add(POZICIJA.Klijent);
             pozicijaBox.setItems(pozicije);
         }
+        if(imeFld != null) {
+            imeFld.textProperty().addListener((obs, oldIme, newIme) -> {
+                if (!newIme.isEmpty()) {
+                    imeFld.getStyleClass().removeAll("poljeNijeIspravno");
+                    imeFld.getStyleClass().add("poljeIspravno");
+                } else {
+                    imeFld.getStyleClass().removeAll("poljeIspravno");
+                    imeFld.getStyleClass().add("poljeNijeIspravno");
+                }
+            });
+        }
+        if(prezimeFld != null) {
+            prezimeFld.textProperty().addListener((obs, oldIme, newIme) -> {
+                if (!newIme.isEmpty()) {
+                    prezimeFld.getStyleClass().removeAll("poljeNijeIspravno");
+                    prezimeFld.getStyleClass().add("poljeIspravno");
+                } else {
+                    prezimeFld.getStyleClass().removeAll("poljeIspravno");
+                    prezimeFld.getStyleClass().add("poljeNijeIspravno");
+                }
+            });
+        }
+        emailFld.textProperty().addListener((obs, oldIme, newIme) -> {
+            if (!newIme.isEmpty()) {
+                emailFld.getStyleClass().removeAll("poljeNijeIspravno");
+                emailFld.getStyleClass().add("poljeIspravno");
+            } else {
+                emailFld.getStyleClass().removeAll("poljeIspravno");
+                emailFld.getStyleClass().add("poljeNijeIspravno");
+            }
+        });
+
+        passFld.textProperty().addListener((obs, oldIme, newIme) -> {
+            if (!newIme.isEmpty()) {
+                passFld.getStyleClass().removeAll("poljeNijeIspravno");
+                passFld.getStyleClass().add("poljeIspravno");
+            } else {
+                passFld.getStyleClass().removeAll("poljeIspravno");
+                passFld.getStyleClass().add("poljeNijeIspravno");
+            }
+        });
+
     }
 
     public void registrujSe(ActionEvent actionEvent) throws IOException {

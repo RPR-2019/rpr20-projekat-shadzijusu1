@@ -42,6 +42,15 @@ public class AddProjectController {
         choiceOdgovornaOsoba.setItems(employeeNames);
         choiceKlijenti.setItems(clientNames);
 
+        fldNaziv.textProperty().addListener((obs, oldIme, newIme) -> {
+            if (!newIme.isEmpty()) {
+                fldNaziv.getStyleClass().removeAll("poljeNijeIspravno");
+                fldNaziv.getStyleClass().add("poljeIspravno");
+            } else {
+                fldNaziv.getStyleClass().removeAll("poljeIspravno");
+                fldNaziv.getStyleClass().add("poljeNijeIspravno");
+            }
+        });
         okBtn.setOnAction(actionEvent -> addAction(actionEvent));
         closeBtn.setOnAction(actionEvent -> closeAction(actionEvent));
     }

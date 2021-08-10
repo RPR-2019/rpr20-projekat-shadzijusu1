@@ -19,6 +19,45 @@ public class AddEmployeeController {
     public Button closeBtn;
     @FXML
     public void initialize() {
+        fldIme.textProperty().addListener((obs, oldIme, newIme) -> {
+            if (!newIme.isEmpty()) {
+                fldIme.getStyleClass().removeAll("poljeNijeIspravno");
+                fldIme.getStyleClass().add("poljeIspravno");
+            } else {
+                fldIme.getStyleClass().removeAll("poljeIspravno");
+                fldIme.getStyleClass().add("poljeNijeIspravno");
+            }
+        });
+
+        fldPrezime.textProperty().addListener((obs, oldIme, newIme) -> {
+            if (!newIme.isEmpty()) {
+                fldPrezime.getStyleClass().removeAll("poljeNijeIspravno");
+                fldPrezime.getStyleClass().add("poljeIspravno");
+            } else {
+                fldPrezime.getStyleClass().removeAll("poljeIspravno");
+                fldPrezime.getStyleClass().add("poljeNijeIspravno");
+            }
+        });
+
+        fldEmail.textProperty().addListener((obs, oldIme, newIme) -> {
+            if (!newIme.isEmpty()) {
+                fldEmail.getStyleClass().removeAll("poljeNijeIspravno");
+                fldEmail.getStyleClass().add("poljeIspravno");
+            } else {
+                fldEmail.getStyleClass().removeAll("poljeIspravno");
+                fldEmail.getStyleClass().add("poljeNijeIspravno");
+            }
+        });
+
+        fldPassword.textProperty().addListener((obs, oldIme, newIme) -> {
+            if (!newIme.isEmpty()) {
+                fldPassword.getStyleClass().removeAll("poljeNijeIspravno");
+                fldPassword.getStyleClass().add("poljeIspravno");
+            } else {
+                fldPassword.getStyleClass().removeAll("poljeIspravno");
+                fldPassword.getStyleClass().add("poljeNijeIspravno");
+            }
+        });
         addEmployeeBtn.setOnAction(actionEvent -> addEmployee(actionEvent));
         closeBtn.setOnAction(actionEvent -> closeAction(actionEvent));
     }

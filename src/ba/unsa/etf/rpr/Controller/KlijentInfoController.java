@@ -35,6 +35,16 @@ public class KlijentInfoController {
         ObservableList<String> gradovi = FXCollections.observableArrayList();
         gradovi.add("Sarajevo");
         grad.setItems(gradovi);
+        telefon.textProperty().addListener((obs, oldIme, newIme) -> {
+            if (!newIme.isEmpty()) {
+                telefon.getStyleClass().removeAll("poljeNijeIspravno");
+                telefon.getStyleClass().add("poljeIspravno");
+            } else {
+                telefon.getStyleClass().removeAll("poljeIspravno");
+                telefon.getStyleClass().add("poljeNijeIspravno");
+            }
+        });
+
     }
     public void okBtn(ActionEvent actionEvent) throws IOException {
         model = CRMDao.getInstance();
