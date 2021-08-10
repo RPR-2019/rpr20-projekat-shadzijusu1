@@ -64,7 +64,7 @@ public class Korisnik {
 
     public void setIme(String ime) {
         this.ime = ime;
-        CRMDao.postaviIme(ime, email);
+        CRMDao.postaviIme(ime, id);
     }
 
     public String getPrezime() {
@@ -73,7 +73,7 @@ public class Korisnik {
 
     public void setPrezime(String prezime) {
         this.prezime = prezime;
-        CRMDao.postaviPrezime(prezime, email);
+        CRMDao.postaviPrezime(prezime, id);
 
     }
 
@@ -83,7 +83,7 @@ public class Korisnik {
 
     public void setEmail(String email) {
         this.email = email;
-        CRMDao.postaviMail(email, ime, prezime, password);
+        CRMDao.postaviMail(email, id);
 
     }
 
@@ -93,7 +93,7 @@ public class Korisnik {
 
     public void setPassword(String password) {
         this.password = password;
-        CRMDao.postaviPass(password, email);
+        CRMDao.postaviPass(password, id);
     }
 
     public POZICIJA getPozicija() {
@@ -110,7 +110,7 @@ public class Korisnik {
 
     public void setSlika(String pic) {
         this.slika = slika;
-        CRMDao.postaviSliku(pic, email);
+        CRMDao.postaviSliku(pic, id);
     }
 }
 

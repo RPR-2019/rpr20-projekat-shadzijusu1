@@ -35,29 +35,29 @@ public class AddClientController {
         model = CRMDao.getInstance();
         uposlenici = model.getEmployees();
         ObservableList<String> employeeNames = FXCollections.observableArrayList();
-        for(int i = 0; i < uposlenici.size(); i++) {
+        for (int i = 0; i < uposlenici.size(); i++) {
             employeeNames.add(uposlenici.get(i).getIme() + " " + uposlenici.get(i).getPrezime());
         }
         osobaChoice.setItems(employeeNames);
-            fldIme.textProperty().addListener((obs, oldIme, newIme) -> {
-                if (!newIme.isEmpty()) {
-                    fldIme.getStyleClass().removeAll("poljeNijeIspravno");
-                    fldIme.getStyleClass().add("poljeIspravno");
-                } else {
-                    fldIme.getStyleClass().removeAll("poljeIspravno");
-                    fldIme.getStyleClass().add("poljeNijeIspravno");
-                }
-            });
+        fldIme.textProperty().addListener((obs, oldIme, newIme) -> {
+            if (!newIme.isEmpty()) {
+                fldIme.getStyleClass().removeAll("poljeNijeIspravno");
+                fldIme.getStyleClass().add("poljeIspravno");
+            } else {
+                fldIme.getStyleClass().removeAll("poljeIspravno");
+                fldIme.getStyleClass().add("poljeNijeIspravno");
+            }
+        });
 
-            fldPrezime.textProperty().addListener((obs, oldIme, newIme) -> {
-                if (!newIme.isEmpty()) {
-                    fldPrezime.getStyleClass().removeAll("poljeNijeIspravno");
-                    fldPrezime.getStyleClass().add("poljeIspravno");
-                } else {
-                    fldPrezime.getStyleClass().removeAll("poljeIspravno");
-                    fldPrezime.getStyleClass().add("poljeNijeIspravno");
-                }
-            });
+        fldPrezime.textProperty().addListener((obs, oldIme, newIme) -> {
+            if (!newIme.isEmpty()) {
+                fldPrezime.getStyleClass().removeAll("poljeNijeIspravno");
+                fldPrezime.getStyleClass().add("poljeIspravno");
+            } else {
+                fldPrezime.getStyleClass().removeAll("poljeIspravno");
+                fldPrezime.getStyleClass().add("poljeNijeIspravno");
+            }
+        });
 
         fldEmail.textProperty().addListener((obs, oldIme, newIme) -> {
             if (!newIme.isEmpty()) {
@@ -106,9 +106,9 @@ public class AddClientController {
         String osoba = osobaChoice.getValue();
         String[] nazivTrimed = osoba.split(" ");
         String imeFotografa = nazivTrimed[0];
-        String  prezimeFotografa= nazivTrimed[1];
+        String prezimeFotografa = nazivTrimed[1];
         uposlenici = model.getEmployees();
-        for(int i = 0; i < uposlenici.size(); i++) {
+        for (int i = 0; i < uposlenici.size(); i++) {
             if (uposlenici.get(i).getIme().equals(imeFotografa) &&
                     uposlenici.get(i).getPrezime().equals(prezimeFotografa)) {
                 model.addKlijentInfo(datumPicker.getValue(), fldTelefon.getText(), uposlenici.get(i).getId());
@@ -119,7 +119,6 @@ public class AddClientController {
         Stage stage = (Stage) n.getScene().getWindow();
         stage.close();
     }
-
 
 
 }

@@ -33,10 +33,10 @@ public class AddProjectController {
         ObservableList<String> employeeNames = FXCollections.observableArrayList();
         ObservableList<String> clientNames = FXCollections.observableArrayList();
 
-        for(int i = 0; i < uposlenici.size(); i++) {
+        for (int i = 0; i < uposlenici.size(); i++) {
             employeeNames.add(uposlenici.get(i).getIme() + " " + uposlenici.get(i).getPrezime());
         }
-        for(int i = 0; i < klijenti.size(); i++) {
+        for (int i = 0; i < klijenti.size(); i++) {
             clientNames.add(klijenti.get(i).getIme() + " " + klijenti.get(i).getPrezime());
         }
         choiceOdgovornaOsoba.setItems(employeeNames);
@@ -64,6 +64,7 @@ public class AddProjectController {
         Stage stage = (Stage) n.getScene().getWindow();
         stage.close();
     }
+
     private void closeAction(ActionEvent actionEvent) {
         Node n = (Node) actionEvent.getSource();
         Stage stage = (Stage) n.getScene().getWindow();

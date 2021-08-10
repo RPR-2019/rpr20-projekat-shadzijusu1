@@ -17,6 +17,7 @@ public class AddEmployeeController {
     public TextField fldPassword;
     public Button addEmployeeBtn;
     public Button closeBtn;
+
     @FXML
     public void initialize() {
         fldIme.textProperty().addListener((obs, oldIme, newIme) -> {
@@ -61,6 +62,7 @@ public class AddEmployeeController {
         addEmployeeBtn.setOnAction(actionEvent -> addEmployee(actionEvent));
         closeBtn.setOnAction(actionEvent -> closeAction(actionEvent));
     }
+
     private void closeAction(ActionEvent actionEvent) {
         Node n = (Node) actionEvent.getSource();
         Stage stage = (Stage) n.getScene().getWindow();
