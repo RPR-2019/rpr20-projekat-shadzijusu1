@@ -111,19 +111,19 @@
                <children>
                   <VBox layoutY="1.0" spacing="10.0">
                      <children>
-                        <Label fx:id="fldIme" text="Label">
+                        <Label fx:id="imeFld" text="Label">
                            <font>
                               <Font name="Times New Roman" size="14.0" />
                            </font></Label>
-                        <Label fx:id="fldPrezime" text="Label">
+                        <Label fx:id="prezimeFld" text="Label">
                            <font>
                               <Font name="Times New Roman" size="14.0" />
                            </font></Label>
-                        <Label fx:id="fldEmail" text="Label">
+                        <Label fx:id="emailFld" text="Label">
                            <font>
                               <Font name="Times New Roman" size="14.0" />
                            </font></Label>
-                        <Label fx:id="fldPass" text="Label">
+                        <Label fx:id="passwordFld" text="Label">
                            <font>
                               <Font name="Times New Roman" size="14.0" />
                            </font></Label>

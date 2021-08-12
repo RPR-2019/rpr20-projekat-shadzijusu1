@@ -48,6 +48,7 @@ public class ClientTableController {
     public void initialize() {
         if(status == "Neaktivan")
             addClientBtn.setVisible(false);
+
         model = CRMDao.getInstance();
         colIme.setCellValueFactory(new PropertyValueFactory<Client, String>("ime"));
         colPrezime.setCellValueFactory(new PropertyValueFactory<Client, String>("prezime"));

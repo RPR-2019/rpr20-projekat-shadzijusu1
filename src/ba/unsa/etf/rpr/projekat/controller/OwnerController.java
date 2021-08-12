@@ -21,10 +21,10 @@ import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 public class OwnerController {
     public User vlasnik;
     public CRMDao model;
-    public Label fldIme;
-    public Label fldPrezime;
-    public Label fldEmail;
-    public Label fldPass;
+    public Label imeFld;
+    public Label prezimeFld;
+    public Label emailFld;
+    public Label passwordFld;
     public Label nameFld;
     public ImageView profileImg;
     public OwnerController(User vlasnik) {
@@ -35,10 +35,10 @@ public class OwnerController {
         model = CRMDao.getInstance();
         vlasnik = model.getUser(vlasnik.getId());
         nameFld.setText(vlasnik.getIme() + " " + vlasnik.getPrezime());
-        fldIme.setText(vlasnik.getIme());
-        fldPrezime.setText(vlasnik.getPrezime());
-        fldEmail.setText(vlasnik.getEmail());
-        fldPass.setText(vlasnik.getPassword());
+        imeFld.setText(vlasnik.getIme());
+        prezimeFld.setText(vlasnik.getPrezime());
+        emailFld.setText(vlasnik.getEmail());
+        passwordFld.setText(vlasnik.getPassword());
         Image image;
         if(vlasnik.getSlika().equals("/img/blank-profile-picture.png"))
         image = new Image(getClass().getResourceAsStream(vlasnik.getSlika()));
@@ -59,7 +59,7 @@ public class OwnerController {
         myStage.setScene(scene);
         myStage.show();
         myStage.toFront();
-        fldIme.getScene().getWindow().hide();
+        imeFld.getScene().getWindow().hide();
 
     }
 
@@ -78,7 +78,7 @@ public class OwnerController {
         myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         myStage.setResizable(false);
         myStage.show();
-        fldIme.getScene().getWindow().hide();
+        imeFld.getScene().getWindow().hide();
 
     }
     public void openMail(ActionEvent actionEvent) throws IOException {
@@ -169,6 +169,7 @@ public class OwnerController {
         myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         myStage.setResizable(false);
         myStage.show();
+        myStage.toFront();
     }
     public void addProject(ActionEvent actionEvent) throws IOException {
         Stage myStage = new Stage();
