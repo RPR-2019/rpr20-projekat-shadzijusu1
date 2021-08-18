@@ -1,4 +1,4 @@
-![logo](https://github.com/RPR-2019/rpr20-projekat-shadzijusu1/blob/master/resources/img/RPR%20Pictures.png)
+![logo](https://github.com/RPR-2019/rpr20-projekat-shadzijusu1/blob/master/resources/img/RPR%20Studios.png)
 # RPR studios
 # Your passion is capturing great moments. So is ours.
 
