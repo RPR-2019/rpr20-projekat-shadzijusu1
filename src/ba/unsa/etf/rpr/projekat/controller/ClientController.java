@@ -69,7 +69,7 @@ public class ClientController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(
                 "/fxml/project_detail.fxml"), bundle);
 
-        ProjectDataController ctrl = new ProjectDataController(newProjekat);
+        ProjectDataController ctrl = new ProjectDataController(newProjekat, "Klijent");
         loader.setController(ctrl);
         Parent root = loader.load();
         myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));

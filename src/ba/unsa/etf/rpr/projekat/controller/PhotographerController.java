@@ -72,7 +72,7 @@ public class PhotographerController {
         ResourceBundle bundle = ResourceBundle.getBundle("Translation");
         FXMLLoader loader = new FXMLLoader( getClass().getResource(
                 "/fxml/project_detail.fxml" ), bundle);
-        ProjectDataController ctrl = new ProjectDataController(newProjekat);
+        ProjectDataController ctrl = new ProjectDataController(newProjekat, "Fotograf");
         loader.setController(ctrl);
         Parent root = loader.load();
         myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));

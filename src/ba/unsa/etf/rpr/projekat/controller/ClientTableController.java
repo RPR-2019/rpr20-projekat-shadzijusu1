@@ -118,24 +118,18 @@ public class ClientTableController {
 
         ArrayList<Client> clients = model.getClients();
         if (status == "Aktivan") {
-            for (Client client : clients) {
-                if (client.getStatus().equals("Aktivan")) {
-                    klijenti.add(client);
-
+            for(int i = 0; i < clients.size(); i++) {
+                if(clients.get(i).getStatus().toString().equals("Aktivan")) {
+                    klijenti.add(clients.get(i));
                 }
-
             }
-
-            tableViewKlijenti.setItems(klijenti);
-
         } else {
             for (Client client : clients) {
-                if (client.getStatus().equals("Neaktivan"))
+                if (client.getStatus().toString().equals("Neaktivan"))
                     klijenti.add(client);
             }
-            tableViewKlijenti.setItems(klijenti);
-
         }
+        tableViewKlijenti.setItems(klijenti);
         addClientBtn.setOnAction(actionEvent -> {
             try {
                 dodajKlijenta();

@@ -18,7 +18,7 @@
    <children>
       <ImageView fitHeight="400.0" fitWidth="400.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
          <image>
-            <Image url="@/img/RPR Pictures.png" />
+            <Image url="@/img/RPR Studios.png" />
          </image>
          <GridPane.margin>
             <Insets />

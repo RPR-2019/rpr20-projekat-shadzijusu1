@@ -60,7 +60,7 @@ public class ProjectTableController {
         ResourceBundle bundle = ResourceBundle.getBundle("Translation");
         FXMLLoader loader = new FXMLLoader(getClass().getResource(
                 "/fxml/project_detail.fxml"), bundle);
-        ProjectDataController ctrl = new ProjectDataController(naziv);
+        ProjectDataController ctrl = new ProjectDataController(naziv, "Vlasnik");
         loader.setController(ctrl);
         Parent root = loader.load();
         myStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));

@@ -19,8 +19,10 @@ public class ProjectDataController {
     public Label klijent;
     public TextField fldStatus;
     public CRMDao model;
-    public ProjectDataController(String nazivProjekta) {
+    public String koGleda;
+    public ProjectDataController(String nazivProjekta, String koGleda) {
         this.naziv = nazivProjekta;
+        this.koGleda = koGleda;
     }
     public Project projekat;
     public Button okBtn;
@@ -31,6 +33,12 @@ public class ProjectDataController {
         nazivProjekta.setText(naziv);
         fldOdgovornaOsoba.setText(projekat.getOdgovornaOsoba());
         klijent.setText(projekat.getKlijent());
+
+        if(koGleda.equals("Klijent")) {
+            fldOdgovornaOsoba.setEditable(false);
+            fldStatus.setEditable(false);
+        }
+
         Locale locale = new Locale("en_US", "US");
         if(Locale.getDefault().getCountry().equals(locale.getCountry())) {
             if(projekat.getGotov().equals("Aktivan"))

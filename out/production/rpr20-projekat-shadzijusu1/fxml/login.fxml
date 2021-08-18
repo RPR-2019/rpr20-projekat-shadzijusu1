@@ -46,7 +46,7 @@
       </Button>
       <ImageView fitHeight="216.0" fitWidth="216.0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
          <image>
-            <Image url="@/img/RPR Pictures.png" />
+            <Image url="@/img/RPR Studios.png" />
          </image>
       </ImageView>
    </children>
