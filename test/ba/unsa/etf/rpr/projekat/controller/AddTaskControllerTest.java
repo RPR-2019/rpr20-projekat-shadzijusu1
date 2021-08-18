@@ -2,6 +2,7 @@ package ba.unsa.etf.rpr.projekat.controller;
 
 import ba.unsa.etf.rpr.projekat.dao.CRMDao;
 import ba.unsa.etf.rpr.projekat.model.Project;
+import ba.unsa.etf.rpr.projekat.model.Task;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -38,19 +39,21 @@ class AddTaskControllerTest {
     }
 
     @Test
-    void test(FxRobot robot) {
+    void addTaskTest(FxRobot robot) {
+        ArrayList<Task> tasksBefore = model.taskovi(1897, 2151);
         robot.clickOn("B/H/S");
         robot.clickOn("Prijava");
-        robot.clickOn("#emailFld").write("ernah@gmail.com");
-        robot.clickOn("#passFld").write("erna123");
+        robot.clickOn("#emailFld").write("rprstudios@gmail.com");
+        robot.clickOn("#passFld").write("rpr1234");
         robot.clickOn("Prijavi se");
         robot.clickOn("Projekti");
         robot.clickOn("Dodaj task");
         robot.clickOn("#naziv").write("MGP Emina H");
         robot.clickOn("#opis").write("Uploadovati slike na drive");
-        robot.clickOn("#deadline").write("");
         robot.clickOn("#choiceKlijenti").clickOn("Emina Hadžijusufović");
         robot.clickOn("#choiceOdgovornaOsoba").clickOn("Selma Hadžijusufović");
         robot.clickOn("Ok");
+        ArrayList<Task> tasksAfter = model.taskovi(1897, 2151);
+        assertEquals(tasksAfter.size(), tasksBefore.size()+1);
     }
 }

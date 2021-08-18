@@ -109,7 +109,7 @@ public class User {
     }
 
     public void setSlika(String pic) {
-        this.slika = slika;
+        this.slika = pic;
         CRMDao.postaviSliku(pic, id);
     }
 }

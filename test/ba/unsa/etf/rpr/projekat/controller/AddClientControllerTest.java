@@ -1,6 +1,7 @@
 package ba.unsa.etf.rpr.projekat.controller;
 
 import ba.unsa.etf.rpr.projekat.dao.CRMDao;
+import ba.unsa.etf.rpr.projekat.model.Client;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -11,9 +12,11 @@ import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
 
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(ApplicationExtension.class)
 class AddClientControllerTest {
@@ -34,17 +37,16 @@ class AddClientControllerTest {
         stage.toFront();
     }
 
-    //Fix
     @Test
-    void test1(FxRobot robot) {
+    void addClientTest(FxRobot robot) {
         robot.clickOn("B/H/S");
         robot.clickOn("Prijava");
-        robot.clickOn("#emailFld").write("ernah@gmail.com");
-        robot.clickOn("#passFld").write("erna123");
+        robot.clickOn("#emailFld").write("rprstudios@gmail.com");
+        robot.clickOn("#passFld").write("rpr1234");
         robot.clickOn("Prijavi se");
         robot.clickOn("Klijenti");
         robot.clickOn("Dodaj klijenta");
-//        ArrayList<Client> klijenti1 = model.getClients();
+        ArrayList<Client> klijenti1 = model.getClients();
         robot.clickOn("#fldIme").write("Kenan");
         robot.clickOn("#fldPrezime").write("Marić");
         robot.clickOn("#fldEmail").write("kenanm@gmail.com");
@@ -53,7 +55,7 @@ class AddClientControllerTest {
         robot.clickOn("#fldTelefon").write("061789456");
         robot.clickOn("#osobaChoice").clickOn("Anesa Fazlagić");
         robot.clickOn("Dodaj");
-//        ArrayList<Client> klijenti2 = model.getClients();
-//        assertEquals(klijenti2.size(), klijenti1.size()+1);
+        ArrayList<Client> klijenti2 = model.getClients();
+        assertEquals(klijenti2.size(), klijenti1.size()+1);
     }
 }

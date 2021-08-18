@@ -1,5 +1,6 @@
 package ba.unsa.etf.rpr.projekat.model;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Client extends User {

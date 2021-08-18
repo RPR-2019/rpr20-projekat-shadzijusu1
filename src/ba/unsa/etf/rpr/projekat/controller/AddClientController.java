@@ -14,6 +14,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 
@@ -111,7 +112,13 @@ public class AddClientController {
         for (User user : uposlenici) {
             if (user.getIme().equals(imeFotografa) &&
                     user.getPrezime().equals(prezimeFotografa)) {
-                model.addKlijentInfo(datumPicker.getValue(), fldTelefon.getText(), user.getId());
+                if(datumPicker.getValue() != null) {
+                    model.addKlijentInfo(datumPicker.getValue(), fldTelefon.getText(), user.getId());
+                }
+                else {
+                    model.addKlijentInfo(LocalDate.parse("1999-01-01"), fldTelefon.getText(), user.getId());
+
+                }
                 break;
             }
         }

@@ -39,12 +39,12 @@ class AddEmployeeControllerTest {
     }
 
     @Test
-    void test(FxRobot robot) {
+    void addEmployeeTest(FxRobot robot) {
         ArrayList<User> employeesBefore = model.getEmployees();
         robot.clickOn("B/H/S");
         robot.clickOn("Prijava");
-        robot.clickOn("#emailFld").write("ernah@gmail.com");
-        robot.clickOn("#passFld").write("erna123");
+        robot.clickOn("#emailFld").write("rprstudios@gmail.com");
+        robot.clickOn("#passFld").write("rpr1234");
         robot.clickOn("Prijavi se");
         robot.clickOn("Zaposlenici");
         robot.clickOn("Dodaj zaposlenog");

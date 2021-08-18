@@ -11,6 +11,7 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 
@@ -85,12 +86,21 @@ public class AddTaskController {
         model = CRMDao.getInstance();
         var id = model.getKlijentId(choiceKlijenti.getValue());
         if(koDodaje.equals("fotograf")) {
-            model.addTask(naziv.getText(), opis.getText(), rok.getValue(), id, fotograf.getId());
+            if(rok.getValue() != null) {
+                model.addTask(naziv.getText(), opis.getText(), rok.getValue(), id, fotograf.getId());
+            }
+            else
+                model.addTask(naziv.getText(), opis.getText(), LocalDate.parse("2021-12-12"), id, fotograf.getId());
+
         }
         else {
             //kad vlasnik dodaje i dodjeljuje fotografu
             int fotografId = model.getKorisnikFromName(choiceOdgovornaOsoba.getValue());
-            model.addTask(naziv.getText(), opis.getText(), rok.getValue(), id, fotografId);
+            if(rok.getValue() != null) {
+                model.addTask(naziv.getText(), opis.getText(), rok.getValue(), id, fotografId);
+            }
+            else
+                model.addTask(naziv.getText(), opis.getText(), LocalDate.parse("2021-12-12"), id, fotografId);
         }
         Node n = (Node) actionEvent.getSource();
         Stage stage = (Stage) n.getScene().getWindow();
