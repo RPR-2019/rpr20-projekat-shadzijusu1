@@ -1,7 +1,7 @@
 package ba.unsa.etf.rpr.projekat.controller;
 
 
-import ba.unsa.etf.rpr.projekat.dao.CRMDao;
+import ba.unsa.etf.rpr.projekat.dal.CRMDao;
 import ba.unsa.etf.rpr.projekat.GMailAuthenticator;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;

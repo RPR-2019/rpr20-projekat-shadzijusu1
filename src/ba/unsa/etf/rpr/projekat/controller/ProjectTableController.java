@@ -1,6 +1,6 @@
 package ba.unsa.etf.rpr.projekat.controller;
 
-import ba.unsa.etf.rpr.projekat.dao.CRMDao;
+import ba.unsa.etf.rpr.projekat.dal.CRMDao;
 import ba.unsa.etf.rpr.projekat.model.Project;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;

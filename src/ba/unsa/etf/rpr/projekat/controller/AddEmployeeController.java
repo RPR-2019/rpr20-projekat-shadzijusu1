@@ -1,6 +1,6 @@
 package ba.unsa.etf.rpr.projekat.controller;
 
-import ba.unsa.etf.rpr.projekat.dao.CRMDao;
+import ba.unsa.etf.rpr.projekat.dal.CRMDao;
 import ba.unsa.etf.rpr.projekat.model.POSITION;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

@@ -1,4 +1,4 @@
-package ba.unsa.etf.rpr.projekat.dao;
+package ba.unsa.etf.rpr.projekat.dal;
 
 import ba.unsa.etf.rpr.projekat.model.*;
 import javafx.beans.property.SimpleObjectProperty;
@@ -128,7 +128,7 @@ public class CRMDao {
             dajKorisnika.setString(2, pass);
 
             ResultSet result = dajKorisnika.executeQuery();
-
+            while(result.next()) {
                 String ime = result.getString(1);
                 String prezime = result.getString(2);
                 String poz = result.getString(5);
@@ -142,6 +142,7 @@ public class CRMDao {
                 k = new User(ime, prezime, email, pass, pozicija, slika);
                 k.setId(id);
                 return k;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

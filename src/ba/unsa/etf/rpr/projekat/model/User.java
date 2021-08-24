@@ -1,6 +1,6 @@
 package ba.unsa.etf.rpr.projekat.model;
 
-import ba.unsa.etf.rpr.projekat.dao.CRMDao;
+import ba.unsa.etf.rpr.projekat.dal.CRMDao;
 
 public class User {
     private int id;
