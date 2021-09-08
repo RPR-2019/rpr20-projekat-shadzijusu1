@@ -84,6 +84,7 @@ public class TaskController {
             int id = model.getKlijentId(newValue);
             ArrayList<Task> tasks = model.taskovi(fotograf.getId(), id);
             taskovi.addAll(tasks);
+            tableViewTaskovi.refresh();
             tableViewTaskovi.setItems(taskovi);
 
         });
