@@ -80,11 +80,12 @@ public class TaskController {
 
 
         klijentChoice.valueProperty().addListener((obs, oldValue, newValue) -> {
-
             int id = model.getKlijentId(newValue);
             ArrayList<Task> tasks = model.taskovi(fotograf.getId(), id);
+            taskovi.clear();
             taskovi.addAll(tasks);
             tableViewTaskovi.refresh();
+            tableViewTaskovi.getItems().removeAll();
             tableViewTaskovi.setItems(taskovi);
 
         });
